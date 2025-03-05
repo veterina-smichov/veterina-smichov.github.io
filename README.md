@@ -1,8 +1,5 @@
-# Eleventy Plus Vite <br>🏃💨
+# Veterina Smíchov website
 
-A clean and fast Eleventy Starter Project with Vite.
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ef99b4ea-199f-497b-84c1-48c34355da8a/deploy-status)](https://app.netlify.com/sites/eleventyplusvite/deploys)
 ## Features
 
 * Eleventy v3
@@ -16,16 +13,10 @@ A clean and fast Eleventy Starter Project with Vite.
 * Example implementation of a web font loading strategy ([critical FOFT with preload](https://www.zachleat.com/web/comprehensive-webfonts/#critical-foft-preload))
 * Basic fluid typography based on [Utopia](https://utopia.fyi)
 * Basic dark mode support (using `prefers-color-scheme` and CSS Custom Properties)
-* Polyfill for [focus-visible](https://matthiasott.com/notes/focus-visible-is-here)
 * RSS feed 🧡
 * XML sitemap
-* Four Hundos Lighthouse score 💯💯💯💯
 
 ## Getting started
-
-Start by [generating a new repository based on this project](https://github.com/matthiasott/eleventy-plus-vite/generate).
-
-After cloning (or downloading) the repository to your local machine, install all dependencies with the command
 
 ```sh
 npm install
@@ -60,29 +51,7 @@ or
 npx @11ty/eleventy
 ```
 
-## Deploy a fork of this template to Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/matthiasott/eleventy-plus-vite)
-
 ## CSS
 By default, this starter project uses Sass with an opinionated folder structure. Feel free to replace this structure with your own. If you prefer to write standards-compliant, good old plain CSS, this is also supported. Nesting is then possible via the [PostCSS Nesting plugin](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting), following the [CSS Nesting specification](https://drafts.csswg.org/css-nesting-1/).
 
 [Autoprefixer](https://github.com/postcss/autoprefixer) adds necessary browser prefixes. The [browserslist](https://github.com/browserslist/browserslist) settings can be adjusted in `package.json`.
-
-## Roadmap
-* Add more base styles and a demo page that shows example styles and components
-* Add a toggle button for the dark mode theme
-* More advanced base styles for modern CSS layout
-* Webmention/IndieWeb support
-
-## Feedback
-
-Please provide feedback! 🤗 Ideally by [filing an issue here](https://github.com/matthiasott/eleventy-plus-vite/issues) – or via a pull request.
-## Thank you!
-
-This starter project would not have been possible without the many great sites and projects I was able to learn from, use as inspiration, and shamelessly copy code from:
-
-* Zach Leatherman [zachleat.com](https://github.com/zachleat/zachleat.com)
-* Max Böck’s [Eleventastic](https://github.com/maxboeck/eleventastic)
-* Stephanie Eckles’s [11ty Netlify Jumpstart](https://github.com/5t3ph/11ty-netlify-jumpstart)
-* Miriam Suzanne [miriamsuzanne.com](https://www.miriamsuzanne.com)
