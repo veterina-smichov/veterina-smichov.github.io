@@ -1,8 +1,8 @@
 {
-  "name": "eleventy-plus-vite",
-  "version": "1.2.0",
+  "name": "veterina-smichov",
+  "version": "0.0.1",
   "type": "module",
-  "description": "A clean and simple Eleventy 2 Starter Kit with Vite",
+  "description": "veterina-smichov.cz website",
   "browserslist": [
     "> 0.5%",
     "not IE 11"
@@ -18,38 +18,34 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://matthiasott@github.com/matthiasott/11ty22.git"
+    "url": "git+https://github.com/veterina-smichov/veterina-smichov.github.io.git"
   },
-  "author": "Matthias Ott",
+  "author": "Daniel Srb",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/matthiasott/11ty22/issues"
-  },
-  "homepage": "https://github.com/matthiasott/11ty22#readme",
+  "homepage": "https://veterina-smichov.github.io",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0-beta.1",
-    "@11ty/eleventy-img": "^4.0.2",
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^6.0.1",
     "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "@11ty/eleventy-plugin-vite": "^5.0.0-alpha.1",
+    "@11ty/eleventy-plugin-vite": "^6.0.0",
     "autoprefixer": "^10.4.20",
-    "cssnano": "^7.0.5",
+    "cssnano": "^7.0.6",
     "cssremedy": "^0.1.0-beta.2",
-    "del-cli": "^5.1.0",
-    "eslint": "^8.57.0",
+    "del-cli": "^6.0.0",
+    "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.6.0",
-    "focus-visible": "^5.2.1",
+    "eslint-plugin-promise": "^6.1.1",
     "luxon": "^3.5.0",
     "markdown-it": "^14.1.0",
-    "markdown-it-anchor": "^9.0.1",
+    "markdown-it-anchor": "^9.2.0",
     "npm-run-all": "^4.1.5",
-    "postcss-nesting": "^13.0.0",
-    "rollup-plugin-critical": "^1.0.13",
-    "sass": "^1.77.8",
-    "vite": "^5.4.1"
+    "postcss-nesting": "^13.0.1",
+    "rollup-plugin-critical": "^1.0.15",
+    "sass": "^1.85.1",
+    "vite": "^6.2.0"
   }
 }
