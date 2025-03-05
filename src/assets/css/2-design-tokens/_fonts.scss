@@ -1,14 +1,6 @@
 /**
  * Font Face
  */
- @font-face {
-    font-family: 'DM Sans Subset';
-    src: url('/assets/fonts/dm-sans/dm-sans-v11-latin-regular-subset.woff2') format('woff2'),
-             url('/assets/fonts/dm-sans/dm-sans-v11-latin-regular-subset.woff') format('woff');
-    unicode-range: U+21-80,U+91-94,U+BF-D6,U+D8-F6,U+F8-122; // U+21-80,U+91-94,U+DF,U+E4,U+F6,U+FC
-}
-
-
 /* dm-sans-regular - latin */
 @font-face {
     font-family: 'DM Sans';
@@ -47,11 +39,5 @@
   }
 
 body {
-    font-family: sans-serif;
-}
-.fonts-loaded-1 body {
-    font-family: 'DM Sans Subset';
-}
-.fonts-loaded-2 body {
     font-family: 'DM Sans';
 }
