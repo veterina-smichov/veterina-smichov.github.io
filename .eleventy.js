@@ -3,7 +3,6 @@ import markdownItAnchor from 'markdown-it-anchor'
 
 import EleventyPluginNavigation from '@11ty/eleventy-navigation';
 import EleventyPluginRss from '@11ty/eleventy-plugin-rss'
-import EleventyPluginSyntaxhighlight from '@11ty/eleventy-plugin-syntaxhighlight'
 import EleventyVitePlugin from '@11ty/eleventy-plugin-vite'
 
 import filters from './utils/filters.js'
@@ -17,7 +16,6 @@ export default function (eleventyConfig) {
     // Plugins
     eleventyConfig.addPlugin(EleventyPluginNavigation)
     eleventyConfig.addPlugin(EleventyPluginRss)
-    eleventyConfig.addPlugin(EleventyPluginSyntaxhighlight)
     eleventyConfig.addPlugin(EleventyVitePlugin, {
         tempFolderName: '.11ty-vite', // Default name of the temp folder
 
