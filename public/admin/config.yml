@@ -4,7 +4,7 @@ backend:
   branch: main
   api_root: https://api.github.com
   site_domain: veterina-smichov.github.io
-  base_url: https://github-oauth-login.srb-dan-cloudflare-com.workers.dev
+  base_url: https://cloudflare-worker-github-oauth.cfds.workers.dev
   auth_endpoint: auth # Path to OAuth proxy endpoint
   cms_label_prefix: decap-cms/
   # Optional but recommended - prevents unauthorized users from accessing the CMS
