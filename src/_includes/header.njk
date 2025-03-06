@@ -1,10 +1,100 @@
+{#
 <header class="site-header" role="banner">
-    <div class="site-header__container">
-        <div class="site-header__left">
-            <p><strong>MVDr. Jana Lukešová</strong></p>
-        </div>
-        <div class="site-header__right">
-            {% include "navigation.njk" %}
-        </div>
+  <div class="site-header__container">
+    <div class="site-header__left">
+      <p><strong>MVDr. Jana Lukešová</strong></p>
     </div>
+    <div class="site-header__right">{% include "navigation.njk" %}</div>
+  </div>
+</header>
+#}
+
+<header>
+  <div class="col-xs-12 bgr-rice">
+    <div class="header-menu">
+      {#
+      <div class="vetlogo">
+        <a href="index">
+          <img
+            src="{{ '/assets/images/old/logo.png' | url }}"
+            style="max-height: 30px"
+        /></a>
+      </div>
+      #}
+      <div class="main-container">
+        <div class="menu fixer-container">
+          <ul>
+            <li class="menu-l">
+              <a href="/"><span style="margin-right: 0px"> </span>Domů</a>
+            </li>
+            <li class="menu-l">
+              <a href="/aktuality"><span>|</span>Aktuality</a>
+            </li>
+            <li class="menu-l">
+              <a href="/#onas"><span>|</span>O nás</a>
+            </li>
+            <li class="menu-l">
+              <a href="/#tym"><span>|</span>Náš tým</a>
+            </li>
+            <li class="menu-l">
+              <a href="/#cenik"><span>|</span>Ceník</a>
+            </li>
+            <li class="menu-l">
+              <a href="/#kontakt"><span>|</span>Kontakt</a>
+            </li>
+            {#
+            <li class="menu-l">
+              <a href="/admin"><span>|</span>Administrace</a>
+            </li>
+            #}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-umlogo">
+      <a href="/">
+        <img
+          src="{{ '/assets/images/old/logo.png' | url }}"
+          style="max-height: 40px"
+      /></a>
+    </div>
+    <div class="mmenu-menu">
+      <ul>
+        <li class="menu-l">
+          <a href="/">Domů</a>
+        </li>
+        <li class="menu-l">
+          <a href="/aktuality">Aktuality</a>
+        </li>
+        <li class="menu-l">
+          <a href="/#onas">O nás</a>
+        </li>
+        <li class="menu-l">
+          <a href="/#tym">Náš tým</a>
+        </li>
+
+        <li class="menu-l">
+          <a href="/#cenik">Ceník</a>
+        </li>
+        <li class="menu-l">
+          <a href="/#kontakt">Kontakt</a>
+        </li>
+      </ul>
+    </div>
+    <div id="mmenu" class="mmenu-icon-wrapper">
+      <span class="mmenu-icon"></span>
+    </div>
+  </div>
+  <div
+    style="
+      width: 100%;
+      min-height: 44px;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      z-index: 30;
+    "
+    class="m-menu-bgr"
+  ></div>
 </header>

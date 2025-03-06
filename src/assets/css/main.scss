@@ -1,24 +1,29 @@
-/* 1. Settings */
+@use "0-shame/style.css";
+@use "0-shame/bootstrap.min.css";
+@use "0-shame/d401f9804d.css";
+
+/*
+// 1. Settings
 @use 'cssremedy/css/remedy';
 @use "1-settings/global";
 
-/* 2. Design Tokens */
+// 2. Design Tokens
 @use "2-design-tokens/colors";
 @use "2-design-tokens/fonts";
 @use "2-design-tokens/media-queries";
 @use "2-design-tokens/spacing";
 @use "2-design-tokens/typography";
 
-/* 3. Tools */
+// 3. Tools
 @use "3-tools/aspect-ratio";
 @use "3-tools/accessibility";
 @use "3-tools/clearfix";
 
-/* 4. Generic */
+// 4. Generic
 @use "4-generic/normalize";
 @use "4-generic/print";
 
-/* 5. Elements */
+// 5. Elements
 @use "5-elements/body";
 @use "5-elements/buttons";
 @use "5-elements/forms";
@@ -42,5 +47,6 @@
 @use "8-utilities/modifiers";
 @use "8-utilities/states";
 
-/* Shame on you! */
+// Shame on you!
 @use "shame";
+*/

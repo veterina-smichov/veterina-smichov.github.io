@@ -2,24 +2,28 @@
 <html lang="{{ meta.lang }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ meta.title }}</title>
 
     {% include "meta.njk" %}
+    {% include "favicon.njk" %}
 
 	<link rel="stylesheet" href="/assets/css/main.scss">
 </head>
 <body>
-    <a href="#main" class="skiplink">Skip to main content</a>
-
-    <div class="layout" role="document">
+    <div class="layout">
         {% include "header.njk" %}
-        <main id="main" class="main">
+        <main class="main">
             {{ content | safe }}
         </main>
         {% include "footer.njk" %}
     </div>
 
     <script type="module" src="{{ '/assets/js/main.js' | url }}"></script>
+
+    <script src="{{ '/assets/javascript/jquery.min.js' | url }}"></script>
+    <script src="{{ '/assets/javascript/veterina-smichov.js' | url }}"></script>
+    <script src="{{ '/assets/javascript/d401f9804d.js' | url }}"></script>
+
 </body>
 </html>
