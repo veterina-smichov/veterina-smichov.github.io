@@ -12,7 +12,6 @@ import shortcodes from './utils/shortcodes.js'
 export default function (eleventyConfig) {
     eleventyConfig.setServerPassthroughCopyBehavior('copy')
     eleventyConfig.addPassthroughCopy('public')
-    eleventyConfig.addPassthroughCopy('admin')
 
     // Plugins
     eleventyConfig.addPlugin(EleventyPluginNavigation)
@@ -93,7 +92,6 @@ export default function (eleventyConfig) {
         passthroughFileCopy: true,
         dir: {
             input: 'src',
-            // better not use "public" as the name of the output folder (see above...)
             output: '_site',
             includes: '_includes',
             layouts: 'layouts',
