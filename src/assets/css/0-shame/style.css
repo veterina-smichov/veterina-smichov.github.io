@@ -20,7 +20,7 @@ ul {
     padding-left: 0px;
  }
 body {
-    background: url("/assets/images/old/vintage-concrete.png");
+    background: url("/assets/images/old/vintage-concrete.webp");
     padding-bottom: 20px !important;
 }
 .bgr-rice {
@@ -30,7 +30,7 @@ body {
 
 }
 .m-menu-bgr {
-    background: url("/assets/images/old/vintage-concrete.png    ");
+    background: url("/assets/images/old/vintage-concrete.webp    ");
 
 }
 .hp-act {
@@ -173,7 +173,7 @@ body {
     100% { opacity: 0.1 }
 }
 .header-menu {
-    background: url("/assets/images/old/vintage-concrete.png");
+    background: url("/assets/images/old/vintage-concrete.webp");
     opacity: 0.99;
     line-height: 25px;
     max-height: 60px;
@@ -281,7 +281,7 @@ body {
     height: 100%;
     opacity: 0.9;
     z-index: -1;
-    background-image: url("/assets/images/old/vintage-concrete.png");
+    background-image: url("/assets/images/old/vintage-concrete.webp");
     border-radius: 10px;
 }
 .text-cont {
