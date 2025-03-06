@@ -87,14 +87,14 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('src/assets/js')
 
     return {
-        templateFormats: ['md', 'njk', 'html', 'liquid'],
+        templateFormats: ['md', 'njk', 'html'],
         htmlTemplateEngine: 'njk',
         passthroughFileCopy: true,
         dir: {
             input: 'src',
             output: '_site',
             includes: '_includes',
-            layouts: 'layouts',
+            layouts: '_layouts',
             data: '_data'
         }
     }
