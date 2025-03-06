@@ -1,7 +1,7 @@
 import markdownIt from 'markdown-it'
 import markdownItAnchor from 'markdown-it-anchor'
 
-import EleventyPluginNavigation from '@11ty/eleventy-navigation';
+import EleventyPluginNavigation from '@11ty/eleventy-navigation'
 import EleventyPluginRss from '@11ty/eleventy-plugin-rss'
 import EleventyVitePlugin from '@11ty/eleventy-plugin-vite'
 
@@ -10,9 +10,9 @@ import transforms from './utils/transforms.js'
 import shortcodes from './utils/shortcodes.js'
 
 export default function (eleventyConfig) {
-    eleventyConfig.setServerPassthroughCopyBehavior('copy');
-    eleventyConfig.addPassthroughCopy("public");
-    eleventyConfig.addPassthroughCopy("./admin", "admin");
+    eleventyConfig.setServerPassthroughCopyBehavior('copy')
+    eleventyConfig.addPassthroughCopy('public')
+    eleventyConfig.addPassthroughCopy('admin')
 
     // Plugins
     eleventyConfig.addPlugin(EleventyPluginNavigation)
