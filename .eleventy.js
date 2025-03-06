@@ -11,7 +11,6 @@ import shortcodes from './utils/shortcodes.js'
 
 export default function (eleventyConfig) {
     eleventyConfig.setServerPassthroughCopyBehavior('copy');
-    eleventyConfig.addPassthroughCopy(".nojekyll");
     eleventyConfig.addPassthroughCopy("public");
     eleventyConfig.addPassthroughCopy("./admin", "admin");
 
