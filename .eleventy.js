@@ -13,7 +13,7 @@ export default function (eleventyConfig) {
     eleventyConfig.setServerPassthroughCopyBehavior('copy');
     eleventyConfig.addPassthroughCopy(".nojekyll");
     eleventyConfig.addPassthroughCopy("public");
-    eleventyConfig.addPassthroughCopy("admin");
+    eleventyConfig.addPassthroughCopy("./admin", "admin");
 
     // Plugins
     eleventyConfig.addPlugin(EleventyPluginNavigation)
