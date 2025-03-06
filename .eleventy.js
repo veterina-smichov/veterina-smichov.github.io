@@ -12,6 +12,7 @@ import shortcodes from './utils/shortcodes.js'
 export default function (eleventyConfig) {
     eleventyConfig.setServerPassthroughCopyBehavior('copy');
     eleventyConfig.addPassthroughCopy("public");
+    eleventyConfig.addPassthroughCopy("admin");
 
     // Plugins
     eleventyConfig.addPlugin(EleventyPluginNavigation)
