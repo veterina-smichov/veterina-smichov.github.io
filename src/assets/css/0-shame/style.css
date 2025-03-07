@@ -177,6 +177,7 @@ body {
 .text-cont p a {
     color: #2e7d7d !important;
     text-decoration: none;
+    font-weight:bold;
 }
 
 .text-cont p a:hover {
