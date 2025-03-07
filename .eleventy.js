@@ -81,6 +81,10 @@ export default function (eleventyConfig) {
     // Layouts
     eleventyConfig.addLayoutAlias('base', 'base.njk')
     eleventyConfig.addLayoutAlias('post', 'post.njk')
+    eleventyConfig.addCollection("pages", collection => {
+        return collection.getFilteredByTag("pages")
+    });
+
 
     // Copy/pass-through files
     eleventyConfig.addPassthroughCopy('src/assets/css')
