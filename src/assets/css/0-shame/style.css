@@ -273,6 +273,27 @@ footer {
     top: 0.5em;
 }
 
+.mmenu-active .mmenu-icon {
+    background: transparent;
+    transform: rotate(-135deg)
+}
+
+.mmenu-active .mmenu-icon:before,
+.mmenu-active .mmenu-icon:after {
+    top: 0
+}
+
+.mmenu-active .mmenu-icon:before {
+    transform: rotate(90deg)
+}
+
+.mmenu-active .mmenu-icon,
+.mmenu-active .mmenu-icon:before,
+.mmenu-active .mmenu-icon:after {
+    background: #05c4c9
+}
+
+
 .mmenu-menu {
     transition: all 0.4s ease;
     opacity: 0;
@@ -295,6 +316,11 @@ footer {
     font-weight: 700;
 }
 
+.mmenu-active .mmenu-menu {
+    opacity: 1;
+    pointer-events: initial;
+}
+
 .mmenu-menu ul {
     display: block;
     transition: all 0.4s ease;
@@ -306,6 +332,11 @@ footer {
     font-size: 20px;
     line-height: 200%;
 }
+
+.mmenu-active .mmenu-menu ul {
+    transform: translate(-50%, -50%) scale(1)
+}
+
 
 @media screen and (max-width: 1110px) {
     .menu {
