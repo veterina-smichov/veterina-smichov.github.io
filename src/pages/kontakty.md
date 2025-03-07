@@ -1,7 +1,7 @@
 ---
 title: Kontakty
-permalink: "/kontakty/"
-layout: "base"
+permalink: /kontakty
+layout: base
 ---
 # x
 # My Page Content

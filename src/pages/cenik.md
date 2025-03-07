@@ -1,7 +1,7 @@
 ---
-layout: base
 title: Ceník
-permalink: /cenik/
+permalink: /cenik
+layout: base
 ---
 Ceny jsou orientační, mohou se měnit v závislosti na hmotnosti a stavu pacienta.
 
