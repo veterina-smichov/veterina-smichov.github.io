@@ -8,22 +8,22 @@
     {% include "meta.njk" %}
     {% include "favicon.njk" %}
 
-	<link rel="stylesheet" href="/assets/css/main.scss">
+    <link rel="stylesheet" href="/assets/css/main.scss">
 </head>
 <body>
-    <div class="layout">
-        {% include "header.njk" %}
-        <main class="main">
-            {{ content | safe }}
-        </main>
-        {% include "footer.njk" %}
-    </div>
+<div class="layout">
+    {% include "header.njk" %}
+    <main class="main">
+        {{ content | safe }}
+    </main>
+    {% include "footer.njk" %}
+</div>
 
-    <script type="module" src="{{ '/assets/js/main.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/main.js' | url }}"></script>
 
-    <script src="{{ '/assets/javascript/jquery.min.js' | url }}"></script>
-    <script src="{{ '/assets/javascript/veterina-smichov.js' | url }}"></script>
-    <script src="{{ '/assets/javascript/d401f9804d.js' | url }}"></script>
+<script src="{{ '/assets/javascript/jquery.min.js' | url }}"></script>
+<script src="{{ '/assets/javascript/veterina-smichov.js' | url }}"></script>
+<script src="{{ '/assets/javascript/d401f9804d.js' | url }}"></script>
 
 </body>
 </html>
