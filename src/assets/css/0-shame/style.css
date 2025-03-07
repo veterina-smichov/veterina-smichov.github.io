@@ -1,3 +1,9 @@
+.layout {
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+
 .fixer-container,
 .main-container {
     float: left;
@@ -109,6 +115,20 @@ body {
     position: relative;
     top: 30px;
     z-index: 0;
+}
+
+.logo-homepage {
+    display: none;
+}
+
+@media (min-width: 570px) {
+    .logo-homepage {
+        display: block;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        padding: 2rem;
+    }
 }
 
 .sect-text-border {
