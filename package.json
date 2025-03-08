@@ -4,8 +4,10 @@
   "type": "module",
   "description": "veterina-smichov.cz website",
   "browserslist": [
+    "last 2 versions",
     "> 0.5%",
-    "not IE 11"
+    "not IE 11",
+    "not dead"
   ],
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
