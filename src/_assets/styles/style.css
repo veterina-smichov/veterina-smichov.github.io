@@ -1,0 +1,436 @@
+.layout {
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+.fixer-container,
+.main-container {
+    float: left;
+    position: relative;
+}
+
+.main-container {
+    left: 50%;
+}
+
+.fixer-container {
+    left: -50%;
+}
+
+ul {
+    padding-left: 0;
+}
+
+body {
+    background: url(/assets/images/old/vintage-concrete.webp);
+    padding-bottom: 20px !important;
+}
+
+.bgr-rice {
+    overflow: hidden;
+}
+
+.m-menu-bgr {
+    background: url(/assets/images/old/vintage-concrete.webp);
+}
+
+.hp-act {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    z-index: 2;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.hp-act p,
+.hp-act table tr {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+}
+
+.hp-act p {
+    font-size: 24px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 5px;
+}
+
+.hp-act table tr {
+    color: #05c4c9;
+    font-size: 20px;
+}
+
+.hp-act p,
+.hp-act table tr td,
+.hp-act table tr th {
+    text-shadow: 1px 1px #626262;
+}
+
+.header-menu {
+    background: url(/assets/images/old/vintage-concrete.webp);
+    opacity: 0.99;
+    line-height: 25px;
+    max-height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: inherit;
+    z-index: 20;
+}
+
+.menu {
+    align-content: right;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #2e7d7d;
+    font-size: 18px;
+    position: relative;
+    top: 5px;
+    z-index: 3;
+}
+
+.hp-act p,
+.menu ul li a:hover {
+    color: #05c4c9;
+}
+
+.menu ul li a span {
+    margin-right: 25px;
+}
+
+.menu-l {
+    padding-right: 25px;
+    text-shadow: 1px 1px #626262;
+}
+
+.um-img {
+    position: relative;
+    top: 30px;
+    z-index: 0;
+}
+
+.logo-homepage {
+    display: none;
+}
+
+@media (min-width: 570px) {
+    .logo-homepage {
+        display: block;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        padding: 2rem;
+    }
+}
+
+.sect-text-border {
+    margin: 90px 20px 0;
+    position: relative;
+    left: 0;
+    z-index: 15;
+    border: 2px dashed #2e7d7d;
+    border-radius: 10px;
+}
+
+.akt-resp {
+    margin-top: 40% !important;
+}
+
+.text-cont::before {
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    z-index: -1;
+    background-image: url(/assets/images/old/vintage-concrete.webp);
+    border-radius: 10px;
+}
+
+.text-cont {
+    position: relative;
+    top: 0;
+    z-index: 15;
+}
+
+.akt-img,
+.mmenu-menu ul,
+.text-cont::before {
+    position: absolute;
+    top: 0;
+}
+
+.sect-head-border span,
+.text-cont p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+.text-cont p a {
+    color: #2e7d7d !important;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.text-cont p a:hover {
+    color: #000;
+}
+
+.text-cont {
+    margin: 35px 10px 20px 20px;
+}
+
+.sect-head-border,
+.sect-head-border-v {
+    padding: 10px;
+    min-width: 130px;
+    position: absolute;
+    top: -25px;
+    left: -20px;
+    background-color: #05c4c9;
+    border-radius: 5px;
+    border-style: dashed;
+}
+
+.sect-head-border span {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.text-cont-v p {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.sect-head-border-v span {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.text-cont-v {
+    margin: 35px 10px 20px 20px;
+}
+
+.footer-by p,
+.hp-ex p,
+.sect-head-border-v span,
+.text-cont-v p,
+footer {
+    font-family: "Open Sans", sans-serif;
+}
+
+footer {
+    min-height: 50px;
+}
+
+.m-umlogo {
+    padding-top: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: fixed;
+    top: 0;
+    z-index: 40;
+}
+
+.mmenu-icon-wrapper {
+    position: fixed;
+    top: 0.6em;
+    right: 2em;
+    height: 26px;
+    width: 26px;
+    cursor: pointer;
+    z-index: 40;
+}
+
+.mmenu-icon,
+.mmenu-icon:after,
+.mmenu-icon:before {
+    content: "";
+    position: absolute;
+    border-radius: 1em;
+    height: 3px;
+    width: 26px;
+    background: #000;
+    transition: all 0.2s ease;
+}
+
+.mmenu-icon {
+    top: 0.75em;
+}
+
+.mmenu-icon:before {
+    top: -0.5em;
+}
+
+.mmenu-icon:after {
+    top: 0.5em;
+}
+
+.mmenu-active .mmenu-icon {
+    background: transparent;
+    transform: rotate(-135deg)
+}
+
+.mmenu-active .mmenu-icon:before,
+.mmenu-active .mmenu-icon:after {
+    top: 0
+}
+
+.mmenu-active .mmenu-icon:before {
+    transform: rotate(90deg)
+}
+
+.mmenu-active .mmenu-icon,
+.mmenu-active .mmenu-icon:before,
+.mmenu-active .mmenu-icon:after {
+    background: #05c4c9
+}
+
+
+.mmenu-menu {
+    transition: all 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: -1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    z-index: 40;
+}
+
+.menu ul li a,
+.mmenu-menu a {
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+}
+
+.mmenu-active .mmenu-menu {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.mmenu-menu ul {
+    display: block;
+    transition: all 0.4s ease;
+    padding: 0;
+    list-style-type: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    font-size: 20px;
+    line-height: 200%;
+}
+
+.mmenu-active .mmenu-menu ul {
+    transform: translate(-50%, -50%) scale(1)
+}
+
+
+@media screen and (max-width: 1110px) {
+    .menu {
+        display: none;
+    }
+
+    .bgr-rice {
+        overflow: visible;
+    }
+
+    .um-img {
+        top: 50px;
+    }
+
+    .hp-act {
+        display: none;
+        top: 8%;
+        right: 25%;
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+}
+
+.prof-pic-resp {
+    border-radius: 10px;
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 175px;
+    height: auto;
+}
+
+@media screen and (min-width: 1110px) {
+
+    .m-menu-bgr,
+    .m-umlogo,
+    .mmenu-icon-wrapper,
+    .mmenu-menu {
+        display: none !important;
+    }
+}
+
+.footer-by {
+    text-align: right;
+    position: relative;
+    bottom: -30px;
+    margin-right: 35px;
+}
+
+.footer-by p,
+.hp-ex p {
+    font-size: 12px;
+}
+
+.footer-by p a,
+.hp-ex a:hover,
+.mmenu-menu a {
+    text-decoration: none;
+    color: #05c4c9;
+}
+
+.footer-by p a:hover {
+    color: #05c4c9;
+}
+
+.map-responsive {
+    padding-bottom: 28.13%;
+    position: relative;
+    height: 0;
+    min-height: 100px;
+}
+
+.map-responsive iframe {
+    height: 90%;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+}
+
+.hp-ex {
+    position: absolute;
+    top: 80px;
+    left: 15%;
+    width: 75%;
+    height: 100px;
+    z-index: 2;
+    overflow: auto;
+}
+
+.hp-ex p {
+    font-size: 20px;
+}
+
+.hp-ex p a {
+    color: #2e7d7d;
+    text-shadow: 0.5px 0.5px #626262;
+}

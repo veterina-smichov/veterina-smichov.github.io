@@ -1,0 +1,21 @@
+---
+permalink: "{{ redirect.from }}"
+pagination:
+    data: redirects
+    size: 1
+    alias: redirect
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0;url={{ redirect.to }}">
+    <link rel="canonical" href="{{ redirect.to }}">
+    <title>Redirecting to {{ redirect.to }}</title>
+    <script>window.location.href = "{{ redirect.to }}"</script>
+</head>
+<body>
+    <h1>The page you’re requesting has been moved.</h1>
+    <p>Redirecting you to <a href="{{ redirect.to }}">{{ redirect.to }}</a></p>
+</body>
+</html>

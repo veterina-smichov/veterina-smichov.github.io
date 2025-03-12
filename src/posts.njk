@@ -1,0 +1,12 @@
+---
+title: Posts
+eleventyNavigation:
+    key: Posts
+    order: 50
+---
+
+<div class="container">
+    <h1>Posts</h1>
+    {% set postslist = collections.posts %}
+    {% include "postslist.njk" %}
+</div>

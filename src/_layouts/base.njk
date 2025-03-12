@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ meta.lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ meta.title|safe }}</title>
+
+    {% include "meta.njk" %}
+    {% include "favicon.njk" %}
+
+    <link rel="stylesheet" href="/assets/styles/main.scss">
+
+</head>
+<body>
+<div class="layout">
+    {% include "header.njk" %}
+
+    <header class="site-header" role="banner" style="margin-top: 18rem;">
+        <div class="site-header__container">
+            <div class="site-header__left">
+                <p><strong>MVDr. Jana Lukešová</strong></p>
+            </div>
+            <div class="site-header__right">{% include "navigation.njk" %}</div>
+        </div>
+    </header>
+
+    {% include "navigation-alt.njk" %}
+    <h1>
+        {% block title %}
+            {{ title | safe }}
+        {% endblock %}
+    </h1>
+
+    <main class="main">
+        {{ content | safe }}
+    </main>
+    {% include "footer.njk" %}
+    {% year %} &copy; {{ site.siteName }}
+</div>
+
+<script type="module" src="{{ '/assets/scripts/main.js' | url }}"></script>
+
+</body>
+</html>

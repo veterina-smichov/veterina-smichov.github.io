@@ -1,0 +1,11 @@
+---
+title: Články
+eleventyNavigation:
+    key: Články
+    order: 60
+---
+<div class="container">
+    <h1>{{ title }}</h1>
+    {% set postslist = collections.articles %}
+    {% include "postslist.njk" %}
+</div>
