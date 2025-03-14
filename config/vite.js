@@ -12,10 +12,19 @@ export default function(eleventyConfig) {
             server: {
                 mode: 'development'
             },
-            // base: './',
             appType: 'custom',
             assetsInclude: ['**/*.xml', '**/*.txt'],
             publicDir: 'static', // default is 'public'
+            css: {
+                postcss: './postcss.config.cjs',
+                devSourcemap: true,
+                preprocessorOptions: {
+                    scss: {
+                        silenceDeprecations: ['import', 'legacy-js-api'],
+                        quietDeps: true
+                    }
+                }
+            },
             build: {
                 // assetsDir: 'assets-test', // output dir for processed assets and has no effect when using rollupOptions output
                 mode: 'production',
@@ -23,15 +32,11 @@ export default function(eleventyConfig) {
                 manifest: true,
                 rollupOptions: {
                     output: {
-                        assetFileNames: 'assets/[name][extname]', // .[hash]
-                        chunkFileNames: 'assets/scripts/[name].js', // .[hash]
-                        entryFileNames: 'assets/scripts/[name].js' // .[hash]
+                        assetFileNames: 'assets/[name].[hash][extname]',
+                        chunkFileNames: 'assets/scripts/[name].[hash].js',
+                        entryFileNames: 'assets/scripts/[name].[hash].js'
                     }
                 }
-            },
-            css: {
-                postcss: './postcss.config.cjs',
-                devSourcemap: true
             }
         }
     })
