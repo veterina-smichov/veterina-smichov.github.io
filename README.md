@@ -51,7 +51,6 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 ├─ _site/                          # 11ty output directory
 ├─ src/                            # 11ty input directory, place any static pages directly into it
 │ ├─ _data/                        # 11ty data directory (data available globally)
-│ │ ├─ build.js                    # data for build.txt
 │ │ ├─ meta.json                   # data for meta tags
 │ │ ├─ navigation.json             # data for generating navigation
 │ │ └─ redirects.js                # data containing redirects (for redirects.njk)
@@ -65,6 +64,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │ ├─ _special-urls/                # special pages/files
 │ │ ├─ 404.html.njk                # 404 template
 │ │ ├─ _special-urls.11tydata.json # directory specific settings
+│ │ ├─ build.txt.11tydata.js       # data for build.txt
 │ │ ├─ build.txt.njk               # build.txt template
 │ │ ├─ redirects.njk               # template that will generate page for each redirect
 │ │ ├─ robots.txt.njk              # robots.txt template

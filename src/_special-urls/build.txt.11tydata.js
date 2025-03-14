@@ -1,4 +1,4 @@
 export default {
-    env: process.env.ELEVENTY_ENV,
+    env: process.env.NODE_ENV,
     timestamp: new Date()
 }
