@@ -4,12 +4,10 @@
  */
 
 export default {
-  /**
-   * Add date shortcode
-   * By Stephanie Eckles
-   * https://11ty.rocks/eleventyjs/dates/
-   */
-  year: eleventyConfig => {
-    eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`)
-  }
+    /**
+     * Date shortcode
+     * By Stephanie Eckles
+     * https://11ty.rocks/eleventyjs/dates/
+     */
+    year: eleventyConfig => eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`)
 }

@@ -3,32 +3,30 @@
  * https://www.11ty.dev/docs/server-vite/
  */
 
-import EleventyVitePlugin from '@11ty/eleventy-plugin-vite'
+import EleventyPluginVite from '@11ty/eleventy-plugin-vite'
 
 export default function(eleventyConfig) {
-
-    eleventyConfig.addPlugin(EleventyVitePlugin, {
+    eleventyConfig.addPlugin(EleventyPluginVite, {
         // Vite options (equal to vite.config.js inside project root)
         viteOptions: {
-            publicDir: false,
-            clearScreen: false,
             server: {
-                mode: 'development',
-                middlewareMode: true
+                mode: 'development'
             },
+            // base: './',
             appType: 'custom',
-            assetsInclude: ['**/*.xml', '**/*.txt'],
+            assetsInclude: ['**/*.xml', '**/*.txt'], //, '**/*.yml', 'admin/**/*'
+            publicDir: 'static', // default is 'public'
             build: {
-                assetsDir: 'assets',
-                outDir: '_site/assets',
+                // emptyOutDir: true, // default true
+                // assetsDir: 'assets-test', // output dir for processed assets and has no effect when using rollupOptions output
                 mode: 'production',
-                sourcemap: true,
-                manifest: true,
+                sourcemap: false,
+                manifest: false,
                 rollupOptions: {
                     output: {
-                        assetFileNames: 'assets/[name].[hash][extname]',
-                        chunkFileNames: 'assets/[name].[hash].js',
-                        entryFileNames: 'assets/[name].[hash].js'
+                        assetFileNames: 'assets/[name][extname]', // .[hash]
+                        chunkFileNames: 'assets/scripts/[name].js', // .[hash]
+                        entryFileNames: 'assets/scripts/[name].js' // .[hash]
                     }
                 }
             }

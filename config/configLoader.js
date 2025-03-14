@@ -27,10 +27,17 @@ const logSubtask = ({ taskName }) => {
  * @param {Object} config - Eleventy config object
  */
 const processTask = ({ task, config }) => {
-    logTask({ task })
+    // Skip logging group if there are no subtasks
+    const entries = Object.entries(task.config)
+    if (entries.length === 0) return
+
+    // Only start group if there are entries and echo is enabled
+    if (task.echo) {
+        logTask({ task })
+    }
 
     // Execute each config function in the task
-    Object.entries(task.config).forEach(([taskName, taskFn]) => {
+    entries.forEach(([taskName, taskFn]) => {
         if (task.echo) {
             logSubtask({ taskName })
         }

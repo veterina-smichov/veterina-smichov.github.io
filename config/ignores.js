@@ -4,7 +4,5 @@
  */
 
 export default {
-    configJsons: eleventyConfig => {
-        eleventyConfig.ignores.add('src/_admin/')
-    }
+    // configJsons: eleventyConfig => eleventyConfig.ignores.add('src/something')
 }

@@ -10,17 +10,10 @@ export default {
       )
     },
 
-    /*
-    pages: eleventyConfig => {
-      eleventyConfig.addCollection('pages', collectionApi =>
-        collectionApi.getFilteredByGlob('src/content/pages/!**!/!*.md')
-      )
-    },
-    */
-
     pages: eleventyConfig => {
         eleventyConfig.addCollection('pages', collectionApi =>
             collectionApi.getFilteredByTag('pages')
+            // collectionApi.getFilteredByGlob('src/content/pages/!**!/!*.md') // another option
         )
     }
 

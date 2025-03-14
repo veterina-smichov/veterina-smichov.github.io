@@ -4,11 +4,8 @@
  */
 
 export default {
-  // Watch for changes to files in the assets directory
-  assets: eleventyConfig => {
-    eleventyConfig.addWatchTarget('./src/assets')
+  // Watch for changes to files in the static directory
+  static: eleventyConfig => {
+    eleventyConfig.addWatchTarget('static')
   },
-  assetsStatic: eleventyConfig => {
-    eleventyConfig.addWatchTarget('./src/assets-static')
-  }
 }

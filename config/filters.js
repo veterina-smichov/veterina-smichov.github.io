@@ -37,5 +37,5 @@ export default {
         eleventyConfig.addFilter('filterTagList', tags =>
             (tags || []).filter(tag => ['all', 'nav', 'post', 'posts'].indexOf(tag) === -1)
         )
-    },
+    }
 }

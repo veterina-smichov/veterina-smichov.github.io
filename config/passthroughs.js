@@ -4,18 +4,7 @@
  */
 
 export default {
-    admin: eleventyConfig => {
-        eleventyConfig.addPassthroughCopy({ 'src/_admin/*.*': '/admin/' })
-    },
-
-
-    assets: eleventyConfig => {
-        eleventyConfig.addPassthroughCopy({ 'src/_assets/': '/assets' })
-    },
-
-    assetsStatic: eleventyConfig => {
-        eleventyConfig.addPassthroughCopy({ 'src/_assets-static/': '/assets' }, {
-            filter: path => (!path.includes('.gitkeep')) // filter out .gitkeep files
-        })
-    },
+    admin: eleventyConfig => eleventyConfig.addPassthroughCopy('static/admin'),
+    staticAssets: eleventyConfig => eleventyConfig.addPassthroughCopy('static/assets'),
+    srcAssets: eleventyConfig => eleventyConfig.addPassthroughCopy('src/assets'),
 }

@@ -29,7 +29,7 @@ export default config => {
         { name: 'Template Languages', config: templatelanguages, echo: true },
         { name: 'Layouts Aliases', config: layoutAliases, echo: true },
         { name: 'Ignores', config: ignores, echo: true },
-        { name: 'Watch Targets', config: watchtargets, echo: true },
+        { name: 'Watch Targets', config: watchtargets, echo: true }
     ]
     // Log the build process
     configLoad({ siteName, tasks, config })
@@ -37,11 +37,12 @@ export default config => {
     // Add build configuration
     vite(config)
 
+    config.setDataFileSuffixes(['.11tydata']) // use only something.11tydata.js or json files
     // Enable quiet mode
     // config.setQuietMode(true)
 
     return {
-        templateFormats: ['md', 'njk', 'html'],
+        templateFormats: ['md', 'njk'],
         htmlTemplateEngine: 'njk',
         markdownTemplateEngine: 'njk',
         passthroughFileCopy: true,
@@ -50,7 +51,7 @@ export default config => {
             output: '_site',
             includes: '_includes',
             layouts: '_layouts',
-            data: '_data',
+            data: '_data'
         }
     }
 }
