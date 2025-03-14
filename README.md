@@ -4,7 +4,7 @@
 
 - Eleventy
 - Vite
-- CSS/Sass post-processing with PostCSS incl. [Autoprefixer](https://github.com/postcss/autoprefixer) and cssnano
+- CSS/Sass post-processing with PostCSS incl. [Autoprefixer](https://github.com/postcss/autoprefixer), cssnano and PurgeCSS
 - XML sitemap
 - Redirects
 - Actions to deploy to GitHub Pages
@@ -94,5 +94,5 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │     ├─ favicon/                  # favicon directory
 │     ├─ fonts/                    # fonts directory
 │     └─ site.webmanifest          # manifest
-└─ postcss.config.js               # PostCSS configuration
+└─ postcss.config.cjs              # PostCSS configuration
 ```

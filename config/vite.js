@@ -20,7 +20,7 @@ export default function(eleventyConfig) {
                 // assetsDir: 'assets-test', // output dir for processed assets and has no effect when using rollupOptions output
                 mode: 'production',
                 sourcemap: false,
-                manifest: false,
+                manifest: true,
                 rollupOptions: {
                     output: {
                         assetFileNames: 'assets/[name][extname]', // .[hash]
@@ -28,6 +28,10 @@ export default function(eleventyConfig) {
                         entryFileNames: 'assets/scripts/[name].js' // .[hash]
                     }
                 }
+            },
+            css: {
+                postcss: './postcss.config.cjs',
+                devSourcemap: true
             }
         }
     })
