@@ -19,6 +19,7 @@ node_modules/
 
 # Eleventy
 _site/
+.cache/
 
 # Misc
 .DS_Store

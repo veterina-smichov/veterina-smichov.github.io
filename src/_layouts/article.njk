@@ -1,8 +1,15 @@
-{% extends "./base.njk" %}
+{% extends "./_base.njk" %}
 
 
-{% block title %}
-    ARTICLE
-    <br>
+{% block content %}
+    <p class="fs-5 fw-semibold">
+        {{ perex }}
+    </p>
+
     {{ super() }}
+
+    <hr>
+    {% set postslist = collections.articles %}
+    {% include "postslist.njk" %}
+
 {% endblock %}

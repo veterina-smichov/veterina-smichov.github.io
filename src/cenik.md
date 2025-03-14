@@ -2,7 +2,7 @@
 title: Ceník
 eleventyNavigation:
     key: Ceník
-    order: 10
+    order: 30
 ---
 Ceny jsou orientační, mohou se měnit v závislosti na hmotnosti a stavu pacienta.
 

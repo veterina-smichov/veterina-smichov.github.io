@@ -1,9 +1,9 @@
 ---
 title: Odstranění cizího tělesa
 date: 2025-01-01
+perex: |
+    Naše veterinární klinika se denně setkává s různými případy, ale příběh labradora Maxe nás obzvlášť zaujal. Max byl přivezen svými majiteli s podezřením na zažívací potíže. Měl ztrátu chuti k jídlu, zvracel a byl viditelně unavený.
 ---
-
-Naše veterinární klinika se denně setkává s různými případy, ale příběh labradora Maxe nás obzvlášť zaujal. Max byl přivezen svými majiteli s podezřením na zažívací potíže. Měl ztrátu chuti k jídlu, zvracel a byl viditelně unavený.
 
 ## Diagnóza a příprava na operaci
 Po důkladném klinickém vyšetření a rentgenovém snímku jsme zjistili, že Max spolkl cizí předmět – gumovou hračku, která se zasekla ve střevech. Tento stav byl život ohrožující a vyžadoval okamžitý chirurgický zákrok.

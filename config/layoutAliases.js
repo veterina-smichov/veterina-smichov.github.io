@@ -4,5 +4,5 @@
  */
 
 export default {
-    // base: eleventyConfig => eleventyConfig.addLayoutAlias('base', 'base.njk')
+    // base: eleventyConfig => eleventyConfig.addLayoutAlias('base', 'page.njk')
 }

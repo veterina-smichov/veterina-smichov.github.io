@@ -1,22 +1,14 @@
-<ol reversed class="postlist">
-    {% for post in postslist | reverse %}
-        <li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
-            <a href="{{ post.url | url }}" class="postlist-link">
+{% for post in postslist|reverse %}
+    {% if post.url != url %}
+        <article class="card position-relative">
+            <div class="card-body">
                 <h2>
-                    {% if post.data.title %}
+                    <a href="{{ post.url|url }}" class="stretched-link">
                         {{ post.data.title }}
-                    {% else %}
-                        <code>{{ post.url }}</code>
-                    {% endif %}
+                    </a>
                 </h2>
-            </a>
-            <time class="postlist-date" datetime="{{ post.date | dateToFormat('yyyy-MM-dd') }}">
-                {{ post.date | dateToFormat('dd LLL yyyy') }}
-            </time>
-            {% for tag in post.data.tags | filterTagList %}
-                {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
-                <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
-            {% endfor %}
-        </li>
-    {% endfor %}
-</ol>
+                <p>{{ post.data.perex }}</p>
+            </div>
+        </article>
+    {% endif %}
+{% endfor %}

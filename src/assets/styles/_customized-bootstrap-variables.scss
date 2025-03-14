@@ -76,16 +76,16 @@
     ); $grays: $grays !global;
     */
 
-    // $blue: #0d6efd; $blue: $blue !global; // #0d6efd
-    // $indigo: #6610f2; $indigo: $indigo !global; // #6610f2
-    // $purple: #6f42c1; $purple: $purple !global; // #6f42c1
-    // $pink: #d63384; $pink: $pink !global; // #d63384
-    // $red: #dc3545; $red: $red !global; // #dc3545
-    // $orange: #fd7e14; $orange: $orange !global; // #fd7e14
-    // $yellow: #ffc107; $yellow: $yellow !global; // #ffc107
-    // $green: #198754; $green: $green !global; // #198754
-    // $teal: #20c997; $teal: $teal !global; // #20c997
-    // $cyan: #0dcaf0; $cyan: $cyan !global; // #0dcaf0
+     $blue: #0d6efd; $blue: $blue !global; // #0d6efd
+     $indigo: #6610f2; $indigo: $indigo !global; // #6610f2
+     $purple: #6f42c1; $purple: $purple !global; // #6f42c1
+     $pink: #d63384; $pink: $pink !global; // #d63384
+     $red: #cd0d09; $red: $red !global; // #dc3545
+     $orange: #c78705; $orange: $orange !global; // #fd7e14
+     $yellow: #ffc107; $yellow: $yellow !global; // #ffc107
+     $green: #08c77d; $green: $green !global; // #198754
+     $teal: #2e7d7d; $teal: $teal !global; // #20c997
+     $cyan: #05c4c9; $cyan: $cyan !global; // #0dcaf0
 
     /*
     $colors: (
@@ -345,14 +345,14 @@
     ); $cyans: $cyans !global;
     */
 
-    // $primary: $blue; $primary: $primary !global; // $blue
-    // $secondary: $gray-600; $secondary: $secondary !global; // $gray-600
-    // $success: $green; $success: $success !global; // $green
-    // $info: $cyan; $info: $info !global; // $cyan
-    // $warning: $yellow; $warning: $warning !global; // $yellow
-    // $danger: $red; $danger: $danger !global; // $red
-    // $light: $gray-100; $light: $light !global; // $gray-100
-    // $dark: $gray-900; $dark: $dark !global; // $gray-900
+     $primary: $teal; $primary: $primary !global; // $blue
+     $secondary: $cyan; $secondary: $secondary !global; // $gray-600
+     $success: $green; $success: $success !global; // $green
+     $info: $blue; $info: $info !global; // $cyan
+     $warning: $yellow; $warning: $warning !global; // $yellow
+     $danger: $red; $danger: $danger !global; // $red
+     $light: $green-100; $light: $light !global; // $gray-100
+     $dark: $teal-900; $dark: $dark !global; // $gray-900
 
     /*
     $theme-colors: (
@@ -414,14 +414,14 @@
     // $enable-gradients: false; $enable-gradients: $enable-gradients !global; // false
     // $enable-transitions: true; $enable-transitions: $enable-transitions !global; // true
     // $enable-reduced-motion: true; $enable-reduced-motion: $enable-reduced-motion !global; // true
-    // $enable-smooth-scroll: true; $enable-smooth-scroll: $enable-smooth-scroll !global; // true
+    $enable-smooth-scroll: false; $enable-smooth-scroll: $enable-smooth-scroll !global; // true
     // $enable-grid-classes: true; $enable-grid-classes: $enable-grid-classes !global; // true
     // $enable-container-classes: true; $enable-container-classes: $enable-container-classes !global; // true
     // $enable-cssgrid: false; $enable-cssgrid: $enable-cssgrid !global; // false
     // $enable-button-pointers: true; $enable-button-pointers: $enable-button-pointers !global; // true
     // $enable-rfs: true; $enable-rfs: $enable-rfs !global; // true
     // $enable-validation-icons: true; $enable-validation-icons: $enable-validation-icons !global; // true
-    // $enable-negative-margins: false; $enable-negative-margins: $enable-negative-margins !global; // false
+    $enable-negative-margins: true; $enable-negative-margins: $enable-negative-margins !global; // false
     // $enable-deprecation-messages: true; $enable-deprecation-messages: $enable-deprecation-messages !global; // true
     // $enable-important-utilities: true; $enable-important-utilities: $enable-important-utilities !global; // true
 
@@ -476,7 +476,7 @@
 
     // $body-text-align: null; $body-text-align: $body-text-align !global; // null
     // $body-color: $gray-900; $body-color: $body-color !global; // $gray-900
-    // $body-bg: $white; $body-bg: $body-bg !global; // $white
+    $body-bg: $orange-100; $body-bg: $body-bg !global; // $white
 
     // $body-secondary-color: rgba($body-color, .75); $body-secondary-color: $body-secondary-color !global; // rgba($body-color, .75)
     // $body-secondary-bg: $gray-200; $body-secondary-bg: $body-secondary-bg !global; // $gray-200
@@ -573,9 +573,9 @@
     // $border-color: $gray-300; $border-color: $border-color !global; // $gray-300
     // $border-color-translucent: rgba($black, .175); $border-color-translucent: $border-color-translucent !global; // rgba($black, .175)
 
-    // $border-radius: .375rem; $border-radius: $border-radius !global; // .375rem
+    $border-radius: .5rem; $border-radius: $border-radius !global; // .375rem
     // $border-radius-sm: .25rem; $border-radius-sm: $border-radius-sm !global; // .25rem
-    // $border-radius-lg: .5rem; $border-radius-lg: $border-radius-lg !global; // .5rem
+    $border-radius-lg: 1rem; $border-radius-lg: $border-radius-lg !global; // .5rem
     // $border-radius-xl: 1rem; $border-radius-xl: $border-radius-xl !global; // 1rem
     // $border-radius-xxl: 2rem; $border-radius-xxl: $border-radius-xxl !global; // 2rem
     // $border-radius-pill: 50rem; $border-radius-pill: $border-radius-pill !global; // 50rem
@@ -617,7 +617,7 @@
     //
     // Font, line-height, and color for body text, headings, and more.
 
-    // $font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; $font-family-sans-serif: $font-family-sans-serif !global; // system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+     $font-family-sans-serif: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; $font-family-sans-serif: $font-family-sans-serif !global; // system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
     // $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; $font-family-monospace: $font-family-monospace !global; // SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
     // $font-family-base: var(--#{$prefix}font-sans-serif); $font-family-base: $font-family-base !global; // var(--#{$prefix}font-sans-serif)
     // $font-family-code: var(--#{$prefix}font-monospace); $font-family-code: $font-family-code !global; // var(--#{$prefix}font-monospace)
@@ -662,11 +662,11 @@
     */
 
     // $headings-margin-bottom: $spacer * .5; $headings-margin-bottom: $headings-margin-bottom !global; // $spacer * .5
-    // $headings-font-family: null; $headings-font-family: $headings-font-family !global; // null
+    $headings-font-family: Nunito, sans-serif; $headings-font-family: $headings-font-family !global; // null
     // $headings-font-style: null; $headings-font-style: $headings-font-style !global; // null
-    // $headings-font-weight: 500; $headings-font-weight: $headings-font-weight !global; // 500
+    $headings-font-weight: 700; $headings-font-weight: $headings-font-weight !global; // 500
     // $headings-line-height: 1.2; $headings-line-height: $headings-line-height !global; // 1.2
-    // $headings-color: inherit; $headings-color: $headings-color !global; // inherit
+    $headings-color: $primary; $headings-color: $headings-color !global; // inherit
 
     /*
     $display-font-sizes: (
@@ -678,9 +678,9 @@
         6: 2.5rem
     ); $display-font-sizes: $display-font-sizes !global;
     */
-    // $display-font-family: null; $display-font-family: $display-font-family !global; // null
+     $display-font-family: $headings-font-family; $display-font-family: $display-font-family !global; // null
     // $display-font-style: null; $display-font-style: $display-font-style !global; // null
-    // $display-font-weight: 300; $display-font-weight: $display-font-weight !global; // 300
+    $display-font-weight: 500; $display-font-weight: $display-font-weight !global; // 300
     // $display-line-height: $headings-line-height; $display-line-height: $display-line-height !global; // $headings-line-height
 
     // $lead-font-size: $font-size-base * 1.25; $lead-font-size: $lead-font-size !global; // $font-size-base * 1.25

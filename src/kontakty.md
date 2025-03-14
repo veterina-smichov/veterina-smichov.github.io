@@ -2,18 +2,15 @@
 title: Kontakty
 eleventyNavigation:
     key: Kontakty
-    order: 70
+    order: 10
 ---
-# x
 # Kontakty
 
 ## Telefon: [+420 602 355 496](tel:+420602355496)
 
-
 info@veterina-smichov.cz
 
 ## Ordinační hodiny
-
 
 | den       | dopoledne   | odpoledne   |
 |-----------|-------------|-------------|

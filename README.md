@@ -60,7 +60,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │ │ └─ navigation.njk
 │ ├─ _layouts/                     # 11ty layouts directory (basic templates to be used for whole pages)
 │ │ ├─ article.njk
-│ │ └─ base.njk                    # base template for most pages
+│ │ └─ page.njk                    # base template for most pages
 │ ├─ _special-urls/                # special pages/files
 │ │ ├─ 404.html.njk                # 404 template
 │ │ ├─ _special-urls.11tydata.json # directory specific settings
