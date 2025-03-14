@@ -14,10 +14,9 @@ export default function(eleventyConfig) {
             },
             // base: './',
             appType: 'custom',
-            assetsInclude: ['**/*.xml', '**/*.txt'], //, '**/*.yml', 'admin/**/*'
+            assetsInclude: ['**/*.xml', '**/*.txt'],
             publicDir: 'static', // default is 'public'
             build: {
-                // emptyOutDir: true, // default true
                 // assetsDir: 'assets-test', // output dir for processed assets and has no effect when using rollupOptions output
                 mode: 'production',
                 sourcemap: false,
