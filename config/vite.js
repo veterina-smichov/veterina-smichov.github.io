@@ -10,7 +10,12 @@ export default function(eleventyConfig) {
         // Vite options (equal to vite.config.js inside project root)
         viteOptions: {
             server: {
-                mode: 'development'
+                mode: 'development',
+                watch: {
+                    usePolling: true,    // enabling polling to work better with WSL2
+                    interval: 100,       // polling interval
+                    binaryIntervAl: 300  // binary files check interval
+                },
             },
             appType: 'custom',
             assetsInclude: ['**/*.xml', '**/*.txt'],
@@ -20,7 +25,7 @@ export default function(eleventyConfig) {
                 devSourcemap: true,
                 preprocessorOptions: {
                     scss: {
-                        silenceDeprecations: ['import', 'legacy-js-api'],
+                        silenceDeprecations: ['import', 'legacy-js-api', 'global-builtin'],
                         quietDeps: true
                     }
                 }
