@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
-const purgecss = require('@fullhuman/postcss-purgecss').default // 👈 Fix here!
+const purgecss = require('@fullhuman/postcss-purgecss').default
 
 module.exports = (ctx) => {
     const isProd = ctx.env === 'production' || process.env.NODE_ENV === 'production'
@@ -21,9 +21,9 @@ module.exports = (ctx) => {
                         /^tooltip-/, /^offcanvas-/, /^popover-/, /^navbar-/, /^data-/
                     ],
                     defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-                })
-            ] : []),
-            cssnano({ preset: 'default' })
+                }),
+                cssnano({ preset: 'default' })
+            ] : [])
         ]
     }
 }
