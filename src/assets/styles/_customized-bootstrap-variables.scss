@@ -38,6 +38,9 @@
 
 @import "bootstrap-variables-init"; // init all variables so dart sass doesn’t throw deprecation warnings
 
+// initialize new variables
+$c-grays-named: null;
+
 %custom-bootstrap-variables {
     @import "bootstrap/scss/functions";
     @import "bootstrap/scss/variables";
@@ -75,18 +78,28 @@
         "900": $gray-900
     ); $grays: $grays !global;
     */
+    $c-grays-named: (
+        "gray-100": $gray-100,
+        "gray-200": $gray-200,
+        "gray-300": $gray-300,
+        "gray-400": $gray-400,
+        "gray-500": $gray-500,
+        "gray-600": $gray-600,
+        "gray-700": $gray-700,
+        "gray-800": $gray-800,
+        "gray-900": $gray-900
+    ); $c-grays-named: $c-grays-named !global;
 
-     $blue: #0d6efd; $blue: $blue !global; // #0d6efd
-     $indigo: #6610f2; $indigo: $indigo !global; // #6610f2
-     $purple: #6f42c1; $purple: $purple !global; // #6f42c1
-     $pink: #d63384; $pink: $pink !global; // #d63384
-     $red: #cd0d09; $red: $red !global; // #dc3545
-     $orange: #c78705; $orange: $orange !global; // #fd7e14
-     $yellow: #ffc107; $yellow: $yellow !global; // #ffc107
-     $green: #08c77d; $green: $green !global; // #198754
-     $teal: #2e7d7d; $teal: $teal !global; // #20c997
-     $cyan: #05c4c9; $cyan: $cyan !global; // #0dcaf0
-
+     //$blue: #0d6efd; $blue: $blue !global; // #0d6efd
+     //$indigo: #6610f2; $indigo: $indigo !global; // #6610f2
+     //$purple: #6f42c1; $purple: $purple !global; // #6f42c1
+     //$pink: #d63384; $pink: $pink !global; // #d63384
+     $red: #dc392c; $red: $red !global; // #dc3545 // 21.24 29.09 #dc392c // #cd0d09
+     $orange: #e49300; $orange: $orange !global; // #fd7e14 // 51.48 75.19 #e49300 // #c78705
+     //$yellow: #ffc107; $yellow: $yellow !global; // #ffc107
+     $green: #158755; $green: $green !global; // #198754 // 157.01 157.82 #158755 // #08c77d
+     //changed//$teal: #2e7d7d; $teal: $teal !global; // #20c997 // 166.36 195.15
+     $cyan: #00d0d5; $cyan: $cyan !global; // #0dcaf0 // 218.05 198.06 #00d0d5 and #2e7d7f // #00d0d5
     /*
     $colors: (
         "blue": $blue,
@@ -345,14 +358,14 @@
     ); $cyans: $cyans !global;
     */
 
-     $primary: $teal; $primary: $primary !global; // $blue
+     $primary: $cyan-700; $primary: $primary !global; // $blue
      $secondary: $cyan; $secondary: $secondary !global; // $gray-600
-     $success: $green; $success: $success !global; // $green
-     $info: $blue; $info: $info !global; // $cyan
-     $warning: $yellow; $warning: $warning !global; // $yellow
-     $danger: $red; $danger: $danger !global; // $red
-     $light: $green-100; $light: $light !global; // $gray-100
-     $dark: $teal-900; $dark: $dark !global; // $gray-900
+     //$success: $green; $success: $success !global; // $green
+     $info: $blue-300; $info: $info !global; // $cyan
+     $warning: $orange; $warning: $warning !global; // $yellow
+     //$danger: $red; $danger: $danger !global; // $red
+     $light: $teal-100; $light: $light !global; // $gray-100
+     $dark: $cyan-800; $dark: $dark !global; // $gray-900
 
     /*
     $theme-colors: (
@@ -410,7 +423,7 @@
 
     // $enable-caret: true; $enable-caret: $enable-caret !global; // true
     // $enable-rounded: true; $enable-rounded: $enable-rounded !global; // true
-    // $enable-shadows: false; $enable-shadows: $enable-shadows !global; // false
+    $enable-shadows: true; $enable-shadows: $enable-shadows !global; // false
     // $enable-gradients: false; $enable-gradients: $enable-gradients !global; // false
     // $enable-transitions: true; $enable-transitions: $enable-transitions !global; // true
     // $enable-reduced-motion: true; $enable-reduced-motion: $enable-reduced-motion !global; // true
@@ -557,7 +570,7 @@
     //
     // Define common padding and border radius sizes and more.
 
-    // $border-width: 1px; $border-width: $border-width !global; // 1px
+    $border-width: 2px; $border-width: $border-width !global; // 1px
 
     /*
     $border-widths: (
@@ -666,7 +679,7 @@
     // $headings-font-style: null; $headings-font-style: $headings-font-style !global; // null
     $headings-font-weight: 700; $headings-font-weight: $headings-font-weight !global; // 500
     // $headings-line-height: 1.2; $headings-line-height: $headings-line-height !global; // 1.2
-    $headings-color: $primary; $headings-color: $headings-color !global; // inherit
+    // $headings-color: inherit; $headings-color: $headings-color !global; // inherit
 
     /*
     $display-font-sizes: (
@@ -827,20 +840,20 @@
     // $btn-border-width: $input-btn-border-width; $btn-border-width: $btn-border-width !global; // $input-btn-border-width
 
     // $btn-font-weight: $font-weight-normal; $btn-font-weight: $btn-font-weight !global; // $font-weight-normal
-    // $btn-box-shadow: inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075); $btn-box-shadow: $btn-box-shadow !global; // inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075)
+    $btn-box-shadow: inset 0 calc(-1 * var(--c-btn-bottom-shadow)) 0 rgba($black, .2); $btn-box-shadow: $btn-box-shadow !global; // inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075)
     // $btn-focus-width: $input-btn-focus-width; $btn-focus-width: $btn-focus-width !global; // $input-btn-focus-width
     // $btn-focus-box-shadow: $input-btn-focus-box-shadow; $btn-focus-box-shadow: $btn-focus-box-shadow !global; // $input-btn-focus-box-shadow
     // $btn-disabled-opacity: .65; $btn-disabled-opacity: $btn-disabled-opacity !global; // .65
-    // $btn-active-box-shadow: inset 0 3px 5px rgba($black, .125); $btn-active-box-shadow: $btn-active-box-shadow !global; // inset 0 3px 5px rgba($black, .125)
+    $btn-active-box-shadow: none; $btn-active-box-shadow: $btn-active-box-shadow !global; // inset 0 3px 5px rgba($black, .125)
 
     // $btn-link-color: var(--#{$prefix}link-color); $btn-link-color: $btn-link-color !global; // var(--#{$prefix}link-color)
     // $btn-link-hover-color: var(--#{$prefix}link-hover-color); $btn-link-hover-color: $btn-link-hover-color !global; // var(--#{$prefix}link-hover-color)
     // $btn-link-disabled-color: $gray-600; $btn-link-disabled-color: $btn-link-disabled-color !global; // $gray-600
 
     // Allows for customizing button radius independently from global border radius
-    // $btn-border-radius: var(--#{$prefix}border-radius); $btn-border-radius: $btn-border-radius !global; // var(--#{$prefix}border-radius)
-    // $btn-border-radius-sm: var(--#{$prefix}border-radius-sm); $btn-border-radius-sm: $btn-border-radius-sm !global; // var(--#{$prefix}border-radius-sm)
-    // $btn-border-radius-lg: var(--#{$prefix}border-radius-lg); $btn-border-radius-lg: $btn-border-radius-lg !global; // var(--#{$prefix}border-radius-lg)
+     $btn-border-radius: var(--#{$prefix}border-radius-sm); $btn-border-radius: $btn-border-radius !global; // var(--#{$prefix}border-radius)
+     $btn-border-radius-sm: $btn-border-radius; $btn-border-radius-sm: $btn-border-radius-sm !global; // var(--#{$prefix}border-radius-sm)
+     $btn-border-radius-lg: var(--#{$prefix}border-radius); $btn-border-radius-lg: $btn-border-radius-lg !global; // var(--#{$prefix}border-radius-lg)
 
     // $btn-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; $btn-transition: $btn-transition !global; // color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 

@@ -1,0 +1,22 @@
+.btn:not(.btn-link) {
+    --c-btn-bottom-shadow: 5px;
+    transition: all;
+    padding-bottom: calc(var(--bs-btn-padding-y) + var(--c-btn-bottom-shadow));
+
+    &:not([class*="btn-outline"]) {
+        border-bottom: 0 none;
+    }
+
+    &[class*="btn-outline"]:not(:hover, :active) {
+        box-shadow: inset 0 calc(-1 * var(--c-btn-bottom-shadow)) 0 rgba(var(--bs-btn-focus-shadow-rgb), 0.3)
+    }
+
+    .btn-check:checked + &,
+    :not(.btn-check) + &:active,
+    &:first-child:active,
+    &.active,
+    &.show {
+        translate: 0 calc(var(--c-btn-bottom-shadow) / 2);
+        padding-bottom: var(--bs-btn-padding-y);
+    }
+}

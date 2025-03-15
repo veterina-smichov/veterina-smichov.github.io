@@ -26,7 +26,7 @@
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
-//@import "utilities"; // For utilities API (see https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api)
+@import "utilities"; // For utilities API (see https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api)
 
 // Layout & components and their customizations
 @import "bootstrap/scss/root";
@@ -38,7 +38,7 @@
 @import "bootstrap/scss/tables";
 //@import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
-//@import "customized-bootstrap/buttons";  // an example: put changes and extensions to button styles
+@import "customized-bootstrap/buttons";  // an example: put changes and extensions to button styles
 @import "bootstrap/scss/transitions";
 @import "bootstrap/scss/dropdown";
 @import "bootstrap/scss/button-group";
