@@ -39,7 +39,7 @@ export default config => {
 
     config.setDataFileSuffixes(['.11tydata']) // use only something.11tydata.js or json files
     // Enable quiet mode
-    // config.setQuietMode(true)
+    config.setQuietMode(true)
 
     return {
         templateFormats: ['md', 'njk'],
