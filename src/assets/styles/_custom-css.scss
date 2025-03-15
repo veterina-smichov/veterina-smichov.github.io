@@ -1,0 +1,21 @@
+@use 'utopia-core-scss/src/utopia' as utopia;
+
+:root {
+    @include utopia.generateTypeScale((
+        "minWidth": 320,
+        "maxWidth": 1200,
+        "minFontSize": 16,
+        "maxFontSize": 20,
+        "minTypeScale": 1.25,
+        "maxTypeScale": 1.414,
+        "positiveSteps": 5,
+        "negativeSteps": 1,
+    ));
+
+    $customClampValue: utopia.calculateClamp((
+        "minWidth": 320,
+        "maxWidth": 1200,
+        "minSize": 16,
+        "maxSize": 20,
+    ));
+}
