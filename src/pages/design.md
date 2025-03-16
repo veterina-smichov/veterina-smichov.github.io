@@ -1,9 +1,12 @@
 ---
 title: Design
 permalink: /design/
+meta:
+  title: ''
+  description: ''
 eleventyNavigation:
   key: Design
-  order: 90
+  order: 100
 layout: _base.njk
 ---
 <article class="C-section bg-teal-100">

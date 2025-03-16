@@ -6,7 +6,7 @@ meta:
   description: 'Veterinární klinika Praha 5, Veterina Smíchov, kočičí klinika, MVDr. Jana Lukešová, email: info@veterina-smichov.cz telefon: +420 602 355 496'
 eleventyNavigation:
   key: Úvod
-  order: 1
+  order: 10
 layout: homepage.njk
 ---
 

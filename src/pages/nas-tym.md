@@ -1,9 +1,12 @@
 ---
 title: Náš tým
 permalink: /nas-tym/
+meta:
+  title: ''
+  description: ''
 eleventyNavigation:
   key: Náš tým
-  order: 29
+  order: 50
 ---
 ## MVDr. Jana Lukešová
 

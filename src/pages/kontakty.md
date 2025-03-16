@@ -1,9 +1,12 @@
 ---
 title: Kontakty
 permalink: /kontakty/
+meta:
+  title: ''
+  description: ''
 eleventyNavigation:
   key: Kontakty
-  order: 10
+  order: 90
 ---
 ## Adresa
 

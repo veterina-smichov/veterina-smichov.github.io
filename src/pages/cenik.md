@@ -1,9 +1,12 @@
 ---
 title: Ceník
 permalink: /cenik/
+meta:
+  title: ''
+  description: ''
 eleventyNavigation:
   key: Ceník
-  order: 30
+  order: 80
 ---
 Ceny jsou orientační, mohou se měnit v závislosti na hmotnosti a stavu pacienta.
 
