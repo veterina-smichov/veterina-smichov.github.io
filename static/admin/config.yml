@@ -1,10 +1,9 @@
 backend:
+  site_domain: veterina-smichov.github.io
   name: github
   repo: veterina-smichov/veterina-smichov.github.io
   branch: main
   api_root: https://api.github.com
-  site_domain: veterina-smichov.github.io
-#  base_url: https://cloudflare-worker-github-oauth.cfds.workers.dev
   base_url: https://sveltia-cms-auth.cfds.workers.dev
   auth_scope: repo
 site_url: https://veterina-smichov.github.io
