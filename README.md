@@ -68,8 +68,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  └─ watchtargets.js                # watchtargets config
 ├─ src/                              # 11ty input directory
 │  ├─ _data/                         # 11ty data directory (data available globally)
-│  │  ├─ meta.json                   # data for meta tags
-│  │  └─ navigation.json             # data for generating navigation
+│  │  └─ meta.json                   # data for meta tags
 │  ├─ _includes/                     # 11ty includes directory (partials to be used with include template tag)
 │  │  ├─ footer.njk
 │  │  ├─ header.njk
