@@ -68,18 +68,24 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  └─ watchtargets.js                # watchtargets config
 ├─ src/                              # 11ty input directory
 │  ├─ _data/                         # 11ty data directory (data available globally)
+│  │  ├─ build.js                    # data about build
+│  │  ├─ eleventyConputed.js         # global computed values (has access to other data in _data/*)
+│  │  ├─ footer.js                   # data for footer content
+│  │  ├─ generalAnnoucements.json    # data for general annoucements
+│  │  ├─ openingHours.js             # data about opening hours
 │  │  └─ meta.json                   # data for meta tags
 │  ├─ _includes/                     # 11ty includes directory (partials to be used with include template tag)
-│  │  ├─ footer.njk
-│  │  ├─ header.njk
+│  │  ├─ favicon.njk
+│  │  ├─ meta.njk
+│  │  ├─ …
 │  │  └─ navigation.njk
 │  ├─ _layouts/                      # 11ty layouts directory (basic templates to be used for whole pages)
+│  │  ├─ _base.njk                   # templates starting with _ are not used directly
 │  │  ├─ article.njk
 │  │  └─ page.njk                    # base template for most pages
 │  ├─ _special-urls/                 # special pages/files
-│  │  ├─ 404.html.njk                # 404 template
 │  │  ├─ _special-urls.11tydata.json # directory specific settings
-│  │  ├─ build.txt.11tydata.js       # data for build.txt
+│  │  ├─ 404.html.njk                # 404 template
 │  │  ├─ build.txt.njk               # build.txt template
 │  │  ├─ redirects.njk               # template that will generate page for each redirect and also contains redirects data
 │  │  ├─ robots.txt.njk              # robots.txt template

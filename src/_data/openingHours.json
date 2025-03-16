@@ -1,0 +1,9 @@
+{
+  "title": "Ordinační hodiny",
+  "body": "| den | dopoledne | odpoledne |\n| --- | --- | --- |\n| pondělí | zavřeno | 13.00–19.00 |\n| úterý | operace | 13.00–19.00 |\n| středa | 9.00–12.00 | 13.00–16.00 |\n| čtvrtek | operace | 13.00–19.00 |\n| pátek | 9.00–12.00 | 13.00–16.00 |",
+  "publishChanged": true,
+  "bodyChanged": "Děkujeme za pochopení.\n\n| &nbsp; | dopoledne | odpoledne |\n| --- | --- | --- |\n| pondělí | zavřeno | zavřeno |\n| úterý | zavřeno | zavřeno |\n| středa | zavřeno | zavřeno |\n| čtvrtek | operace | 13.00–19.00 |\n| pátek | 9.00–12.00 | 13.00–16.00 |",
+  "openingHoursTitle": "Standardní ordinační hodiny",
+  "changeDateFrom": "2025-03-10",
+  "changeDateTo": "2025-03-20"
+}

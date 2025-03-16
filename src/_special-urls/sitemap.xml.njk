@@ -3,9 +3,9 @@
     {% for page in collections.all %}
         {% if page.url != '' and page.data.sitemapIgnore != true %}
             <url>
-                <loc>{{ env.siteUrl }}{{ page.url | url }}</loc>
+                <loc>{{ env.siteUrl }}{{ page.url|url }}</loc>
                 {% if page.date %}
-                    <lastmod>{{ page.date | dateToFormat('yyyy-MM-dd') }}</lastmod>
+                    <lastmod>{{ page.date|dateToFormat('yyyy-MM-dd') }}</lastmod>
                 {% endif %}
             </url>
         {% endif %}

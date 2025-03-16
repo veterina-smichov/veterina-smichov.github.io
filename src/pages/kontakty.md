@@ -7,7 +7,10 @@ meta:
 eleventyNavigation:
   key: Kontakty
   order: 90
+layout: kontakty.njk
 ---
+# Kontakty
+
 ## Adresa
 
 Na Skalce 991/27, Praha 5 – Smíchov, 150 00
@@ -21,13 +24,3 @@ Volejte pouze v ordinačních hodínách. Pokud nezvedáme, věnujeme se pacient
 ## Email [info@veterina-smichov.cz](mailto:info@veterina-smichov.cz)
 
 Využijte pro objednávky.
-
-## Ordinační hodiny
-
-| den | dopoledne | odpoledne |
-| --- | --- | --- |
-| pondělí | zavřeno | 13.00–19.00 |
-| úterý | operace | 13.00–19.00 |
-| středa | 9.00–12.00 | 13.00–16.00 |
-| čtvrtek | operace | 13.00–19.00 |
-| pátek | 9.00–12.00 | 13.00–16.00 |

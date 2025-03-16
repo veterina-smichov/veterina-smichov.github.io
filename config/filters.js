@@ -5,21 +5,40 @@
 
 import markdownIt from 'markdown-it'
 import { DateTime } from 'luxon'
+import fs from 'fs'
+import util from 'util'
+
+const meta = JSON.parse(fs.readFileSync('./src/_data/meta.json', 'utf8')) // import locale from meta.json
 
 export default {
+
+    pprint: eleventyConfig => {
+        eleventyConfig.addFilter('pprint', function(value) {
+            return util.inspect(value)
+        })
+    },
+
     dateToFormat: eleventyConfig => {
         eleventyConfig.addFilter('dateToFormat', (date, format) =>
-            DateTime.fromJSDate(date, { zone: 'utc' }).toFormat(String(format))
+            DateTime.fromJSDate(date).setLocale(meta.locale).toLocaleString(String(format))
         )
     },
 
     dateToISO: eleventyConfig => {
         eleventyConfig.addFilter('dateToISO', date =>
-            DateTime.fromJSDate(date, { zone: 'utc' }).toISO({
+            DateTime.fromJSDate(date, { zone: 'UTC' }).setLocale(meta.locale).toISO({
                 includeOffset: false,
                 suppressMilliseconds: true
             })
         )
+    },
+
+    dateStringToDate: eleventyConfig => {
+        eleventyConfig.addFilter('dateStringToDate', (dateString) => {
+            if (!dateString) return null
+            const date = DateTime.fromISO(dateString)
+            return date.isValid ? date.toJSDate() : null
+        })
     },
 
     markdown: eleventyConfig => {

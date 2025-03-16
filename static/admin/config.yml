@@ -26,7 +26,7 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
-    summary: "<strong>{{title}}</strong> <code>{{permalink}}</code> {{eleventyNavigation.order}}"
+    summary: "<strong>{{title}}</strong> <code>{{permalink}}</code> {{eleventyNavigation.order|default('nezobrazuje se v menu')}}"
     sort: { key: eleventyNavigation.order, order: ascending }
     sortable_fields:
       - eleventyNavigation.order
@@ -73,7 +73,7 @@ collections:
         hint: Hlavní obsah stránky.
         required: false
         widget: markdown
-        buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+        buttons: [ bold, italic, link, heading-one,  heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
         editor_components: [ image ]
       - label: Typ stránky
         name: layout
@@ -105,15 +105,143 @@ collections:
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
             editor_components: [ image ]
 
+  - name: snippets
+    label: Kousky
+    label_singular: Kousek
+    description: Části, které se zobrazují na různých místech webu
+    extension: json
+    editor:
+      preview: false
+    files:
+
+      - name: openingHours
+        label: Ordinační hodiny
+        editor:
+          preview: false
+        file: src/_data/openingHours.json
+        fields:
+          - label: Nadpis
+            name: title
+            required: false
+            widget: string
+          - label: Standardní ordinační hodiny
+            name: body
+            required: false
+            widget: markdown
+            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+
+          - label: Zobrazit změnu ordinačních hodin
+            name: publishChanged
+            widget: boolean
+            required: false
+            hint: Pokud není zapnuto, nezobrazí se nic z nastavení dále
+          - label: Změnené ordinační hodiny
+            name: bodyChanged
+            required: false
+            widget: markdown
+            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+          - label: Nadpis standardních ordinačních hodin (zobrazí se při změně)
+            name: openingHoursTitle
+            required: false
+            widget: string
+          - label: První den změny
+            name: changeDateFrom
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Zobrazí se chvíli po půlnoci zadaného dne.
+          - label: Poslední den změny
+            name: changeDateTo
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Skryje se chvíli po půlnoci zadaného dne.
+
+          - label: Zobrazit informace o změně od
+            name: publishDateFrom
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            default: "{{now}}"
+            required: false
+            hint: Zobrazí se chvíli po půlnoci zadaného dne.
+          - label: Zobrazit informace o změně do
+            name: publishDateTo
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Skryje se chvíli po půlnoci zadaného dne.
+
+      - name: generalAnnouncements
+        label: Obecná oznámení (zobrazí se na všech stránkách nahoře)
+        editor:
+          preview: false
+        file: src/_data/generalAnnouncements.json
+        fields:
+          - label: Obsah
+            name: body
+            required: false
+            widget: markdown
+            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+          - label: Zobrazit
+            name: publish
+            widget: boolean
+            required: false
+            hint: Pokud není zapnuto, nemají datumy vliv
+          - label: Zobrazit od
+            name: dateFrom
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            default: "{{now}}"
+            required: false
+            hint: Zobrazí se hodinu po půlnoci zadaného dne.
+          - label: Zobrazit do
+            name: dateTo
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Skryje se hodinu po půlnoci zadaného dne.
+          - name: admin_name
+            required: false
+            widget: hidden
+          - name: admin_note
+            label: Popis kde se zobrazí
+            required: true
+            widget: hidden
+
+      - name: footer
+        label: Patička celého webu
+        editor:
+          preview: false
+        file: src/_data/footer.json
+        fields:
+          - label: Obsah
+            name: body
+            required: false
+            widget: markdown
+            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+
   - name: articles
     label: Články
     label_singular: Článek
     description: Články v sekci články
     folder: src/articles
     create: true
-    delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     sortable_fields: [ date ]
+    editor:
+      preview: false
     fields:
       - label: Datum publikace
         name: date
@@ -141,6 +269,8 @@ collections:
 
   - name: settings
     label: Nastavení
+    create: false
+    delete: false
     editor:
       preview: false
     files:
@@ -156,10 +286,13 @@ collections:
             widget: string
 #            pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
             hint: adresa na které web běží
-          - name: title
-            label: Výchozí titulek webu
+          - name: siteName
+            label: Název webu
             widget: string
-            hint: "&lt;title&gt;"
+          - name: divider
+            label: Oddělovač
+            widget: string
+            hint: Pro titulek
           - name: description
             label: Výchozí popis webu
             widget: string

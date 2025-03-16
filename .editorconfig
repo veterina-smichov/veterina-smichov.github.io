@@ -11,8 +11,5 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[*.js]
-insert_final_newline = true
-
-[*.yml]
+[*.{yml,json}]
 indent_size = 2

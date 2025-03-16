@@ -2,16 +2,100 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Content Manager</title>
+    <title>CMS {{ meta.divider|safe }} {{ meta.siteName|safe }}</title>
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap">
 </head>
 <body>
-{#<script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>#}
-{#<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"></script>#}
-<script src="/assets/sveltia-cms.js"></script>
+{# <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script> #}
+<script src="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js"></script>
+{#
 <script>
-    // window.CMS.registerPreviewStyle('/assets/styles/styles.scss')
+    const DateRangeValidator = {
+        // Extend the default widget
+        widget: 'datetime',
+
+        // Custom validation function that runs when any field changes
+        validate: ({ value, field, formState }) => {
+            // Get values from other fields using formState
+            const { innerStartDate, innerEndDate, outerStartDate, outerEndDate } = formState.values
+
+            // Skip validation if any fields are missing
+            if (!innerStartDate || !innerEndDate || !outerStartDate || !outerEndDate)
+                return true
+
+            // Convert strings to Date objects if needed
+            const innerStart = new Date(innerStartDate)
+            const innerEnd = new Date(innerEndDate)
+            const outerStart = new Date(outerStartDate)
+            const outerEnd = new Date(outerEndDate)
+
+            // Check if inner range is within outer range
+            const isInnerWithinOuter = innerStart >= outerStart && innerEnd <= outerEnd
+
+            // Check if current field's dates are in the correct order
+            const areDatesInOrder = field.name === 'innerStartDate' ?
+                value <= innerEnd :
+                field.name === 'innerEndDate' ?
+                    value >= innerStart :
+                    field.name === 'outerStartDate' ?
+                        value <= outerEnd :
+                        value >= outerStart
+
+            if (!isInnerWithinOuter)
+                return 'Inner date range must be within outer date range'
+
+            if (!areDatesInOrder)
+                return 'Start date must be before end date'
+
+            return true
+        }
+    }
+
+    // Register the custom widget
+    CMS.registerWidget('dateRangeValidator', DateRangeValidator)
+
+    /*
+     // In your collection configuration
+     fields: [
+     {
+     label: 'Outer Range Start',
+     name: 'outerStartDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Outer Range End',
+     name: 'outerEndDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Inner Range Start',
+     name: 'innerStartDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Inner Range End',
+     name: 'innerEndDate',
+     widget: 'dateRangeValidator'
+     }
+     ]
+     */
+
+    CMS.registerPreviewStyle('/assets/styles/styles.scss')
 </script>
+#}
+<style>
+    :root {
+        --sui-base-hue: 180;
+        --sui-font-family-monospace: "JetBrains Mono", "Consolas", monospaced;
+        --sui-font-family-default: var(--sui-font-family-monospace);
+        --sui-control-font-family: var(--sui-font-family-monospace);
+        /*--sui-textbox-font-family: "Open Sans", sans-serif;*/
+        --sui-font-weight-normal: 400;
+        --sui-font-weight-bold: 700;
+    }
+</style>
 </body>
 </html>

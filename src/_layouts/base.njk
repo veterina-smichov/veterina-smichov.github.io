@@ -5,7 +5,7 @@
     <div class="bg-primary py-4">
         <header class="container">
             <section class="navbar navbar-expand sticky-top navbar-dark">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img
                         src="{{ '/assets/images/logo-horizontalni.min.svg'|url }}"
                         alt="Veterina Smíchov"
@@ -22,23 +22,27 @@
 
         {% block headerExtra %}{% endblock %}
     </div>
+
+    <div class="container">
+
+    </div>
+
     <div class="container">
         <main class="py-5">
             <h1 class="display-1">
                 {% block title %}
-                    {{ title|safe }}
+{#                    {{ title|safe }}#}
                 {% endblock %}
             </h1>
             {% block content %}
                 {{ content|safe }}
             {% endblock %}
         </main>
-        <footer>
-            <p>
-                MVDr. Jana Lukešová, Na Skalce 991/27, Praha 5 – Smíchov, 150 00, IČO 64629406
-                <br>
-                Tyto stránky nezpracovávájí žádné osobní údaje.
-            </p>
-        </footer>
     </div>
+
+    <footer class="bg-teal-900 p-5">
+        <div class="container fw-bold">
+            {{ footer.body|markdown|safe }}
+        </div>
+    </footer>
 {% endblock %}

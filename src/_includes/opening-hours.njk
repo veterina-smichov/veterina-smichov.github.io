@@ -1,0 +1,16 @@
+{% if openingHours.publishChanged and openingHours.showChangedHours %}
+    {% if openingHours.isChangedToday %}
+        <p class="fw-bold">Pozor! Dnes platí změněná ordinační doba.</p>
+    {% endif %}
+
+    <h3>
+        Dočasná změna ordinační doby
+        {% if openingHours.changeDateFrom and openingHours.changeDateTo %}
+        od
+        {{ openingHours.changeDateFrom|dateStringToDate|dateToFormat(DateTime.DATETIME_SHORT) }} do
+        {{ openingHours.changeDateTo|dateStringToDate|dateToFormat(DateTime.DATETIME_SHORT) }}
+        {%- endif %}.
+    </h3>
+
+    {{ openingHours.bodyChanged|markdown|safe }}
+{% endif %}
