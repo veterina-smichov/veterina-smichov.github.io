@@ -4,9 +4,7 @@ permalink: /design/
 meta:
   title: ''
   description: ''
-eleventyNavigation:
-  key: Design
-  order: 100
+eleventyNavigation: null
 layout: _base.njk
 ---
 <article class="C-section bg-teal-100">
