@@ -4,7 +4,7 @@ backend:
   branch: main
   api_root: https://api.github.com
   site_domain: veterina-smichov.github.io
-  base_url: https://sveltia-cms-auth.cfds.workers.dev/
+  base_url: https://sveltia-cms-auth.cfds.workers.dev
   auth_endpoint: auth
   cms_label_prefix: decap-cms/
   auth_scope: repo
