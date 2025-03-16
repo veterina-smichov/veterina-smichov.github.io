@@ -52,7 +52,22 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 
 ```bash
 ├─ _site/                          # 11ty output directory
-├─ src/                            # 11ty input directory, place any static pages directly into it
+├─ config/                         # configuration files
+│ ├─ transforms/                   # transforms
+│ │ └─ typopo.js                   # typopo transformation
+│ ├─ collections.js                # collections config
+│ ├─ configLoader.js               # config loader helper
+│ ├─ filters.js                    # filters config
+│ ├─ ignores.js                    # ignores config
+│ ├─ layoutAliases.js              # layout aliases config
+│ ├─ passthroughs.js               # passthroughs config
+│ ├─ plugins.js                    # plugins config
+│ ├─ shortcodes.js                 # shortcodes config
+│ ├─ templateLanguages.js          # template languages config
+│ ├─ transforms.js                 # transforms config
+│ ├─ vite.js                       # vite config
+│ └─ watchtargets.js               # watchtargets config
+├─ src/                            # 11ty input directory
 │ ├─ _data/                        # 11ty data directory (data available globally)
 │ │ ├─ meta.json                   # data for meta tags
 │ │ ├─ navigation.json             # data for generating navigation
@@ -77,19 +92,20 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │ │ └─ articles.11tydata.json      # directory specific settings
 │ ├─ assets/                       # processed assets
 │ │ ├─ images/                     # images directory
-│ │ │  └─ logo.svg
+│ │ │  └─ example.svg
 │ │ ├─ scripts                     # JavaScript  directory
-│ │ │  ├─ modules/                 # JavaScript modules  directory
-│ │ │  │  └─ nav.js
+│ │ │  ├─ modules/                 # JavaScript modules directory
+│ │ │  │  └─ example.js
 │ │ │  └─ scripts.js               # main styles file (assets/scripts/scripts.css will be generated)
 │ │ └─ styles/                     # CSS/Sass  directory
 │ │     └─ styles.scss             # main styles file (assets/style.css will be generated)
-│ ├─ admin.11tydata.json           # admin template data (to avoid frontmatter in admin.njk)
-│ ├─ admin.njk                     # admin template: will be generated to _site/admin/
-│ ├─ articles.njk                  # articles template
-│ ├─ contact.md                    # contact template in markdown format
-│ ├─ index.njk                     # homepage template
-│ └─ src.11tydata.json             # directory specific settings (yes for all files)
+│ └─ pages/                        # pages directory
+│   ├─ admin.11tydata.json         # admin template data (to avoid frontmatter in admin.njk)
+│   ├─ admin.njk                   # admin template: will be generated to _site/admin/
+│   ├─ clanky.njk                  # articles template in nunjucks format
+│   ├─ kontakty.md                 # contact template in markdown format
+│   ├─ index.njk                   # homepage template
+│   └─ pages.11tydata.json         # directory specific settings
 ├─ static/                         # assets that will not be processed, just copied as they are into `_site`
 │ ├─ admin/                        # admin directory
 │ │  └─ config.yml                 # Decap CMS config
@@ -97,5 +113,6 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │     ├─ favicon/                  # favicon directory
 │     ├─ fonts/                    # fonts directory
 │     └─ site.webmanifest          # manifest
+├─ .eleventy.js                    # 11ty main configuration file
 └─ postcss.config.cjs              # PostCSS configuration
 ```
