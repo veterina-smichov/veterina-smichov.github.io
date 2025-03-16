@@ -2,13 +2,16 @@
 
 ## Features
 
-- Eleventy
-- Vite
-- CSS/Sass post-processing with PostCSS incl. [Autoprefixer](https://github.com/postcss/autoprefixer), cssnano and PurgeCSS
+- [Eleventy 3](https://www.11ty.dev/)
+- [Vite 6](https://vite.dev/)
+- CSS/Sass post-processing with PostCSS incl. [Autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://cssnano.github.io/cssnano/) and [PurgeCSS](https://purgecss.com/)
+- [Bootstrap 5.3](https://getbootstrap.com/)
+- [Utopia.fyi](https://utopia.fyi/) [Sass library](https://github.com/trys/utopia-core-scss)
+- [Decap CMS](https://decapcms.org/) or [Sveltia CMS](https://github.com/sveltia/sveltia-cms)
+- [Typopo](https://typopo.org/) for nicer typography
 - XML sitemap
 - Redirects
 - Actions to deploy to GitHub Pages
-- and more…
 
 ## Getting started
 
