@@ -1,14 +1,17 @@
-{% for post in postslist|reverse %}
-    {% if post.url != url %}
-        <article class="card position-relative">
-            <div class="card-body">
-                <h2>
-                    <a href="{{ post.url|url }}" class="stretched-link">
-                        {{ post.data.title }}
-                    </a>
-                </h2>
-                <p>{{ post.data.perex }}</p>
-            </div>
-        </article>
-    {% endif %}
+{% for post in postslist %}
+    <article class="card position-relative">
+            {% if post.data.image %}
+                <div class="card-image">
+                    <img src="{{ post.data.image|url }}" alt="" class="img-fluid">
+                </div>
+            {% endif %}
+        <div class="card-body">
+            <h2>
+                <a href="{{ post.url|url }}" class="stretched-link">
+                    {{ post.data.title }}
+                </a>
+            </h2>
+            <p>{{ post.data.perex }}</p>
+        </div>
+    </article>
 {% endfor %}

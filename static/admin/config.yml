@@ -5,37 +5,111 @@ backend:
   api_root: https://api.github.com
   site_domain: veterina-smichov.github.io
   base_url: https://cloudflare-worker-github-oauth.cfds.workers.dev
-  auth_endpoint: auth # Path to OAuth proxy endpoint
+  auth_endpoint: auth
   cms_label_prefix: decap-cms/
-  # Optional but recommended - prevents unauthorized users from accessing the CMS
   auth_scope: repo
-media_folder: "public/assets/images"
-public_folder: "/assets/images"
 site_url: https://veterina-smichov.github.io
 display_url: https://veterina-smichov.github.io
+media_folder: src/assets/images
+public_folder: /assets/images
+search: false
 slug:
-  encoding: "ascii"
+  encoding: ascii
   clean_accents: true
   sanitize_replacement: "-"
 collections:
-  - name: "clanky" # Used in routes, e.g., /admin/collections/posts
-    label: "Článek" # Used in the UI
-    folder: "src/articles" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime", time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
-      - { label: "tags", name: "tags", widget: "list", default: [ "posts" ] }
-      - { label: "Body", name: "body", widget: "markdown" }
-#  - name: "pages" # Used in routes, e.g., /admin/collections/posts
+  - name: pages
+    label: Stránky
+    label_singular: Stránka
+    description: Stránky na webu
+    folder: src/pages
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    sort:
+      - { field: eleventyNavigation.order, order: ASC }
+      - { field: title, order: ASC }
+    sortable_fields: ['commit_date', 'title', 'commit_author', 'language.en']
+    fields:
+      - label: Název stránky
+        name: title
+        required: false
+        widget: string
+      - label: Slug (část v adrese stránky)
+        description: Stránky na webu
+        name: permalink
+        widget: string
+        #        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Pouze malá písmena a pomlčky."]
+      - label: Obsah stránky
+        name: body
+        hint: Hlavní obsah stránky, který se zobrazí na stránce.
+        required: false
+        widget: markdown
+        buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+        editor_components: [ image ]
+      - label: Typ stránky
+        name: layout
+        required: false
+        widget: select
+        options:
+          - { label: Normální stránka, value: page.njk }
+          - { label: Holá stránka, value: base.njk }
+          - { label: Stránka s kartami, value: cards.njk }
+        default: page.njk
+      - label: Karty
+        label_singular: Karta
+        name: cards
+        required: false
+        widget: list
+        summary: "{{fields.title}}"
+        allow_add: true
+        allow_delete: true
+        fields:
+          - label: Titulek
+            name: title
+            required: false
+            widget: string
+          - label: Obsah
+            name: content
+            required: false
+            widget: markdown
+            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+            editor_components: [ image ]
+  - name: clanky
+    label: Články
+    label_singular: Článek
+    description: Články v sekci články
+    folder: src/articles
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date]
+    fields:
+      - label: Titulek
+        name: title
+        widget: string
+      - label: Datum publikace
+        name: date
+        widget: datetime
+        time_format: false
+        date_format: YYYY-MM-DD
+        format: YYYY-MM-DD
+        default: "{{now}}"
+      - label: Obsah
+        name: body
+        widget: markdown
+        buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+        editor_components: [ image ]
+      - label: Obrázek
+        name: image
+        widget: image
+##  - name: "pages" # Used in routes, e.g., /admin/collections/posts
 #    label: "Page" # Used in the UI
 #    folder: "src/pages" # The path to the folder where the documents are stored
 #    create: true # Allow users to create new documents in this collection
 #    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
 #    fields: # The fields for each document, usually in front matter
 #      - { label: "Layout", name: "layout", widget: "hidden", default: "base" }
-#      - { label: "Title", name: "title", widget: "string" }
-#      - { label: "URL", name: "permalink", widget: "string" }
-#      - { label: "Body", name: "body", widget: "markdown" }
+#
+#
+#

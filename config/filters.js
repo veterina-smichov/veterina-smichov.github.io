@@ -37,5 +37,13 @@ export default {
         eleventyConfig.addFilter('filterTagList', tags =>
             (tags || []).filter(tag => ['all', 'nav', 'post', 'posts'].indexOf(tag) === -1)
         )
+    },
+
+    filterOutCurrentPage: eleventyConfig => {
+        eleventyConfig.addFilter('filterOutCurrentPage', function(collection) {
+            const currentPage = this.ctx.page
+            if (!currentPage) return collection
+            return collection.filter(item => item.url !== currentPage.url)
+        })
     }
 }

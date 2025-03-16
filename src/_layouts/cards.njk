@@ -1,0 +1,26 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+    <section class="card bg-blue-300">
+        {% if cards %}
+            <div class="card-group">
+                {% for card in cards %}
+                    <article class="card bg-teal-100">
+                        {% if card.image %}
+                            <img src="{{ card.image }}" class="card-img-top" alt="">
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title">{{ card.title }}</h2>
+                            <div class="card-text">
+                                {{ card.content|markdown|safe }}
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+
+    {{ content|safe }}
+
+{% endblock %}

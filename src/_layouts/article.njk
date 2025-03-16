@@ -1,4 +1,4 @@
-{% extends "./_base.njk" %}
+{% extends "./base.njk" %}
 
 
 {% block content %}
@@ -6,10 +6,23 @@
         {{ perex }}
     </p>
 
-    {{ super() }}
-
-    <hr>
-    {% set postslist = collections.articles %}
-    {% include "postslist.njk" %}
-
+    <div class="row">
+        <div class="col">
+            {{ super() }}
+        </div>
+        {% if image %}
+            <div class="col">
+                <img src="{{ image|url }}" alt="" class="img-fluid">
+            </div>
+        {% endif %}
+    </div>
+    {% set postslist = collections.articles|filterOutCurrentPage %}
+    {% if postslist %}
+        <section class="alert alert-info mt-5">
+            <h2>Další články</h2>
+            <div class="card-group">
+            {% include "postslist.njk" %}
+            </div>
+        </section>
+    {% endif %}
 {% endblock %}
