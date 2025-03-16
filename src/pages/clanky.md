@@ -1,10 +1,10 @@
 ---
 title: Články
+permalink: /clanky/
 eleventyNavigation:
-    key: Články
-    order: 20
+  key: Články
+  order: 20
 ---
-
 {% set postslist = collections.articles %}
 <section class="card-group">
     {% include "postslist.njk" %}

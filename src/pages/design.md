@@ -1,5 +1,9 @@
 ---
 title: Design
+permalink: /design/
+eleventyNavigation:
+  key: Design
+  order: 90
 layout: _base.njk
 ---
 <article class="C-section bg-teal-100">
@@ -65,8 +69,6 @@ layout: _base.njk
         </div>
     </section>
 </article>
-
-
 
 <section class="container-fluid">
     <h2>Colors</h2>
@@ -210,8 +212,6 @@ layout: _base.njk
         </div>
     </div>
 </section>
-
-
 
 <section class="container">
     <h2>Headings</h2>

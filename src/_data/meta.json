@@ -1,8 +1,8 @@
 {
-    "title": "Veterina Smíchov",
-    "description": "Veterina Smíchov – MVDr. Jana Lukešová",
-    "url": "https://veterina-smichov.github.io",
-    "lang": "cs",
-    "locale": "cs_CZ",
-    "author": "MVDr. Jana Lukešová"
+  "url": "https://veterina-smichov.github.io/",
+  "title": "Veterina Smíchov",
+  "description": "Veterina Smíchov – MVDr. Jana Lukešová",
+  "lang": "cs",
+  "locale": "cs-CZ",
+  "author": "MVDr. Jana Lukešová"
 }

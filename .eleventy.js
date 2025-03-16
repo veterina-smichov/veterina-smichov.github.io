@@ -8,7 +8,6 @@ import filters from './config/filters.js'
 import transforms from './config/transforms.js'
 import passthroughs from './config/passthroughs.js'
 import templatelanguages from './config/templateLanguages.js'
-import layoutAliases from './config/layoutAliases.js'
 import ignores from './config/ignores.js'
 import watchtargets from './config/watchtargets.js'
 import vite from './config/vite.js'
@@ -27,7 +26,6 @@ export default config => {
         { name: 'Transforms', config: transforms, echo: true },
         { name: 'Passthroughs', config: passthroughs, echo: true },
         { name: 'Template Languages', config: templatelanguages, echo: true },
-        { name: 'Layouts Aliases', config: layoutAliases, echo: true },
         { name: 'Ignores', config: ignores, echo: true },
         { name: 'Watch Targets', config: watchtargets, echo: true }
     ]

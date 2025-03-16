@@ -59,7 +59,6 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  ├─ configLoader.js                # config loader helper
 │  ├─ filters.js                     # filters config
 │  ├─ ignores.js                     # ignores config
-│  ├─ layoutAliases.js               # layout aliases config
 │  ├─ passthroughs.js                # passthroughs config
 │  ├─ plugins.js                     # plugins config
 │  ├─ shortcodes.js                  # shortcodes config
@@ -70,8 +69,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 ├─ src/                              # 11ty input directory
 │  ├─ _data/                         # 11ty data directory (data available globally)
 │  │  ├─ meta.json                   # data for meta tags
-│  │  ├─ navigation.json             # data for generating navigation
-│  │  └─ redirects.js                # data containing redirects (for redirects.njk)
+│  │  └─ navigation.json             # data for generating navigation
 │  ├─ _includes/                     # 11ty includes directory (partials to be used with include template tag)
 │  │  ├─ footer.njk
 │  │  ├─ header.njk
@@ -84,7 +82,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  │  ├─ _special-urls.11tydata.json # directory specific settings
 │  │  ├─ build.txt.11tydata.js       # data for build.txt
 │  │  ├─ build.txt.njk               # build.txt template
-│  │  ├─ redirects.njk               # template that will generate page for each redirect
+│  │  ├─ redirects.njk               # template that will generate page for each redirect and also contains redirects data
 │  │  ├─ robots.txt.njk              # robots.txt template
 │  │  └─ sitemap.xml.njk             # sitemap.xml template
 │  ├─ articles/                      # articles directory

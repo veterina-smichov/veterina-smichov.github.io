@@ -1,16 +1,15 @@
 ---
 title: Ceník
+permalink: /cenik/
 eleventyNavigation:
-    key: Ceník
-    order: 30
+  key: Ceník
+  order: 30
 ---
 Ceny jsou orientační, mohou se měnit v závislosti na hmotnosti a stavu pacienta.
 
 Právo na změnu vyhrazeno!
 
 Poslední aktualizace 15.01.2025
-
-
 
 Základní úkony
 
