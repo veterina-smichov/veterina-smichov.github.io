@@ -23,4 +23,4 @@ Volejte pouze v ordinačních hodínách. Pokud nezvedáme, věnujeme se pacient
 
 ## Email [info@veterina-smichov.cz](mailto:info@veterina-smichov.cz)
 
-Využijte pro objednávky.
+Využijte prioritně pro objednávky léků.
