@@ -1,8 +1,8 @@
 ---
-title: Odstranění cizího tělesa
 date: 2025-01-01
-image: https://picsum.photos/id/237/1600/1200
+title: Odstranění cizího tělesa ze žaludku
 perex: Naše veterinární klinika se denně setkává s různými případy, ale příběh labradora Maxe nás obzvlášť zaujal. Max byl přivezen svými majiteli s podezřením na zažívací potíže. Měl ztrátu chuti k jídlu, zvracel a byl viditelně unavený.
+image: https://picsum.photos/id/237/1600/1200
 ---
 ## Diagnóza a příprava na operaci
 
@@ -20,4 +20,4 @@ Po operaci Max zůstal na naší klinice pod dohledem, dostával infuzní terapi
 
 Majitelům domácích mazlíčků doporučujeme pečlivě vybírat hračky a dbát na to, aby nemohlo dojít k jejich spolknutí. Pokud zaznamenáte změny v chování vašeho zvířete, neváhejte nás kontaktovat. Včasná diagnóza může zachránit život!
 
-📞 **Máte podezření na podobný problém u svého mazlíčka? [Obraťte se na nás!](/kontakty/)**
+📞 **Máte podezření na podobný problém u svého mazlíčka? [Obraťte se na nás!](/kontakty/)
