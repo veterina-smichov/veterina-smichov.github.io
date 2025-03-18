@@ -9,8 +9,8 @@ backend:
 
 site_url: https://veterina-smichov.github.io
 display_url: https://veterina-smichov.github.io
-media_folder: src/assets/images
-public_folder: /assets/images
+media_folder: src/assets/images/cms-managed
+public_folder: /assets/images/cms-managed
 slug:
   encoding: ascii
   clean_accents: true
@@ -22,6 +22,7 @@ collections:
     label: Stránky
     label_singular: Stránka
     description: Stránky na webu
+    icon: web
     folder: src/pages
     create: true
     delete: true
@@ -122,6 +123,7 @@ collections:
     label: Kousky
     label_singular: Kousek
     description: Části, které se zobrazují na různých místech webu
+    icon: brick
     extension: json
     editor:
       preview: false
@@ -282,6 +284,7 @@ collections:
     label: Články
     label_singular: Článek
     description: Články v sekci články
+    icon: newsmode
     folder: src/articles
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -319,10 +322,14 @@ collections:
         widget: image
 
 
+  - name: divider
+    divider: true
+    files: [] # Workardound for VS Code validation error if treated as “Netlify YAML config” file.
+
+
   - name: settings
     label: Nastavení
-    create: false
-    delete: false
+    icon: settings
     editor:
       preview: false
     files:

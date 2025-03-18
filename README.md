@@ -95,7 +95,9 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  │  └─ articles.11tydata.json      # directory specific settings
 │  ├─ assets/                        # processed assets
 │  │  ├─ images/                     # images directory
-│  │  │  └─ example.svg
+│  │  │  ├─ cms-managed/             # images available to CMS (Sveltia)
+│  │  │  │  └─ example.svg
+│  │  │  └─ example.svg              # image not available to CMS but available in templates (logo etc.)
 │  │  ├─ scripts                     # JavaScript  directory
 │  │  │  ├─ modules/                 # JavaScript modules directory
 │  │  │  │  └─ example.js
