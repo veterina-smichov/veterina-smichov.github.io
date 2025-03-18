@@ -6,6 +6,7 @@ backend:
   api_root: https://api.github.com
   base_url: https://sveltia-cms-auth.cfds.workers.dev
   auth_scope: repo
+  automatic_deployments: false
 
 output:
   omit_empty_optional_fields: false
