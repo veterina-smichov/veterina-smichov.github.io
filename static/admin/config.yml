@@ -986,15 +986,17 @@ collections:
 
               - name: from
                 label: původní adresa
+                hint: adresa by měla začínat a končit „/“
                 widget: string
-                #                pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
-                hint: adresa by měla začínat a končit /
-                default: /
+                pattern: [ '/^\/[0-9a-zA-Z-]*\/$/', "Není platná adresa" ]
+                default: //
 
               - name: to
                 label: nová adresa
+                hint: adresa by měla začínat a končit „/“
                 widget: string
-                default: /
-                hint: adresa by měla začínat a končit /
+                pattern: [ '/^\/[0-9a-zA-Z-]*\/$/', "Není platná adresa" ]
+                default: //
+
           - { name: permalink, widget: hidden }
           - { name: pagination, widget: hidden }
