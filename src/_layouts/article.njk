@@ -18,7 +18,7 @@
             </div>
         {% endif %}
     </div>
-    {% set postslist = collections.articles|filterOutCurrentPage %}
+    {% set postslist = collections.articles|filterOutCurrentPage(page.url) %}
     {% if postslist %}
         <section class="alert alert-info mt-5">
             <h2>Další články</h2>

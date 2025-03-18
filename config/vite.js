@@ -5,7 +5,7 @@
 
 import EleventyPluginVite from '@11ty/eleventy-plugin-vite'
 
-export default function(eleventyConfig) {
+export default (eleventyConfig) => {
     eleventyConfig.addPlugin(EleventyPluginVite, {
         // Vite options (equal to vite.config.js inside project root)
         viteOptions: {
@@ -15,7 +15,7 @@ export default function(eleventyConfig) {
                     usePolling: true,    // enabling polling to work better with WSL2
                     interval: 100,       // polling interval
                     binaryIntervAl: 300  // binary files check interval
-                },
+                }
             },
             appType: 'custom',
             assetsInclude: ['**/*.xml', '**/*.txt'],

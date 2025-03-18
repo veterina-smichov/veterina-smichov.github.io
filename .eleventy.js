@@ -1,7 +1,5 @@
 import yaml from 'js-yaml'
 
-const siteName = 'veterina-smichov.cz'
-
 // Import configurations
 import collections from './config/collections.js'
 import plugins from './config/plugins.js'
@@ -14,35 +12,27 @@ import ignores from './config/ignores.js'
 import watchtargets from './config/watchtargets.js'
 import vite from './config/vite.js'
 
-// Import configuration loader
-import { configLoad } from './config/configLoader.js'
+export default eleventyConfig => {
+    // Apply all configuration modules
+    collections(eleventyConfig)
+    plugins(eleventyConfig)
+    shortcodes(eleventyConfig)
+    filters(eleventyConfig)
+    transforms(eleventyConfig)
+    passthroughs(eleventyConfig)
+    templatelanguages(eleventyConfig)
+    ignores(eleventyConfig)
+    watchtargets(eleventyConfig)
+    vite(eleventyConfig)
 
+    // use only something.11tydata.js or json files
+    eleventyConfig.setDataFileSuffixes(['.11tydata'])
 
-export default config => {
-    // Tasks to run, in order, with icon and name
-    // Set echo to false if you don't want to log the task to the console
-    const tasks = [
-        { name: 'Collections', config: collections, echo: true },
-        { name: 'Plugins', config: plugins, echo: true },
-        { name: 'Shortcodes', config: shortcodes, echo: true },
-        { name: 'Filters', config: filters, echo: true },
-        { name: 'Transforms', config: transforms, echo: true },
-        { name: 'Passthroughs', config: passthroughs, echo: true },
-        { name: 'Template Languages', config: templatelanguages, echo: true },
-        { name: 'Ignores', config: ignores, echo: true },
-        { name: 'Watch Targets', config: watchtargets, echo: true }
-    ]
-    // Log the build process
-    configLoad({ siteName, tasks, config })
+    // add yaml with yaml processing as a data file
+    eleventyConfig.addDataExtension('yaml', (contents) => yaml.load(contents))
 
-    // Add build configuration
-    vite(config)
-
-    config.setDataFileSuffixes(['.11tydata']) // use only something.11tydata.js or json files
-    config.addDataExtension('yaml', (contents) => yaml.load(contents)) // add yaml with yaml processing as a data file
-
-    // Enable quiet mode
-    config.setQuietMode(true)
+    // enable quiet mode
+    eleventyConfig.setQuietMode(true)
 
     return {
         templateFormats: ['md', 'njk'],
