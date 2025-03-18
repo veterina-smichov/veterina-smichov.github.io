@@ -55,22 +55,22 @@ collections:
         label: Název stránky
         widget: string
 
-      - label: Slug (unikátní část v adrese stránky za doménou). Měl by začínat a končit /.
+      - name: permalink
+        label: Slug (unikátní část v adrese stránky za doménou). Měl by začínat a končit /.
         description: Stránky na webu
-        name: permalink
         widget: string
         #        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Pouze malá písmena a pomlčky."]
 
-      - label: Title
+      - name: meta.title
+        label: Title
         description: Název stránky, který se zobrazuje v záložce prohlížeče, při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Proto je to, co je na začátku je důležitější než to, co je na konci.
-        name: meta.title
         required: false
         widget: string
 
-      - label: Popis
+      - name: meta.description
+        label: Popis
         description: Popis, který se zobrazuje při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Zhruba do 140 znaků.
         required: false
-        name: meta.description
         widget: string
 
       - name: eleventyNavigation
@@ -109,9 +109,9 @@ collections:
           - { label: Stránka s kartami, value: cards.njk }
         default: page.njk
 
-      - label: Karty
+      - name: cards
+        label: Karty
         label_singular: Karta
-        name: cards
         required: false
         widget: list
         summary: "{{fields.title}}"
@@ -227,9 +227,9 @@ collections:
             widget: string
             hint: Pravděpodobně nepotřebujete měnit.
 
-          - label: Nadpis o změně
+          - name: temporaryHeading
+            label: Nadpis o změně
             hint: Za tímto textem pokračuje „od [první den změny] do“ [poslední den změny], pokud jsou nastaveny.<br>Pravděpodobně nepotřebujete měnit.
-            name: temporaryHeading
             required: false
             widget: string
 
@@ -977,9 +977,9 @@ collections:
         widget: list
         fields:
 
-          - label: Seznam přesměrování
+          - name: redirects
+            label: Seznam přesměrování
             label_singular: přesměrování
-            name: redirects
             widget: list
             summary: "{{fields.from}} → {{fields.to}}"
             fields:
