@@ -30,7 +30,10 @@ collections:
     summary: "<strong>{{title}}</strong> <code>{{permalink}}</code> {{eleventyNavigation.order|default('nezobrazuje se v menu')}}"
     sort: { key: eleventyNavigation.order, order: ascending }
     sortable_fields:
-      - eleventyNavigation.order
+      fields: [ eleventyNavigation.order ]
+      default:
+        field: eleventyNavigation.order
+        direction: ascending
     editor:
       preview: false
       components:
@@ -288,7 +291,11 @@ collections:
     folder: src/articles
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    sortable_fields: [ date ]
+    sortable_fields:
+      fields: [ date ]
+      default:
+        field: date
+        direction: descending
     editor:
       preview: false
     fields:
