@@ -1,9 +1,9 @@
 # www.robotstxt.org
 
 User-agent: *
-Disallow: /
-{# todo: allow
 Disallow: /build.txt
-
+{% if meta.robots %}
 Sitemap: {{ meta.url }}/sitemap.xml
-#}
+{% else %}
+Disallow: /
+{% endif %}

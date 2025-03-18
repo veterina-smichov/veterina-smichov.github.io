@@ -5,8 +5,9 @@
 
 import { htmlTypopoTransform } from './transforms/htmlTypopoTransform.js'
 import fs from 'fs'
+import yaml from 'js-yaml'
 
-const meta = JSON.parse(fs.readFileSync('./src/_data/meta.json', 'utf8')) // import locale from meta.json
+const meta = yaml.load(fs.readFileSync('./src/_data/meta.yaml', 'utf8')) // import locale from meta.yaml
 
 const typopoLocale = locale => {
     if (locale.startsWith('en-')) return 'en-us'

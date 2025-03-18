@@ -7,6 +7,15 @@ backend:
   base_url: https://sveltia-cms-auth.cfds.workers.dev
   auth_scope: repo
 
+output:
+  omit_empty_optional_fields: false
+  json:
+    indent_style: space
+    indent_size: 2
+  yaml:
+    quote: none # or single or double
+    indent_size: 2
+
 site_url: https://veterina-smichov.github.io
 display_url: https://veterina-smichov.github.io
 media_folder: src/assets/images/cms-managed
@@ -127,7 +136,7 @@ collections:
     label_singular: Kousek
     description: Části, které se zobrazují na různých místech webu
     icon: brick
-    extension: json
+    extension: yaml
     editor:
       preview: false
     files:
@@ -136,7 +145,8 @@ collections:
         label: Ordinační hodiny
         editor:
           preview: false
-        file: src/_data/openingHours.json
+        file: src/_data/openingHours.yaml
+        format: yaml
         fields:
 
           - name: title
@@ -233,7 +243,8 @@ collections:
         label: Obecná oznámení (zobrazí se na všech stránkách nahoře)
         editor:
           preview: false
-        file: src/_data/generalAnnouncements.json
+        file: src/_data/generalAnnouncements.yaml
+        format: yaml
         fields:
 
           - name: body
@@ -273,10 +284,11 @@ collections:
         label: Patička celého webu
         editor:
           preview: false
-        file: src/_data/footer.json
+        file: src/_data/footer.yaml
+        format: yaml
         fields:
 
-          - name: body
+          - name: content
             label: Obsah
             required: false
             widget: markdown
@@ -331,7 +343,7 @@ collections:
 
   - name: divider
     divider: true
-    files: [] # Workardound for VS Code validation error if treated as “Netlify YAML config” file.
+    files: [ ] # Workardound for VS Code validation error if treated as “Netlify YAML config” file.
 
 
   - name: settings
@@ -346,7 +358,8 @@ collections:
         label: Obecné
         editor:
           preview: false
-        file: src/_data/meta.json
+        file: src/_data/meta.yaml
+        format: yaml
         fields:
 
           - name: url
@@ -368,6 +381,12 @@ collections:
             label: Výchozí popis webu
             widget: string
             hint: meta description
+
+          - name: robots
+            label: Povolit indexaci vyhledávači
+            widget: boolean
+            required: false
+            hint: Pokud není zašrktnuto, většina vyhledávačů nebude o webu vědět.<br>Hodí se při vývoji.
 
           - name: lang
             label: Jazyk

@@ -5,10 +5,11 @@
 
 import markdownIt from 'markdown-it'
 import { DateTime } from 'luxon'
+import yaml from 'js-yaml'
 import fs from 'fs'
 import util from 'util'
 
-const meta = JSON.parse(fs.readFileSync('./src/_data/meta.json', 'utf8')) // import locale from meta.json
+const meta = yaml.load(fs.readFileSync('./src/_data/meta.yaml', 'utf8')) // import locale from meta.yaml
 
 export default {
 

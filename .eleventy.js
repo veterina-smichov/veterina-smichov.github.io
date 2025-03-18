@@ -1,3 +1,5 @@
+import yaml from 'js-yaml'
+
 const siteName = 'veterina-smichov.cz'
 
 // Import configurations
@@ -14,6 +16,7 @@ import vite from './config/vite.js'
 
 // Import configuration loader
 import { configLoad } from './config/configLoader.js'
+
 
 export default config => {
     // Tasks to run, in order, with icon and name
@@ -36,6 +39,8 @@ export default config => {
     vite(config)
 
     config.setDataFileSuffixes(['.11tydata']) // use only something.11tydata.js or json files
+    config.addDataExtension('yaml', (contents) => yaml.load(contents)) // add yaml with yaml processing as a data file
+
     // Enable quiet mode
     config.setQuietMode(true)
 
