@@ -144,6 +144,7 @@ collections:
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+            editor_components: [ image ]
             modes: [ 'raw', 'rich_text' ]
             hint: Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
 
@@ -158,6 +159,7 @@ collections:
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+            editor_components: [ image ]
             modes: [ 'raw', 'rich_text' ]
             hint: Popis jaké jsou změny. Datumy od a do nepište, budou automaticky doplněny.<br>Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
 
@@ -233,15 +235,16 @@ collections:
             label: Obsah
             required: false
             widget: markdown
-            buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+            buttons: [ bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list ]
+            editor_components: [ image ]
 
           - name: publish
             label: Zobrazit
             widget: boolean
             required: false
-            hint: Pokud není zapnuto, nemají datumy vliv
+            hint: Pokud není zapnuto, nemají datumy dále vliv
 
-          - name: dateFrom
+          - name: publishDateFrom
             label: Zobrazit od
             widget: datetime
             time_format: false
@@ -249,16 +252,16 @@ collections:
             format: YYYY-MM-DD
             default: "{{now}}"
             required: false
-            hint: Zobrazí se hodinu po půlnoci zadaného dne.
+            hint: Zobrazí Obsah zhruba hodinu po půlnoci zadaného dne.<br>Pokud není nastaveno, zobrazuje se od uložení.
 
-          - name: dateTo
+          - name: publishDateTo
             label: Zobrazit do
             widget: datetime
             time_format: false
             date_format: YYYY-MM-DD
             format: YYYY-MM-DD
             required: false
-            hint: Skryje se hodinu po půlnoci zadaného dne.
+            hint: Skryje obsah zhruba hodinu po půlnoci zadaného dne.<br>Pokud není nastaveno, nepřestane se zobrazovat.
 
 
       - name: footer
@@ -273,7 +276,7 @@ collections:
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
-
+            editor_components: [ image ]
 
   - name: articles
     label: Články

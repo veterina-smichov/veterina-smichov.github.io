@@ -1,25 +1,40 @@
 import { DateTime } from 'luxon'
 
+const isWithinPeriod = (dateToCheck, start, end) => dateToCheck >= start && dateToCheck <= end
+
 export default {
-  openingHours: ({ openingHours, build }) => {
-    const { publishDateFrom, changeDateFrom, changeDateTo, publishDateTo } = openingHours
-    const today = DateTime.fromJSDate(build.timestamp)
+    openingHours: ({ openingHours, build }) => {
+        const { publishDateFrom, changeDateFrom, changeDateTo, publishDateTo } = openingHours
+        const todayDay = DateTime.fromJSDate(build.timestamp, { zone: 'UTC' }).startOf('day')
 
-    const changeFrom = changeDateFrom ? DateTime.fromISO(changeDateFrom, { zone: 'UTC' }) : today
-    const publishFrom = publishDateFrom ? DateTime.fromISO(publishDateFrom, { zone: 'UTC' }) : changeFrom
+        const changeFromDay = changeDateFrom ? DateTime.fromISO(changeDateFrom, { zone: 'UTC' }).startOf('day') : todayDay
+        const publishFromDay = publishDateFrom ? DateTime.fromISO(publishDateFrom, { zone: 'UTC' }).startOf('day') : changeFromDay
 
-    const changeTo = changeDateTo ? DateTime.fromISO(changeDateTo, { zone: 'UTC' }) : today
-    const publishTo = publishDateTo ? DateTime.fromISO(publishDateTo, { zone: 'UTC' }) : changeTo
+        const changeToDay = changeDateTo ? DateTime.fromISO(changeDateTo, { zone: 'UTC' }).startOf('day') : todayDay
+        const publishToDay = publishDateTo ? DateTime.fromISO(publishDateTo, { zone: 'UTC' }).startOf('day') : changeToDay
 
-    // Check if dates are in a chronological order: publishFrom <= changeFrom <= changeTo <= publishTo
-    const datesChronological = publishFrom <= changeFrom && changeFrom <= changeTo && changeTo <= publishTo
+        // Check if dates are in a chronological order: publishFromDay <= changeFromDay <= changeToDay <= publishToDay
+        const datesChronological = publishFromDay <= changeFromDay && changeFromDay <= changeToDay && changeToDay <= publishToDay
 
-    const isWithinPeriod = (dateToCheck, start, end) => dateToCheck >= start && dateToCheck <= end
+        return {
+            ...openingHours,
+            showChangedHours: datesChronological && isWithinPeriod(todayDay, publishFromDay, publishToDay), // today within publish period
+            isChangedToday: datesChronological && isWithinPeriod(todayDay, changeFromDay, changeToDay) // today within change period
+        }
+    },
+    generalAnnouncements: ({ generalAnnouncements, build }) => {
+        const { publishDateFrom, publishDateTo, publish } = generalAnnouncements
+        const todayDay = DateTime.fromJSDate(build.timestamp, { zone: 'UTC' }).startOf('day')
 
-    return {
-      ...openingHours,
-      showChangedHours: datesChronological && isWithinPeriod(today, publishFrom, publishTo), // today within publish period
-      isChangedToday: datesChronological && isWithinPeriod(today, changeFrom, changeTo) // today within change period
+        const publishFromDay = publishDateFrom ? DateTime.fromISO(publishDateFrom, { zone: 'UTC' }).startOf('day') : todayDay
+        const publishTo = publishDateTo ? DateTime.fromISO(publishDateTo, { zone: 'UTC' }).startOf('day') : todayDay
+        const datesChronological = publishFromDay <= publishTo
+
+        const showAnnoucements = publish && datesChronological && isWithinPeriod(todayDay, publishFromDay, publishTo)
+
+        return {
+            ...generalAnnouncements,
+            showAnnoucements,
+        }
     }
-  }
 }

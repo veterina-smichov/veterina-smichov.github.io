@@ -22,15 +22,19 @@
         {% block headerExtra %}{% endblock %}
     </div>
 
-    <div class="container">
-
-    </div>
 
     <div class="container">
+        {% if generalAnnouncements.showAnnoucements %}
+            <aside class="container py-4">
+                <div class="alert alert-secondary d-inline-block fs-4">
+                    {{ generalAnnouncements.body|markdown|safe }}
+                </div>
+            </aside>
+        {% endif %}
         <main class="py-5">
             <h1 class="display-1">
                 {% block title %}
-{#                    {{ title|safe }}#}
+                    {#                    {{ title|safe }} #}
                 {% endblock %}
             </h1>
             {% block content %}
