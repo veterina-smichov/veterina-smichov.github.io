@@ -2,7 +2,7 @@ url: https://veterina-smichov.github.io/
 siteName: Veterina Smíchov
 divider: –
 description: Veterina Smíchov – MVDr. Jana Lukešová
-robots: true
+robots: false
 lang: cs
 locale: cs-CZ
 author: MVDr. Jana Lukešová
