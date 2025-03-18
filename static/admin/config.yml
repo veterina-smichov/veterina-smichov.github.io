@@ -36,47 +36,56 @@ collections:
         image:
           class: "img-fluid"
     fields:
-      - label: Název stránky
-        name: title
+
+      - name: title
+        label: Název stránky
         widget: string
+
       - label: Slug (unikátní část v adrese stránky za doménou). Měl by začínat a končit /.
         description: Stránky na webu
         name: permalink
         widget: string
         #        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Pouze malá písmena a pomlčky."]
+
       - label: Title
         description: Název stránky, který se zobrazuje v záložce prohlížeče, při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Proto je to, co je na začátku je důležitější než to, co je na konci.
         name: meta.title
         required: false
         widget: string
+
       - label: Popis
         description: Popis, který se zobrazuje při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Zhruba do 140 znaků.
         required: false
         name: meta.description
         widget: string
-      - label: to Navigace
-        name: eleventyNavigation
+
+      - name: eleventyNavigation
+        label: to Navigace
         required: false
         hint: "Zobrazit v navigaci?"
         widget: object
         fields:
-          - label: Název v navigaci
-            name: key
+
+          - name: key
+            label: Název v navigaci
             widget: string
-          - label: Pořadí
-            name: order
+
+          - name: order
+            label: Pořadí
             widget: number
             default: 100
             hint: Celé číslo, čím vyšší číslo, tím dále bude v pořadí položek. Čísla nemusí navazovat (10, 20, 30, …).
-      - label: Obsah stránky
-        name: body
+
+      - name: body
+        label: Obsah stránky
         hint: Hlavní obsah stránky.
         required: false
         widget: markdown
         buttons: [ bold, italic, link, heading-one,  heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
         editor_components: [ image ]
-      - label: Typ stránky
-        name: layout
+
+      - name: layout
+        label: Typ stránky
         required: false
         widget: select
         options:
@@ -85,6 +94,7 @@ collections:
           - { label: Holá stránka, value: base.njk }
           - { label: Stránka s kartami, value: cards.njk }
         default: page.njk
+
       - label: Karty
         label_singular: Karta
         name: cards
@@ -94,16 +104,19 @@ collections:
         create: true
         delete: true
         fields:
-          - label: Titulek
-            name: title
+
+          - name: title
+            label: Titulek
             required: false
             widget: string
-          - label: Obsah
-            name: content
+
+          - name: content
+            label: Obsah
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
             editor_components: [ image ]
+
 
   - name: snippets
     label: Kousky
@@ -120,64 +133,94 @@ collections:
           preview: false
         file: src/_data/openingHours.json
         fields:
-          - label: Nadpis
-            name: title
+
+          - name: title
+            label: Nadpis
             required: false
             widget: string
-          - label: Standardní ordinační hodiny
-            name: body
+
+          - name: body
+            label: Standardní ordinační hodiny
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+            modes: [ 'raw', 'rich_text' ]
+            hint: Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
 
-          - label: Zobrazit změnu ordinačních hodin
-            name: publishChanged
+          - name: publishChanged
+            label: Zobrazit dočasnou změnu ordinačních hodin
             widget: boolean
             required: false
             hint: Pokud není zapnuto, nezobrazí se nic z nastavení dále
-          - label: Změnené ordinační hodiny
-            name: bodyChanged
+
+          - name: bodyChanged
+            label: Dočasné ordinační hodiny
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
-          - label: Nadpis standardních ordinačních hodin (zobrazí se při změně)
-            name: openingHoursTitle
-            required: false
-            widget: string
-          - label: První den změny
-            name: changeDateFrom
-            widget: datetime
-            time_format: false
-            date_format: YYYY-MM-DD
-            format: YYYY-MM-DD
-            required: false
-            hint: Zobrazí se chvíli po půlnoci zadaného dne.
-          - label: Poslední den změny
-            name: changeDateTo
-            widget: datetime
-            time_format: false
-            date_format: YYYY-MM-DD
-            format: YYYY-MM-DD
-            required: false
-            hint: Skryje se chvíli po půlnoci zadaného dne.
+            modes: [ 'raw', 'rich_text' ]
+            hint: Popis jaké jsou změny. Datumy od a do nepište, budou automaticky doplněny.<br>Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
 
-          - label: Zobrazit informace o změně od
-            name: publishDateFrom
+          - name: changeDateFrom
+            label: První den dočasné změny
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Den, od kterého neplatí standardní ordinační doba
+
+          - name: changeDateTo
+            label: Poslední den dočasné změny
+            widget: datetime
+            time_format: false
+            date_format: YYYY-MM-DD
+            format: YYYY-MM-DD
+            required: false
+            hint: Den, do kterého neplatí standardní ordinační doba
+
+          - name: publishDateFrom
+            label: Zobrazit informace o změně od (volitelné)
             widget: datetime
             time_format: false
             date_format: YYYY-MM-DD
             format: YYYY-MM-DD
             default: "{{now}}"
             required: false
-            hint: Zobrazí se chvíli po půlnoci zadaného dne.
-          - label: Zobrazit informace o změně do
-            name: publishDateTo
+            hint: Pokud není vyplněno, zobrazí se informace od prvního dne změny.<br>Musí být dřív nebo nejpozději stejný den jako začátek změny.
+
+          - name: publishDateTo
+            label: Zobrazit informace o změně do (volitelné)
             widget: datetime
             time_format: false
             date_format: YYYY-MM-DD
             format: YYYY-MM-DD
             required: false
-            hint: Skryje se chvíli po půlnoci zadaného dne.
+            hint: Pokud není vyplněno, zobrazí se informace do posledního dne změny.<br>Musí být později nebo nejdříve stejný den jako konec změny.
+
+          - name: openingHoursTitle
+            label: Nadpis standardních ordinačních hodin (zobrazí se při změně)
+            required: false
+            widget: string
+
+          - name: openingHoursTitle
+            label: Nadpis standardních ordinačních hodin při změně
+            required: false
+            widget: string
+            hint: Pravděpodobně nepotřebujete měnit.
+
+          - label: Nadpis o změně
+            hint: Za tímto textem pokračuje „od [první den změny] do“ [poslední den změny], pokud jsou nastaveny.<br>Pravděpodobně nepotřebujete měnit.
+            name: temporaryHeading
+            required: false
+            widget: string
+
+          - name: warningToday
+            label: Text upozornění, že právě dnes je změna
+            required: false
+            widget: string
+            hint: Pravděpodobně nepotřebujete měnit.
+
 
       - name: generalAnnouncements
         label: Obecná oznámení (zobrazí se na všech stránkách nahoře)
@@ -185,18 +228,21 @@ collections:
           preview: false
         file: src/_data/generalAnnouncements.json
         fields:
-          - label: Obsah
-            name: body
+
+          - name: body
+            label: Obsah
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
-          - label: Zobrazit
-            name: publish
+
+          - name: publish
+            label: Zobrazit
             widget: boolean
             required: false
             hint: Pokud není zapnuto, nemají datumy vliv
-          - label: Zobrazit od
-            name: dateFrom
+
+          - name: dateFrom
+            label: Zobrazit od
             widget: datetime
             time_format: false
             date_format: YYYY-MM-DD
@@ -204,21 +250,16 @@ collections:
             default: "{{now}}"
             required: false
             hint: Zobrazí se hodinu po půlnoci zadaného dne.
-          - label: Zobrazit do
-            name: dateTo
+
+          - name: dateTo
+            label: Zobrazit do
             widget: datetime
             time_format: false
             date_format: YYYY-MM-DD
             format: YYYY-MM-DD
             required: false
             hint: Skryje se hodinu po půlnoci zadaného dne.
-          - name: admin_name
-            required: false
-            widget: hidden
-          - name: admin_note
-            label: Popis kde se zobrazí
-            required: true
-            widget: hidden
+
 
       - name: footer
         label: Patička celého webu
@@ -226,11 +267,13 @@ collections:
           preview: false
         file: src/_data/footer.json
         fields:
-          - label: Obsah
-            name: body
+
+          - name: body
+            label: Obsah
             required: false
             widget: markdown
             buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+
 
   - name: articles
     label: Články
@@ -243,29 +286,35 @@ collections:
     editor:
       preview: false
     fields:
-      - label: Datum publikace
-        name: date
+
+      - name: date
+        label: Datum publikace
         widget: datetime
         time_format: false
         date_format: YYYY-MM-DD
         format: YYYY-MM-DD
         default: "{{now}}"
-      - label: Titulek
-        name: title
+
+      - name: title
+        label: Titulek
         widget: string
-      - label: Perex
-        name: perex
+
+      - name: perex
+        label: Perex
         widget: markdown
         buttons: [ bold, italic ]
         editor_components: [ ]
-      - label: Obsah
-        name: body
+
+      - name: body
+        label: Obsah
         widget: markdown
         buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
         editor_components: [ image ]
-      - label: Obrázek
-        name: image
+
+      - name: image
+        label: Obrázek
         widget: image
+
 
   - name: settings
     label: Nastavení
@@ -275,28 +324,34 @@ collections:
       preview: false
     files:
 
+
       - name: meta
         label: Obecné
         editor:
           preview: false
         file: src/_data/meta.json
         fields:
+
           - name: url
             label: URL webu
             widget: string
-#            pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
+            #            pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
             hint: adresa na které web běží
+
           - name: siteName
             label: Název webu
             widget: string
+
           - name: divider
             label: Oddělovač
             widget: string
             hint: Pro titulek
+
           - name: description
             label: Výchozí popis webu
             widget: string
             hint: meta description
+
           - name: lang
             label: Jazyk
             widget: select
@@ -487,6 +542,7 @@ collections:
               - { label: "španělština (es) español; castellano", value: "es" }
               - { label: "švédština (sv) Svenska", value: "sv" }
               - { label: "ťwiština (tw) Twi", value: "tw" }
+
           - name: locale
             label: Locale
             widget: select
@@ -868,11 +924,13 @@ collections:
               - { label: "(zh-TW) Chinese – Taiwan", value: "zh-TW" }
               - { label: "(ms-MY) Malay – Malaysia", value: "ms-MY" }
               - { label: "(zu-ZA) Zulu – South Africa", value: "zu-ZA" }
+
           - name: author
             label: Autoři
             required: false
             widget: string
             hint: meta authors
+
 
       - name: redirects
         label: Přesměrování
@@ -881,20 +939,23 @@ collections:
         file: src/_special-urls/redirects.njk
         widget: list
         fields:
+
           - label: Seznam přesměrování
             label_singular: přesměrování
             name: redirects
             widget: list
             summary: "{{fields.from}} → {{fields.to}}"
             fields:
-              - label: původní adresa
-                name: from
+
+              - name: from
+                label: původní adresa
                 widget: string
-#                pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
+                #                pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
                 hint: adresa by měla začínat a končit /
                 default: /
-              - label: nová adresa
-                name: to
+
+              - name: to
+                label: nová adresa
                 widget: string
                 default: /
                 hint: adresa by měla začínat a končit /
