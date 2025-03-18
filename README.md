@@ -54,7 +54,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 ├─ _site/                            # 11ty output directory
 ├─ config/                           # configuration files
 │  ├─ transforms/                    # transforms
-│  │  └─ typopo.js                   # typopo transformation
+│  │  └─ typopoTransform.js          # typopo transformation
 │  ├─ collections.js                 # collections config
 │  ├─ configLoader.js                # config loader helper
 │  ├─ filters.js                     # filters config
