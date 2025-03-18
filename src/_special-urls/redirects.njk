@@ -1,13 +1,6 @@
 ---
-redirects:
-  - from: /old-page-1/
-    to: /new-page-1/
-  - from: /testas/
-    to: /test/
-  - from: /old-page-2/
-    to: /new-page-2/
 permalink: '{{ redirect.from }}'
-pagination: { data: redirects, size: 1, alias: redirect }
+pagination: { data: redirects.redirects, size: 1, alias: redirect }
 ---
 <!DOCTYPE html>
 <html lang="cs">

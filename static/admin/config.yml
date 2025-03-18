@@ -973,7 +973,7 @@ collections:
         label: Přesměrování
         editor:
           preview: false
-        file: src/_special-urls/redirects.njk
+        file: src/_data/redirects.yaml
         widget: list
         fields:
 
@@ -997,6 +997,3 @@ collections:
                 widget: string
                 pattern: [ '/^\/[0-9a-zA-Z-]*\/$/', "Není platná adresa" ]
                 default: //
-
-          - { name: permalink, widget: hidden }
-          - { name: pagination, widget: hidden }
