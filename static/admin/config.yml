@@ -21,6 +21,10 @@ site_url: https://veterina-smichov.github.io
 display_url: https://veterina-smichov.github.io
 media_folder: src/assets/images/cms-managed
 public_folder: /assets/images/cms-managed
+logo_url: /assets/images/cms-managed/dog.min.svg
+
+editor:
+  preview: false
 slug:
   encoding: ascii
   clean_accents: true
@@ -37,18 +41,13 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
-    summary: "<strong>{{title}}</strong> <code>{{permalink}}</code> {{eleventyNavigation.order|default('nezobrazuje se v menu')}}"
+    summary: "**{{title}}** `{{permalink}}` {{eleventyNavigation.order|default('nezobrazuje se v menu')}}"
     sort: { key: eleventyNavigation.order, order: ascending }
     sortable_fields:
       fields: [ eleventyNavigation.order ]
       default:
         field: eleventyNavigation.order
         direction: ascending
-    editor:
-      preview: false
-      components:
-        image:
-          class: "img-fluid"
     fields:
 
       - name: title
@@ -61,22 +60,32 @@ collections:
         widget: string
         #        pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Pouze malá písmena a pomlčky."]
 
-      - name: meta.title
-        label: Title
-        description: Název stránky, který se zobrazuje v záložce prohlížeče, při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Proto je to, co je na začátku je důležitější než to, co je na konci.
-        required: false
-        widget: string
+      - name: meta
+        label: Meta
+        required: true
+        hint: Pokročilé nastavení
+        widget: object
+        collapsed: true
+        fields:
 
-      - name: meta.description
-        label: Popis
-        description: Popis, který se zobrazuje při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Zhruba do 140 znaků.
-        required: false
-        widget: string
+        - name: title
+          label: Title
+          description: Název stránky, který se zobrazuje v záložce prohlížeče, při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Proto je to, co je na začátku je důležitější než to, co je na konci.
+          maxlength: 300
+          required: false
+          widget: string
+
+        - name: description
+          label: Popis
+          description: Popis, který se zobrazuje při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Zhruba do 140 znaků.
+          maxlength: 400
+          required: false
+          widget: string
 
       - name: eleventyNavigation
         label: to Navigace
         required: false
-        hint: "Zobrazit v navigaci?"
+        hint: Zobrazit v navigaci?
         widget: object
         fields:
 
@@ -138,14 +147,10 @@ collections:
     description: Části, které se zobrazují na různých místech webu
     icon: brick
     extension: yaml
-    editor:
-      preview: false
     files:
 
       - name: openingHours
         label: Ordinační hodiny
-        editor:
-          preview: false
         file: src/_data/openingHours.yaml
         format: yaml
         fields:
@@ -165,10 +170,12 @@ collections:
             hint: Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
 
           - name: publishChanged
-            label: Zobrazit dočasnou změnu ordinačních hodin
+            label: Dočasná změna ordinačních hodin
             widget: boolean
             required: false
-            hint: Pokud není zapnuto, nezobrazí se nic z nastavení dále
+            before_input: skrýt
+            after_input: zobrazit
+            hint: Skryje vše dále
 
           - name: bodyChanged
             label: Dočasné ordinační hodiny
@@ -242,8 +249,6 @@ collections:
 
       - name: generalAnnouncements
         label: Obecná oznámení (zobrazí se na všech stránkách nahoře)
-        editor:
-          preview: false
         file: src/_data/generalAnnouncements.yaml
         format: yaml
         fields:
@@ -256,10 +261,12 @@ collections:
             editor_components: [ image ]
 
           - name: publish
-            label: Zobrazit
+            label: Oznámení
             widget: boolean
             required: false
-            hint: Pokud není zapnuto, nemají datumy dále vliv
+            before_input: skrýt
+            after_input: zobrazit
+            hint: Pokud je skryto, nemají datumy dále vliv
 
           - name: publishDateFrom
             label: Zobrazit od
@@ -283,8 +290,6 @@ collections:
 
       - name: footer
         label: Patička celého webu
-        editor:
-          preview: false
         file: src/_data/footer.yaml
         format: yaml
         fields:
@@ -309,8 +314,6 @@ collections:
       default:
         field: date
         direction: descending
-    editor:
-      preview: false
     fields:
 
       - name: date
@@ -350,15 +353,11 @@ collections:
   - name: settings
     label: Nastavení
     icon: settings
-    editor:
-      preview: false
     files:
 
 
       - name: meta
         label: Obecné
-        editor:
-          preview: false
         file: src/_data/meta.yaml
         format: yaml
         fields:
@@ -366,7 +365,7 @@ collections:
           - name: url
             label: URL webu
             widget: string
-            #            pattern: "^(https?:\\/\\/)?((([-a-z0-9]{1,63}\\.)*?[a-z0-9]([-a-z0-9]{0,253}[a-z0-9])?\\.[a-z]{2,63})|((\\d{1,3}\\.){3}\\d{1,3}))(:\\d{1,5})?((\\/|\\?)((%[0-9a-f]{2})|[-\\w\\+\\.\\?\\/@~#&=])*)?$"
+            type: url
             hint: adresa na které web běží
 
           - name: siteName
@@ -384,10 +383,12 @@ collections:
             hint: meta description
 
           - name: robots
-            label: Povolit indexaci vyhledávači
+            label: Indexace vyhledávači
             widget: boolean
+            before_input: zakázat
+            after_input: povolit
             required: false
-            hint: Pokud není zašrktnuto, většina vyhledávačů nebude o webu vědět.<br>Hodí se při vývoji.
+            hint: Pokud není povoleno, vyhledávače nebudou o webu „vědět“.<br>Hodí se při vývoji.
 
           - name: lang
             label: Jazyk
@@ -971,8 +972,6 @@ collections:
 
       - name: redirects
         label: Přesměrování
-        editor:
-          preview: false
         file: src/_data/redirects.yaml
         widget: list
         fields:
