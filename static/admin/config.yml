@@ -999,5 +999,4 @@ collections:
                 widget: string
                 before_input: "https://​veterina-smichov.cz"
                 prefix: /
-#                required: false
                 pattern: [ '/^[0-9a-zA-Z-/]*$/', "Není platná adresa" ]
