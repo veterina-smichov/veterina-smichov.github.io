@@ -978,22 +978,27 @@ collections:
         fields:
 
           - name: redirects
-            label: Seznam přesměrování
+            label: " "
             label_singular: přesměrování
+            root: true
             widget: list
             summary: "{{fields.from}} → {{fields.to}}"
             fields:
 
               - name: from
                 label: původní adresa
-                hint: adresa by měla začínat a končit „/“
+                hint: Z homepage nelze přesměrovat.
                 widget: string
-                pattern: [ '/^\/[0-9a-zA-Z-]*\/$/', "Není platná adresa" ]
-                default: //
+                before_input: "https://​veterina-smichov.cz"
+                prefix: /
+                suffix: /
+                pattern: [ '/^[0-9a-zA-Z-/]*$/', "Není platná adresa" ]
 
               - name: to
                 label: nová adresa
-                hint: adresa by měla začínat a končit „/“
+                hint: Pro přesměrování na homepage jen `/`.<br>Nelze přesměrovat mimo tento web.
                 widget: string
-                pattern: [ '/^\/[0-9a-zA-Z-]*\/$/', "Není platná adresa" ]
-                default: //
+                before_input: "https://​veterina-smichov.cz"
+                prefix: /
+#                required: false
+                pattern: [ '/^[0-9a-zA-Z-/]*$/', "Není platná adresa" ]
