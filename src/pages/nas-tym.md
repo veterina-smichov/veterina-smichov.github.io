@@ -7,6 +7,7 @@ meta:
 eleventyNavigation:
   key: Náš tým
   order: 50
+layout: page.njk
 ---
 # Náš tým
 
