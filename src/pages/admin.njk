@@ -97,6 +97,52 @@
 <script src="/admin/sveltia-cms.js"></script>
 {#
 <script>
+// An example script to process some fields before saving and before loading into editor
+// Will use to resolve redirects
+// Define which field names should be transformed
+const fieldsToTransform = ['code', 'category', 'productId'] // Add your field names here
+
+// Transform specific values to uppercase when loading into editor
+CMS.registerEventListener({
+  name: 'preProcessEntry',
+  handler: ({ entry }) => {
+    let data = entry.get('data').toJS()
+    let newData = entry.get('data')
+
+    // Only transform fields whose names match the list
+    Object.keys(data).forEach(key => {
+      if (fieldsToTransform.includes(key) && typeof data[key] === 'string') {
+        // Transform to uppercase for editing
+        newData = newData.set(key, data[key].toUpperCase())
+      }
+    })
+
+    return entry.set('data', newData)
+  }
+})
+
+// Transform specific fields back to lowercase before saving
+CMS.registerEventListener({
+  name: 'preSave',
+  handler: ({ entry }) => {
+    let data = entry.get('data').toJS()
+    let newData = entry.get('data')
+
+    // Only transform fields whose names match the list
+    Object.keys(data).forEach(key => {
+      if (fieldsToTransform.includes(key) && typeof data[key] === 'string') {
+        // Transform to lowercase for storage
+        newData = newData.set(key, data[key].toLowerCase())
+      }
+    })
+
+    return entry.set('data', newData)
+  }
+})
+</script>
+#}
+{#
+<script>
     const DateRangeValidator = {
         // Extend the default widget
         widget: 'datetime',
