@@ -1,0 +1,6 @@
+{# Markdown renderer #}
+{% macro renderMarkdown(item) %}
+    <div class="C-markdown">
+        {{ item.text|markdown|safe }}
+    </div>
+{% endmacro %}

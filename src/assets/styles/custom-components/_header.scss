@@ -1,0 +1,46 @@
+.C-header {
+    --header-link-padding-x: var(--space-flex-150);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: map-get($spacers, 5);
+    row-gap: var(--space-flex-200);
+    padding-block: var(--space-flex-200);
+    padding-inline: var(--space-flex-300);
+}
+
+.C-header__logo {
+    display: block;
+}
+
+.C-header__img {
+    display: block;
+    max-height: 4rem;
+    width: auto;
+    max-width: 100%;
+}
+
+.C-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    column-gap: var(--space-flex-200-zero);
+
+    @include font-size($h5-font-size);
+    margin-right: calc(-1 * var(--header-link-padding-x));
+}
+
+.C-header__link {
+    color: $teal-500;
+    text-wrap: nowrap;
+    padding-block: var(--space-flex-100);
+    padding-inline: var(--header-link-padding-x);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &--active {
+        color: $teal-800;
+    }
+}

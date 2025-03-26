@@ -1,0 +1,11 @@
+contents:
+  section:
+    - contents:
+        - type: markdown
+          text: |-
+            Veterina Smíchov – MVDr. Jana Lukešová
+            Na Skalce 991/27, Praha 5 – Smíchov, 15000, IČO 64629406
+
+            Tyto stránky nezpracovávají žádné osobní údaje.
+      options:
+        style: C-section--dark

@@ -1,0 +1,9 @@
+.C-pricelist {
+    max-width: 60ch;
+    th, td {
+        &:last-child {
+            text-align: right;
+            text-wrap: nowrap;
+        }
+    }
+}

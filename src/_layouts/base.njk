@@ -1,0 +1,80 @@
+{% extends "./_base.njk" %}
+
+{% from "macros/_contents.njk" import renderSections %}
+
+{% block body %}
+    <header class="C-section C-section--header sticky-top">
+        <div class="C-section__content">
+            <div class="C-header">
+                <a class="C-header__logo" href="/">
+                    <img
+                        src="{{ '/assets/images/logo-horizontalni-nizke.min.svg'|url }}"
+                        alt="Veterina Smíchov"
+                        width="7000" height="1800"
+                        class="C-header__img"
+                    >
+                </a>
+                <nav class="C-header__nav">
+                    {% for item in collections.all|eleventyNavigation %}
+                        {% if item.url %}
+                            {% set isCurrent = (item.url == page.url) %}
+                            {% set isParent = item.url != '/' and item.url in page.url %}
+                            <a
+                                class="C-header__link {% if isCurrent or isParent %} C-header__link--active {% endif %}"
+                                href="{{ item.url|url }}"
+                                {% if isCurrent %} aria-current="page" {% endif %}
+                            >
+                                {{ item.title }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+    </header>
+    {% block generalAnnouncements %}
+        {% if generalAnnouncements.showAnnoucements %}
+            <section class="C-section C-section--warning">
+                <div class="C-section__content">
+                    <div class="C-row">
+                        <div class="C-col">
+                            <div class="C-markdown fs-5">
+                                {{ generalAnnouncements.body|markdown|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    {% endblock %}
+
+    <main>
+        {% block content %}
+            <h1 class="display-1">
+                {% block title %}
+                    {{ title|safe }}
+                {% endblock %}
+            </h1>
+            {{ content|safe }}
+        {% endblock %}
+    </main>
+    <footer class="fw-bold">
+        {#<section class="C-section C-section--light">
+            <div class="C-section__content">
+                <div class="C-col">
+                    <div class="C-row">
+                        <div>Lorem ipsum Na Skalce 991/27, Praha 5 – Smíchov, 15000, IČO&nbsp;64629406</div>
+                        #}{#
+                        <div class="C-markdown">
+                            <p>Veterina Smíchov – MVDr. Jana Lukešová<br>
+                                Na Skalce 991/27, Praha 5 – Smíchov, 15000, IČO&nbsp;64629406</p>
+                            <p>Tyto stránky nezpracovávají žádné osobní údaje.</p>
+                        </div>
+                        #}{#
+                    </div>
+                </div>
+            </div>
+        </section>#}
+         {{ renderSections(footer.contents) }}
+    </footer>
+{% endblock %}

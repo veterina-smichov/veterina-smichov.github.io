@@ -1,0 +1,25 @@
+{% from "macros/_contents-markdown.njk" import renderMarkdown %}
+{% from "macros/_contents-buttons.njk" import renderButtons %}
+{% from "macros/_contents-pricelist.njk" import renderPricelist %}
+{% from "macros/_contents-image.njk" import renderImage %}
+
+{# Column Group renderer #}
+{% macro renderColumnGroup(item) %}
+    <div class="C-row {{ item.options.verticalAlignment }} {{ item.options.style }}">
+        {% for column in item.column %}
+            <div class="C-col">
+                {% for columnItem in column.contents %}
+                    {% if columnItem.type === "markdown" %}
+                        {{ renderMarkdown(columnItem) }}
+                    {% elseif columnItem.type === "buttons" %}
+                        {{ renderButtons(columnItem) }}
+                    {% elseif columnItem.type === "pricelist" %}
+                        {{ renderPricelist(columnItem) }}
+                    {% elseif columnItem.type === "image" %}
+                        {{ renderImage(columnItem) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endmacro %}

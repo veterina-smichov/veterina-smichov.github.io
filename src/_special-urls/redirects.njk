@@ -1,0 +1,19 @@
+---
+permalink: '{{ redirect.from }}'
+pagination: { data: redirects, size: 1, alias: redirect }
+---
+{% set redirectTo = redirect.to|replace("//","/") %} {# temporary fix until we can store correct data from Sveltia #}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0;url={{ redirectTo }}">
+    <link rel="canonical" href="{{ redirectTo }}">
+    <title>Přesměrovávám na {{ redirectTo }}</title>
+    <script>window.location.href = "{{ redirectTo }}"</script>
+</head>
+<body>
+    <h1>Stránka byla přemístěna jinam.</h1>
+    <p>Přesměrovávám na <a href="{{ redirectTo }}">{{ redirectTo }}</a></p>
+</body>
+</html>

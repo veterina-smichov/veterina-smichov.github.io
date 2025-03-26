@@ -1,0 +1,204 @@
+@use "sass:list";
+@use "sass:meta";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+
+// Helper functions
+@function roundValue($number, $digits: 4) {
+    $n: 1;
+
+    @if meta.type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+
+    @if meta.type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not math.is-unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+
+    @return math.div(math.round($number * $n), $n);
+}
+
+@function lerp($x, $y, $a) {
+    @return $x * (1 - $a) + $y * $a;
+}
+
+@function clampValue($a, $min: 0, $max: 1) {
+    @return min($max, max($min, $a));
+}
+
+@function invlerp($x, $y, $a) {
+    @return clampValue(math.div(($a - $x), ($y - $x)));
+}
+
+@function range($x1, $y1, $x2, $y2, $a) {
+    @return lerp($x2, $y2, invlerp($x1, $y1, $a));
+}
+
+@function newList($value) {
+    $list: $value, $value;
+    @return remove-nth($list, 1);
+}
+
+@function remove-nth($list, $index) {
+    $result: null;
+
+    @if meta.type-of($index) != number {
+        @warn "$index: #{string.quote($index)} is not a number for `remove-nth`.";
+    } @else if $index == 0 {
+        @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+    } @else if math.abs($index) > list.length($list) {
+        @warn "List index is #{$index} but list is only #{list.length($list)} item long for `remove-nth`.";
+    } @else {
+        $result: ();
+        $index: if($index < 0, list.length($list) + $index + 1, $index);
+
+        @for $i from 1 through list.length($list) {
+            @if $i != $index {
+                $result: list.append($result, list.nth($list, $i));
+            }
+        }
+    }
+
+    @return $result;
+}
+
+// Core calculation functions
+@function calculateClamp($params) {
+    $unit: 0.0625rem; // 1/16 rem = 1px equivalent
+
+    $relativeUnit: 1vw;
+    @if (map.get($params, "relativeTo") == "container") {
+        $relativeUnit: 1cqi;
+    }
+    @if (map.get($params, "relativeTo") == "viewport") {
+        $relativeUnit: 1vi;
+    }
+
+    $isNegative: map.get($params, "minSize") > map.get($params, "maxSize");
+    $min: map.get($params, "minSize");
+    $max: map.get($params, "maxSize");
+
+    @if ($isNegative) {
+        $min: map.get($params, "maxSize");
+        $max: map.get($params, "minSize");
+    }
+
+    $slope: math.div((map.get($params, "maxSize") - map.get($params, "minSize")), (map.get($params, "maxWidth") - map.get($params, "minWidth")));
+    $intersection: (-1 * map.get($params, "minWidth")) * $slope + map.get($params, "minSize");
+
+    @return "clamp(#{roundValue($min * $unit)}, #{roundValue($intersection * $unit)} + #{roundValue($slope * 100) * $relativeUnit}, #{roundValue($max * $unit)})";
+}
+
+@function calculateZeroClamp($params) {
+    $unit: 0.0625rem; // 1/16 rem = 1px equivalent
+
+    $relativeUnit: 1vw;
+    @if (map.get($params, "relativeTo") == "container") {
+        $relativeUnit: 1cqi;
+    }
+    @if (map.get($params, "relativeTo") == "viewport") {
+        $relativeUnit: 1vi;
+    }
+
+    // Always clamp down to zero at the zero width
+    $min: 0;
+    $max: map.get($params, "size");
+
+    $slope: math.div($max, (map.get($params, "maxWidth") - map.get($params, "zeroWidth")));
+    $intersection: (-1 * map.get($params, "zeroWidth")) * $slope;
+
+    @return "clamp(#{roundValue($min * $unit)}, #{roundValue($intersection * $unit)} + #{roundValue($slope * 100) * $relativeUnit}, #{roundValue($max * $unit)})";
+}
+
+// Main space scale generation function
+@function calculateNewSpaceScale($config) {
+    $baseSize: map.get($config, "baseSize");
+    $largestSizeRatio: map.get($config, "largestSizeRatio");
+    $maxSizeValue: $baseSize * $largestSizeRatio;
+
+    // Define all the size multipliers with their labels
+    $sizes: (
+        ("label": "050", "multiplier": 0.125),   // base/8
+        ("label": "100", "multiplier": 0.25),    // base/4
+        ("label": "150", "multiplier": 0.375),   // between 100 and 200
+        ("label": "200", "multiplier": 0.5),     // base/2
+        ("label": "250", "multiplier": 0.75),    // between 200 and 300
+        ("label": "300", "multiplier": 1),       // baseSize (300 is the base)
+        ("label": "350", "multiplier": 1.5),     // between 300 and 400
+        ("label": "400", "multiplier": 2),       // base×2
+        ("label": "450", "multiplier": 2.5),     // between 400 and 500
+        ("label": "500", "multiplier": 3),       // base×3
+        ("label": "550", "multiplier": 3.5),     // between 500 and 600
+        ("label": "600", "multiplier": 4)        // base×4
+    );
+
+    $result: ();
+
+    @each $size in $sizes {
+        $multiplier: map.get($size, "multiplier");
+        $label: map.get($size, "label");
+
+        // Calculate min and max sizes
+        $minSize: $baseSize * $multiplier;
+
+        // For max size, scale proportionally based on largest size ratio
+        $maxSize: $minSize;
+        @if $multiplier > 0 {
+            $maxSize: range(1, $largestSizeRatio, $multiplier, $multiplier * $largestSizeRatio, $largestSizeRatio);
+            $maxSize: $baseSize * $maxSize;
+        }
+
+        // Regular clamp (min to max)
+        $clamp: calculateClamp((
+            "minWidth": map.get($config, "minWidth"),
+            "maxWidth": map.get($config, "maxWidth"),
+            "minSize": $minSize,
+            "maxSize": $maxSize,
+            "relativeTo": map.get($config, "relativeTo")
+        ));
+
+        // Add to results
+        $result: list.append($result, (
+            "label": $label,
+            "minSize": roundValue($minSize),
+            "maxSize": roundValue($maxSize),
+            "zeroWidth": map.get($config, "zeroWidth"),
+            "clamp": $clamp,
+        ));
+    }
+
+    @return $result;
+}
+
+// Mixin for generating the space scale
+@mixin generateNewSpaceScale($config) {
+    $prefix: map.get($config, "prefix");
+    $zeroWidth: map.get($config, "zeroWidth");
+
+    $scale: calculateNewSpaceScale($config);
+
+    @each $size in $scale {
+        --#{$prefix}#{map.get($size, "label")}: #{map.get($size, "clamp")};
+    }
+
+    @each $size in $scale {
+        --#{$prefix}#{map.get($size, "label")}-zero: 0;
+    }
+
+    @media (min-width: #{$zeroWidth}px) {
+        @each $size in $scale {
+            --#{$prefix}#{map.get($size, "label")}-zero: #{map.get($size, "clamp")};
+        }
+    }
+
+}
