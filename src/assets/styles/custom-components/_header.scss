@@ -1,3 +1,11 @@
+.C-section--header {
+    @media (min-height: 600px) {
+        position: sticky;
+        top: 0;
+        background-color: red;
+    }
+}
+
 .C-header {
     --header-link-padding-x: var(--space-flex-150);
     display: flex;
@@ -5,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     column-gap: map-get($spacers, 5);
-    row-gap: var(--space-flex-200);
+    row-gap: var(--space-flex-200-zero);
     padding-block: var(--space-flex-200);
     padding-inline: var(--space-flex-300);
 }
