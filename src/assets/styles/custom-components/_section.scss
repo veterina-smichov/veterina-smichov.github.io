@@ -7,16 +7,6 @@
     justify-content: center;
 }
 
-.C-section__content {
-    margin-inline: var(--space-flex-300-zero);
-
-    box-sizing: content-box;
-    width: 100%;
-    max-width: #{3.5*$smallest-breakpoint}px;
-
-    border-radius: $border-radius-lg;
-}
-
 .C-section--white + .C-section--white,
 .C-section--dark + .C-section--dark,
 .C-section--darker + .C-section--darker,
@@ -27,132 +17,6 @@
 
 .C-section--left-right:nth-child(2n) .C-col:last-child {
     grid-row-start: -1;
-}
-
-.C-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(40ch, 100%), 1fr));
-    align-items: start;
-
-    @media (min-width: #{$smallest-breakpoint}px) {
-        & + & {
-            margin-top: calc(-1 * var(--basic-spacing));
-        }
-    }
-}
-
-.C-row--stretch {
-    align-items: stretch;
-}
-
-.C-row--start {
-    align-items: start;
-}
-
-.C-row--center {
-    align-items: center;
-}
-
-.C-row--end {
-    align-items: end;
-}
-
-.C-row--cards {
-    column-gap: var(--basic-spacing);
-    row-gap: var(--basic-spacing);
-    align-items: stretch;
-
-    @media (min-width: #{$smallest-breakpoint}px) {
-        padding: var(--basic-spacing);
-    }
-
-
-    .C-col {
-        align-content: stretch;
-        border-radius: $border-radius-lg;
-        @media (min-width: #{$smallest-breakpoint}px) {
-            padding: 0;
-        }
-    }
-}
-
-.C-row--cards {
-    .C-buttons,
-    .C-markdown,
-    .C-image,
-    .C-pricelist {
-        margin: var(--basic-spacing);
-    }
-
-    .C-image--fill {
-        margin: 0;
-    }
-
-}
-
-.C-buttons,
-.C-markdown,
-.C-image,
-.C-pricelist {
-    & + & {
-        margin-top: var(--space-flex-300);
-    }
-}
-
-.C-col {
-    padding-block: var(--basic-spacing);
-    padding-inline: var(--basic-spacing);
-}
-
-.C-col:has(> .C-image.C-image--fill:only-child) {
-    padding: 0;
-    align-self: stretch; // make it stretch regardless of row’s setting
-
-    .C-image--fill {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.C-image__img,
-.C-markdown > p > img {
-    display: block;
-    overflow: hidden;
-    border-radius: $border-radius-lg;
-}
-
-.C-image__img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.C-markdown > p > img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-.C-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: baseline;
-    justify-content: start;
-    gap: var(--space-flex-100);
-}
-
-
-.C-row--cards-white .C-col {
-    @extend .bg-white;
-}
-
-.C-row--cards-light .C-col {
-    @extend .bg-teal-100;
-}
-
-.C-row--cards-dark .C-col {
-    @extend .bg-teal-600;
 }
 
 
@@ -220,5 +84,150 @@
 
     .C-section--opening-hours & {
         @extend .bg-red-100;
+    }
+}
+
+
+.C-section__content {
+    margin-inline: var(--space-flex-300-zero);
+
+    box-sizing: content-box;
+    width: 100%;
+    max-width: #{3.5*$smallest-breakpoint}px;
+
+    border-radius: $border-radius-lg;
+}
+
+
+.C-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(40ch, 100%), 1fr));
+    align-items: start;
+
+    @media (min-width: #{$smallest-breakpoint}px) {
+        & + & {
+            margin-top: calc(-1 * var(--basic-spacing));
+        }
+    }
+}
+
+.C-row--stretch {
+    align-items: stretch;
+}
+
+.C-row--start {
+    align-items: start;
+}
+
+.C-row--center {
+    align-items: center;
+}
+
+.C-row--end {
+    align-items: end;
+}
+
+.C-row--cards {
+    column-gap: var(--basic-spacing);
+    row-gap: var(--basic-spacing);
+    align-items: stretch;
+
+    @media (min-width: #{$smallest-breakpoint}px) {
+        padding: var(--basic-spacing);
+    }
+
+    .C-buttons,
+    .C-markdown,
+    .C-image,
+    .C-pricelist {
+        margin: var(--basic-spacing);
+    }
+
+    .C-image--fill {
+        margin: 0;
+    }
+
+}
+
+
+.C-col {
+    padding: var(--basic-spacing);
+
+    &:has(> .C-image.C-image--fill:only-child) {
+        padding: 0;
+        align-self: stretch; // make it stretch regardless of row’s setting
+
+        .C-image--fill {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .C-row--cards & {
+        align-content: stretch;
+        border-radius: $border-radius-lg;
+        padding: 0;
+    }
+
+    .C-row--cards-white & {
+        @extend .bg-white;
+    }
+
+    .C-row--cards-light & {
+        @extend .bg-teal-100;
+    }
+
+    .C-row--cards-dark & {
+        @extend .bg-teal-600;
+    }
+
+}
+
+
+.C-buttons,
+.C-markdown,
+.C-image,
+.C-pricelist {
+    & + & {
+        margin-top: var(--space-flex-300);
+    }
+}
+
+
+.C-image__img,
+.C-markdown > p > img {
+    display: block;
+    overflow: hidden;
+    border-radius: $border-radius-lg;
+}
+
+.C-image__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.C-markdown > p > img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.C-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: baseline;
+    justify-content: start;
+    gap: var(--space-flex-100);
+}
+
+.C-pricelist {
+    max-width: 60ch;
+    th, td {
+        &:last-child {
+            text-align: right;
+            text-wrap: nowrap;
+        }
     }
 }
