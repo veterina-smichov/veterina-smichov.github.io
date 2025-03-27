@@ -1,5 +1,6 @@
 ---
 title: Otrava u psů
+publish: true
 date: 2025-01-10
 image: https://picsum.photos/id/837/1600/1200
 perex: Otrava je jedním z nejčastějších akutních problémů, se kterými se na naší klinice setkáváme. Jak rozpoznat příznaky a co dělat, než dorazíte k veterináři?

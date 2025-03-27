@@ -1,6 +1,7 @@
 ---
 title: "Péče o starší zvířata: Co je důležité vědět?"
 date: 2025-01-20
+publish: true
 image: https://picsum.photos/id/1062/1600/1200
 perex: Stáří je přirozenou součástí života a naši čtyřnozí přátelé si zaslouží tu nejlepší péči i v pokročilém věku. Jak zajistit zdravé a šťastné stáří?
 ---

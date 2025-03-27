@@ -1,5 +1,6 @@
 ---
 date: 2025-01-01
+publish: true
 title: Odstranění cizího tělesa ze žaludku
 perex: Naše veterinární klinika se denně setkává s různými případy, ale příběh labradora Maxe nás obzvlášť zaujal. Max byl přivezen svými majiteli s podezřením na zažívací potíže. Měl ztrátu chuti k jídlu, zvracel a byl viditelně unavený.
 image: https://picsum.photos/id/237/1600/1200

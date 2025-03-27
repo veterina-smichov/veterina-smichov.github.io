@@ -1,5 +1,6 @@
 ---
 date: 2025-01-15
+publish: false
 title: Zlomeniny u domácích mazlíčků
 perex: Nešťastné pády, autonehody nebo nepozornost při hře mohou vést ke zlomeninám. Jak postupovat, pokud má váš mazlíček podezření na zlomeninu?
 image: /assets/images/cms-managed/old/kitten1.webp

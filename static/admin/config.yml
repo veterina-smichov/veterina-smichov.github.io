@@ -526,6 +526,14 @@ collections:
         <<: *datetime__date
         default: "{{now}}"
 
+      - name: publish
+        label: Zobrazit článek
+        widget: boolean
+        required: false
+        default: true
+        before_input: nezobrazit
+        after_input: zobrazit
+
       - name: title
         label: Titulek
         widget: string
