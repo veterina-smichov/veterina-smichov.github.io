@@ -1,0 +1,42 @@
+    {% if articleListHeading %}
+    <div class="C-section C-section--brick C-section--light C-section--outer">
+        <div class="C-section__content">
+            <div class="C-row">
+                <div class="C-col">
+                    <div class="C-markdown">
+                        <h2>{{ articleListHeading }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% for article in articleList %}
+        <article class="C-section C-section--brick C-section--light C-section--outer C-section--left-right">
+            <div class="C-section__content position-relative">
+                <div class="C-row C-row--center">
+                    <div class="C-col">
+                        <div class="C-markdown">
+                            <h2>
+                                <a href="{{ article.url|url }}" class="stretched-link">
+                                    {{ article.data.title }}
+                                </a>
+                            </h2>
+                            <p class="fs-5">{{ article.data.description }}</p>
+                        </div>
+                    </div>
+                    {% if article.data.image %}
+                        <div class="C-col">
+                            <div class="C-image C-image--fill">
+                                <img
+                                    src="{{ article.data.image|url }}"
+                                    alt=""
+                                    class="C-image__img C-ratio-16-9"
+                                />
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    {% endfor %}

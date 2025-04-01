@@ -1,0 +1,15 @@
+# www.robotstxt.org
+
+User-agent: *
+Disallow: /build.txt
+Disallow: /admin/
+{% if meta.robots %}
+Sitemap: {{ meta.url }}sitemap.xml
+
+# Pages excluded from sitemap
+{% for page in collections.ignoredPages %}
+Disallow: {{ page.url }}
+{% endfor %}
+{% else %}
+Disallow: /
+{% endif %}

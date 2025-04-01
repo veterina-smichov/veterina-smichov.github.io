@@ -1,0 +1,32 @@
+site_url: https://veterina-smichov.github.io
+display_url: https://veterina-smichov.github.io
+media_folder: src/assets/images/cms-managed
+public_folder: /assets/images/cms-managed
+logo_url: /assets/images/cms-managed/dog.min.svg
+
+backend:
+  site_domain: veterina-smichov.github.io
+  name: github
+  repo: veterina-smichov/veterina-smichov.github.io
+  branch: main
+  api_root: https://api.github.com
+  base_url: https://sveltia-cms-auth.cfds.workers.dev
+  auth_scope: repo
+  automatic_deployments: false
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+output:
+  omit_empty_optional_fields: false
+  json:
+    indent_style: space
+    indent_size: 2
+  yaml:
+    quote: none # or single or double
+    indent_size: 2
+
+editor:
+  preview: false

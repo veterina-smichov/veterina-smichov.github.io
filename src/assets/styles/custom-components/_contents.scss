@@ -1,0 +1,495 @@
+@use "sass:color";
+
+.C-section {
+    --basic-spacing: var(--space-flex-350);
+    --vertical-section-spacing: var(--space-flex-400);
+
+    padding-block: var(--vertical-section-spacing);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--section-outer-color, var(--section-inner-color));
+
+    main &.C-section--cyan.C-section--light:first-child {
+        padding-top: var(--space-flex-050);
+    }
+}
+
+.C-section--outer.C-section--cyan.C-section--dark + .C-section--outer.C-section--cyan.C-section--dark,
+.C-section--outer.C-section--cyan.C-section--light + .C-section--outer.C-section--cyan.C-section--light,
+.C-section--outer.C-section--brick.C-section--dark + .C-section--outer.C-section--brick.C-section--dark,
+.C-section--outer.C-section--brick.C-section--light + .C-section--outer.C-section--brick.C-section--light,
+.C-section--white + .C-section--white {
+    margin-top: calc(-1 * var(--vertical-section-spacing));
+}
+
+.C-section--cyan.C-section--dark:not(.C-section--outer) + .C-section--cyan.C-section--dark:not(.C-section--outer),
+.C-section--cyan.C-section--light:not(.C-section--outer) + .C-section--cyan.C-section--light:not(.C-section--outer),
+.C-section--brick.C-section--dark:not(.C-section--outer) + .C-section--brick.C-section--dark:not(.C-section--outer),
+.C-section--brick.C-section--light:not(.C-section--outer) + .C-section--brick.C-section--light:not(.C-section--outer) {
+    margin-top: calc(-2.75 * var(--vertical-section-spacing));
+}
+
+.C-section--cyan.C-section--dark:not(.C-section--outer):has(.C-row--cards:first-child) + .C-section--cyan.C-section--dark:not(.C-section--outer),
+.C-section--cyan.C-section--light:not(.C-section--outer):has(.C-row--cards:first-child) + .C-section--cyan.C-section--light:not(.C-section--outer),
+.C-section--brick.C-section--dark:not(.C-section--outer):has(.C-row--cards:first-child) + .C-section--brick.C-section--dark:not(.C-section--outer),
+.C-section--brick.C-section--light:not(.C-section--outer):has(.C-row--cards:first-child) + .C-section--brick.C-section--light:not(.C-section--outer) {
+    margin-top: calc(-2.25 * var(--vertical-section-spacing));
+}
+
+.C-section--left-right:nth-child(2n) .C-col:last-child {
+    grid-row-start: -1;
+}
+
+.C-section--full-height {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.C-section--white {
+    --section-outer-color: #{$white};
+}
+
+.C-section--dark {
+    color: $white;
+    font-weight: 500;
+
+    a:not(.btn) {
+        color: $cyan-400;
+
+        &:hover,
+        &:focus {
+            color: $white;
+        }
+    }
+
+    table {
+        --bs-table-color: #{$white};
+        --bs-table-striped-color: #{$white};
+        --bs-table-striped-bg: #{color.scale($white, $alpha: -95%)};
+    }
+}
+
+.C-section--cyan {
+    &.C-section--dark {
+        --section-inner-color: #{$cyan-800};
+
+        --card-light-bg-color: #{$cyan-200};
+        --card-dark-bg-color: #{$cyan-900};
+
+        &.C-section--outer {
+            --section-outer-color: #{$cyan-700};
+        }
+    }
+
+    &.C-section--light {
+        --section-inner-color: #{$cyan-100};
+
+        --card-light-bg-color: #{$cyan-200};
+        --card-dark-bg-color: #{$cyan-700};
+
+        &.C-section--outer {
+            --section-outer-color: #{$cyan-200};
+        }
+    }
+}
+
+.C-section--brick {
+    &.C-section--dark {
+        --section-inner-color: #{$brick-700};
+
+        --card-light-bg-color: #{$brick-200};
+        --card-dark-bg-color: #{$brick-900};
+
+        &.C-section--outer {
+            --section-outer-color: #{$brick-800};
+        }
+    }
+
+    &.C-section--light {
+        --section-inner-color: #{$brick-200};
+
+        --card-light-bg-color: #{$brick-100};
+        --card-dark-bg-color: #{$brick-600};
+
+        &.C-section--outer {
+            --section-outer-color: #{$brick-100};
+        }
+    }
+}
+
+.C-section--announcements {
+    --section-outer-color: #{$orange-300};
+    --section-inner-color: #{$orange-100};
+}
+
+.C-section--opening-hours {
+    --section-outer-color: #{$red-300};
+    --section-inner-color: #{$red-100};
+}
+
+.C-section__content {
+    box-sizing: content-box;
+    width: 100%;
+    max-width: #{3.5*$smallest-breakpoint}px;
+    margin-inline: var(--space-flex-300-zero);
+    border-radius: $border-radius-lg;
+    background-color: var(--section-inner-color);
+}
+
+.C-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(37ch, 100%), 1fr));
+    align-items: start;
+
+    @media (min-width: #{$smallest-breakpoint}px) {
+        & + & {
+            margin-top: calc(-1 * var(--basic-spacing));
+        }
+    }
+}
+
+.C-row--stretch {
+    align-items: stretch;
+}
+
+.C-row--start {
+    align-items: start;
+}
+
+.C-row--center {
+    align-items: center;
+}
+
+.C-row--end {
+    align-items: end;
+}
+
+.C-row--cards {
+    column-gap: var(--basic-spacing);
+    row-gap: var(--basic-spacing);
+    //align-items: stretch; // todo: is needed?
+
+    @media (min-width: #{$smallest-breakpoint}px) {
+        padding: var(--basic-spacing);
+    }
+
+    .C-buttons,
+    .C-markdown,
+    .C-image,
+    .C-pricelist {
+        margin: var(--basic-spacing);
+    }
+
+    .C-image--fill {
+        margin: 0;
+    }
+}
+
+.C-row--cards-white,
+.C-row--cards-light {
+    color: $body-color;
+    font-weight: 400;
+
+    a:not(.btn) {
+        color: $link-color;
+
+        &:hover,
+        &:focus {
+            color: $link-hover-color;
+        }
+    }
+}
+
+.C-row--cards-dark {
+    color: $white;
+    font-weight: 500;
+
+    a:not(.btn) {
+        color: $cyan-500;
+
+        &:hover,
+        &:focus {
+            color: $white;
+        }
+    }
+}
+
+.C-row--cards-white {
+    --card-bg-color: #{$white}
+}
+
+.C-row--cards-light {
+    --card-bg-color: var(--card-light-bg-color);
+}
+
+.C-row--cards-dark {
+    --card-bg-color: var(--card-dark-bg-color);
+}
+
+
+.C-col {
+    padding: var(--basic-spacing);
+
+    background-color: var(--card-bg-color, transparent);
+
+    &:has(> .C-image.C-image--fill:only-child) {
+        padding: 0;
+        align-self: stretch; // make it stretch regardless of row’s setting
+
+        .C-image--fill {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .C-row--cards & {
+        align-content: stretch;
+        border-radius: $border-radius-lg;
+        padding: 0;
+    }
+}
+
+
+.C-buttons,
+.C-markdown,
+.C-image,
+.C-pricelist {
+    & + & {
+        margin-top: var(--space-flex-300);
+    }
+}
+
+
+.C-image__img,
+.C-markdown > p > img {
+    display: block;
+    overflow: hidden;
+    border-radius: $border-radius-lg;
+}
+
+.C-image__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+    &[src*="ilustrace-pzf"] {
+        max-height: 10rem;
+        object-fit: contain;
+        object-position: right bottom;
+    }
+}
+
+.C-col:has(.C-image:only-child [src*="ilustrace-pzf"]) {
+    align-self: end;
+    --card-bg-color: transparent;
+}
+
+.C-image:last-child {
+    &:has([src*="ilustrace-pzf"]) {
+        margin-top: 0;
+    }
+
+    [src*="ilustrace-pzf"] {
+        position: relative;
+    }
+
+    [src*="ilustrace-pzf-cat-01"] {
+
+        margin-bottom: -1.9rem;
+        @media (min-width: 960px) {
+            right: -0.5rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-02"] {
+        margin-bottom: -0.2rem;
+        @media (min-width: 960px) {
+            right: -0.6rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-03"] {
+        margin-bottom: -2.0rem;
+        @media (min-width: 960px) {
+            right: -1.0rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-04"] {
+        margin-bottom: -0.2rem;
+    }
+
+    [src*="ilustrace-pzf-cat-05"] {
+        margin-bottom: -2.4rem;
+    }
+
+    [src*="ilustrace-pzf-cat-06"] {
+        margin-bottom: -2.7rem;
+    }
+
+    [src*="ilustrace-pzf-cat-07"] {
+        margin-bottom: -1.3rem;
+        @media (min-width: 960px) {
+            right: -1.0rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-08"] {
+        margin-bottom: -2.0rem;
+        @media (min-width: 960px) {
+            right: -0.5rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-09"] {
+        margin-bottom: -1.7rem;
+    }
+
+    [src*="ilustrace-pzf-cat-10"] {
+        margin-bottom: -0.4rem;
+        @media (min-width: 960px) {
+            right: -2.0rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-11"] {
+        margin-bottom: -0.7rem;
+        @media (min-width: 960px) {
+            right: -0.9rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-12"] {
+        margin-bottom: -3.4rem;
+    }
+
+    [src*="ilustrace-pzf-cat-13"] {
+        margin-bottom: -2.5rem;
+        @media (min-width: 960px) {
+            right: -0.9rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-14"] {
+        margin-bottom: -2.3rem;
+    }
+
+    [src*="ilustrace-pzf-cat-15"] {
+        margin-bottom: -2.4rem;
+        @media (min-width: 960px) {
+            right: -0.8rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-cat-16"] {
+        margin-bottom: -0.5rem;
+        @media (min-width: 960px) {
+            right: -0.3rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-01"] {
+        margin-bottom: -1.4rem;
+        @media (min-width: 960px) {
+            right: -1.3rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-02"] {
+        margin-bottom: -2.1rem;
+        @media (min-width: 960px) {
+            right: -0.1rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-03"] {
+        margin-bottom: -0.7rem;
+        @media (min-width: 960px) {
+            right: -1.5rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-04"] {
+        margin-bottom: -1.1rem;
+        @media (min-width: 960px) {
+            right: -0.2rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-05"] {
+        margin-bottom: -0.7rem;
+        @media (min-width: 960px) {
+            right: -0.5rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-06"] {
+        margin-bottom: -1.0rem;
+        @media (min-width: 960px) {
+            right: -2.7rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-07"] {
+        margin-bottom: -0.8rem;
+        @media (min-width: 960px) {
+            right: -1.0rem;
+        }
+    }
+
+    [src*="ilustrace-pzf-dog-08"] {
+        margin-bottom: -0.5rem;
+        @media (min-width: 960px) {
+            right: -1.2rem;
+        }
+    }
+}
+
+.C-markdown > p > img {
+    max-width: 100%;
+    height: auto;
+}
+
+.C-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: baseline;
+    gap: var(--space-flex-200);
+
+    &--start {
+        justify-content: start;
+    }
+
+    &--end {
+        justify-content: end;
+    }
+
+    &--center {
+        justify-content: center;
+    }
+
+    &--stretch {
+        justify-content: stretch;
+
+        > .btn {
+            flex-basis: 100%;
+        }
+    }
+
+    &--space-between {
+        justify-content: space-between;
+    }
+}
+
+.C-pricelist {
+    max-width: 60ch;
+
+    th, td {
+        &:last-child {
+            text-align: right;
+            text-wrap: nowrap;
+        }
+    }
+}

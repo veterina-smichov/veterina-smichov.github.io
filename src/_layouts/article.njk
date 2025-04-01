@@ -1,0 +1,39 @@
+{% extends "./base.njk" %}
+
+
+{% block content %}
+    <section class="C-section C-section--cyan C-section--light">
+        <div class="C-section__content">
+            <div class="C-row">
+                <div class="C-col">
+                    <div class="C-markdown">
+                        <p><a href="../">Články</a></p>
+                        <h1 class="mt-0">{{ title|safe }}</h1>
+                        <p class="fs-5 fw-semibold">{{ description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="C-row">
+                <div class="C-col">
+                    <div class="C-markdown">
+                        {{ content|safe }}
+                    </div>
+                </div>
+                {% if image %}
+                    <div class="C-col">
+                        <div class="C-image">
+                            <img src="{{ image|url }}" alt="" class="C-image__img">
+                        </div>
+                        <div class="C-markdown"></div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    {% set articleList = collections.articles|filterOutCurrentPage(page.url) %}
+    {% if articleList %}
+        {% set articleListHeading = "Další články" %}
+        {% include "article-list.njk" %}
+    {% endif %}
+{% endblock %}

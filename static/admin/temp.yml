@@ -1,0 +1,60 @@
+- name: example of boolean
+  fields:
+    - { name: boolean, widget: boolean }
+- name: example of number
+  fields:
+    - { name: number__int, widget: number, value_type: int }
+    - { name: number__float, widget: number, value_type: float }
+- { name: example of keyvalue, fields: [ { name: keyvalue, widget: keyvalue } ] }
+
+- { name: example of string, fields: [ { name: string, widget: string } ] }
+- { name: example of text, fields: [ { name: text, widget: text } ] }
+- { name: example of markdown, fields: [ { name: markdown, widget: markdown } ] }
+
+- { name: example of file, fields: [ { name: file, widget: file } ] }
+- { name: example of image, fields: [ { name: image, widget: image } ] }
+- { name: example of select, fields: [ { name: select, widget: select } ] }
+- { name: example of datetime, fields: [ { name: datetime, widget: datetime } ] }
+
+- name: example of compute
+  fields:
+    - { name: string, widget: string, default: string }
+    - { name: compute, widget: compute, value: "something-{{fields.string}}" }
+
+- { name: example of object, fields: [ { name: object, widget: object } ] }
+- { name: example of list, fields: [ { name: list, widget: list } ] }
+- { name: example of relation, fields: [ { name: relation, widget: relation } ] }
+
+
+- name: Obsah
+  required: false
+  widget: list
+  fields:
+    - name: level1
+      widget: list
+      types:
+        - { name: level1-group, fields: [ { name: level1-string } ] }
+        # nesting
+        - name: level1-nestable
+          widget: list
+          fields:
+            - name: level2
+              widget: list
+              types:
+                - { name: level2-group, fields: [ { name: level2-string } ] }
+                # more nesting
+                - name: level2-nestable
+                  widget: list
+                  fields:
+                    - name: level3
+                      widget: list
+                      types:
+                        - { name: level3-group, fields: [ { name: level3-string } ] }
+                        # even more nesting
+                        - name: level3-nestable
+                          widget: list
+                          fields:
+                            - name: level4
+                              widget: list
+                              types:
+                                - { name: level4-group, fields: [ { name: level4-string } ] }

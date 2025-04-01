@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>CMS {{ meta.divider|safe }} {{ meta.siteName|safe }}</title>
+    <style>
+        /* latin-ext */
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: italic;
+            font-weight: 100 800;
+            font-display: swap;
+            src: url(/assets/fonts/jetbrains-mono/jetbrains-mono-latin-ext-italic.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: italic;
+            font-weight: 100 800;
+            font-display: swap;
+            src: url(/assets/fonts/jetbrains-mono/jetbrains-mono-latin-italic.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: normal;
+            font-weight: 100 800;
+            font-display: swap;
+            src: url(/assets/fonts/jetbrains-mono/jetbrains-mono-latin-ext.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: normal;
+            font-weight: 100 800;
+            font-display: swap;
+            src: url(/assets/fonts/jetbrains-mono/jetbrains-mono-latin.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: italic;
+            font-weight: 300 800;
+            font-stretch: 75% 100%;
+            font-display: swap;
+            src: url(/assets/fonts/open-sans/open-sans-latin-ext-italic.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: italic;
+            font-weight: 300 800;
+            font-stretch: 75% 100%;
+            font-display: swap;
+            src: url(/assets/fonts/open-sans/open-sans-latin-italic.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 300 800;
+            font-stretch: 75% 100%;
+            font-display: swap;
+            src: url(/assets/fonts/open-sans/open-sans-latin-ext.woff2) format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 300 800;
+            font-stretch: 75% 100%;
+            font-display: swap;
+            src: url(/assets/fonts/open-sans/open-sans-latin.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+</head>
+<body>
+{#<script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>#}
+<script src="/admin/sveltia-cms.js"></script>
+<link href="/admin/base.yml" type="application/yaml" rel="cms-config-url" />
+<link href="/admin/admin.yml" type="application/yaml" rel="cms-config-url" />
+{#
+<script>
+// An example script to process some fields before saving and before loading into editor
+// Will use to resolve redirects
+// Define which field names should be transformed
+const fieldsToTransform = ['code', 'category', 'productId'] // Add your field names here
+
+// Transform specific values to uppercase when loading into editor
+CMS.registerEventListener({
+  name: 'preProcessEntry',
+  handler: ({ entry }) => {
+    let data = entry.get('data').toJS()
+    let newData = entry.get('data')
+
+    // Only transform fields whose names match the list
+    Object.keys(data).forEach(key => {
+      if (fieldsToTransform.includes(key) && typeof data[key] === 'string') {
+        // Transform to uppercase for editing
+        newData = newData.set(key, data[key].toUpperCase())
+      }
+    })
+
+    return entry.set('data', newData)
+  }
+})
+
+// Transform specific fields back to lowercase before saving
+CMS.registerEventListener({
+  name: 'preSave',
+  handler: ({ entry }) => {
+    let data = entry.get('data').toJS()
+    let newData = entry.get('data')
+
+    // Only transform fields whose names match the list
+    Object.keys(data).forEach(key => {
+      if (fieldsToTransform.includes(key) && typeof data[key] === 'string') {
+        // Transform to lowercase for storage
+        newData = newData.set(key, data[key].toLowerCase())
+      }
+    })
+
+    return entry.set('data', newData)
+  }
+})
+</script>
+#}
+{#
+<script>
+    const DateRangeValidator = {
+        // Extend the default widget
+        widget: 'datetime',
+
+        // Custom validation function that runs when any field changes
+        validate: ({ value, field, formState }) => {
+            // Get values from other fields using formState
+            const { innerStartDate, innerEndDate, outerStartDate, outerEndDate } = formState.values
+
+            // Skip validation if any fields are missing
+            if (!innerStartDate || !innerEndDate || !outerStartDate || !outerEndDate)
+                return true
+
+            // Convert strings to Date objects if needed
+            const innerStart = new Date(innerStartDate)
+            const innerEnd = new Date(innerEndDate)
+            const outerStart = new Date(outerStartDate)
+            const outerEnd = new Date(outerEndDate)
+
+            // Check if inner range is within outer range
+            const isInnerWithinOuter = innerStart >= outerStart && innerEnd <= outerEnd
+
+            // Check if current field's dates are in the correct order
+            const areDatesInOrder = field.name === 'innerStartDate' ?
+                value <= innerEnd :
+                field.name === 'innerEndDate' ?
+                    value >= innerStart :
+                    field.name === 'outerStartDate' ?
+                        value <= outerEnd :
+                        value >= outerStart
+
+            if (!isInnerWithinOuter)
+                return 'Inner date range must be within outer date range'
+
+            if (!areDatesInOrder)
+                return 'Start date must be before end date'
+
+            return true
+        }
+    }
+
+    // Register the custom widget
+    CMS.registerWidget('dateRangeValidator', DateRangeValidator)
+
+    /*
+     // In your collection configuration
+     fields: [
+     {
+     label: 'Outer Range Start',
+     name: 'outerStartDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Outer Range End',
+     name: 'outerEndDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Inner Range Start',
+     name: 'innerStartDate',
+     widget: 'dateRangeValidator'
+     },
+     {
+     label: 'Inner Range End',
+     name: 'innerEndDate',
+     widget: 'dateRangeValidator'
+     }
+     ]
+     */
+
+    CMS.registerPreviewStyle('/assets/styles/styles.scss')
+</script>
+#}
+<style>
+
+    :root {
+        --sui-base-hue: 180;
+        --sui-font-family-monospace: "JetBrains Mono", "Consolas", monospaced;
+        --sui-font-family-default: var(--sui-font-family-monospace);
+        --sui-control-font-family: var(--sui-font-family-monospace);
+        --sui-textbox-font-family: var(--sui-font-family-monospace);
+        --sui-font-weight-normal: 500;
+        --sui-font-weight-bold: 700;
+        --sui-paragraph-margin: 1rem;
+    }
+
+    [data-widget="keyvalue"][aria-label*="položka ceníku"] header {
+        display: none;
+    }
+
+    [data-widget="markdown"][aria-label*="text"] {
+        .text-editor {
+            margin: 0;
+            width: 100%;
+        }
+
+        padding: 0;
+
+        & > header {
+            display: none;
+        }
+    }
+
+    [data-widget="keyvalue"] .widget-wrapper table + div:has(button[disabled]) {
+        display: none;
+    }
+
+    [data-key-path="contents"] {
+        section {
+            padding: 10px;
+        }
+
+        .item:hover,
+        & > .widget-wrapper > .wrapper > .group:hover { /* hover on item */
+            border-color: var(--sui-highlight-foreground-color);
+        }
+
+        section[aria-label*="“Skupina sloupců”"],
+        section[aria-label*="“Sloupce”"],
+        section[aria-label*="“Obsah sloupce”"] {
+            padding: 0;
+
+            .toolbar:not(:first-child),
+            .toolbar.bottom {
+                padding: 0 10px 10px;
+            }
+
+            > .widget-wrapper > .group > .inner > .toolbar.top:first-child {
+                /*opacity: 0.2;*/
+                display: none;
+            }
+        }
+
+        section[aria-label*="“Obsah sloupce”"] button {
+            border-color: var(--sui-primary-accent-color);
+            font-weight: 900;
+        }
+
+        :is(
+            & > .widget-wrapper > .wrapper > .group:hover,
+            .item:hover
+            ):has(.item:hover) { /* hover on item inside */
+            border-color: var(--sui-disabled-foreground-color);
+
+            /*
+            var(--sui-highlight-foreground-color)
+            var(--sui-primary-foreground-color)
+            var(--sui-secondary-foreground-color)
+            var(--sui-tertiary-foreground-color)
+            var(--sui-disabled-foreground-color)
+            var(--sui-error-foreground-color)
+            var(--sui-warning-foreground-color)
+            var(--sui-info-foreground-color)
+            var(--sui-success-foreground-color)
+
+            var(--sui-hover-background-color)
+            var(--sui-selected-background-color)
+            var(--sui-active-background-color)
+            var(--sui-content-background-color)
+            var(--sui-code-background-color)
+            var(--sui-primary-background-color)
+            var(--sui-primary-background-color-translucent)
+            var(--sui-secondary-background-color)
+            var(--sui-secondary-background-color-translucent)
+            var(--sui-tertiary-background-color)
+            var(--sui-tertiary-background-color-translucent)
+            var(--sui-disabled-background-color)
+            var(--sui-error-background-color)
+            var(--sui-warning-background-color)
+            var(--sui-info-background-color)
+            var(--sui-success-background-color)
+
+            var(--sui-primary-border-color)
+            var(--sui-secondary-border-color)
+            var(--sui-error-border-color)
+            var(--sui-warning-border-color)
+            var(--sui-info-border-color)
+            var(--sui-success-border-color)
+            */
+        }
+
+        .field .group {
+            .field > header {
+                border-left: 3ch solid var(--sui-primary-background-color);
+            }
+
+            .field:hover > header {
+                position: sticky;
+                top: 0;
+                left: 0;
+                background-color: var(--sui-primary-background-color);
+                z-index: 99999;
+            }
+        }
+    }
+
+    .lexical-root.lexical-root.lexical-root {
+        font-family: "Open Sans", sans-serif;
+
+        h1, h2, h3, h4, h5, h6 {
+            &:has(span[data-lexical-text]) {
+                margin-top: 1.25em;
+                margin-bottom: 1rem;
+
+                &:is(:first-child) {
+                    margin-top: 0;
+                }
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.25rem;
+            }
+
+            h3 {
+                font-size: 1.75rem;
+            }
+
+            h4 {
+                font-size: 1.25rem;
+            }
+        }
+    }
+</style>
+</body>
+</html>

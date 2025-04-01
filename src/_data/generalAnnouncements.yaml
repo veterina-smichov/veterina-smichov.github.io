@@ -1,0 +1,27 @@
+contents:
+  sections:
+    - color: C-section--announcements
+      lightness: C-section--light
+      outerBackground: false
+      height: C-dummy
+      columnGroups:
+        - style: C-dummy
+          verticalAlignment: C-row--stretch
+          columns:
+            - contents:
+                - type: markdown
+                  text: |-
+                    ## Nové telefonní číslo
+
+                    Chceme vám oznámit, že máme nové telefonní číslo. Bohužel nám staré ukradli.
+
+                    Mrkněte do [kontaktů](/kontakty/).
+            - contents:
+                - type: image
+                  src: /assets/images/cms-managed/ilustrace-pzf-dog-07.min.svg
+                  alt: ''
+                  fill: true
+                  aspectRatio: C-dummy
+publish: false
+publishDateFrom: 2025-03-31
+publishDateTo: 2025-05-01

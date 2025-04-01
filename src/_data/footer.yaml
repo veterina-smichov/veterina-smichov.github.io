@@ -1,0 +1,21 @@
+contents:
+  sections:
+    - color: C-section--cyan C-section--dark
+      height: C-dummy
+      columnGroups:
+        - style: C-dummy
+          verticalAlignment: C-row--stretch
+          columns:
+            - contents:
+                - type: markdown
+                  text: |-
+                    Veterina Smíchov – MVDr. Jana Lukešová
+                    Na Skalce 991/27, Praha 5 – Smíchov, 15000, IČO 64629406
+
+                    Tyto stránky nezpracovávají žádné osobní údaje.
+            - contents:
+                - type: image
+                  src: /assets/images/cms-managed/ilustrace-pzf-cat-09.min.svg
+                  alt: ''
+                  fill: true
+                  aspectRatio: C-dummy

@@ -1,0 +1,10 @@
+{# Image renderer #}
+{% macro renderImage(item) %}
+    <div class="C-image {% if item.fill %}C-image--fill{% endif %}">
+        <img
+            src="{{ item.src }}"
+            alt="{{ item.alt }}"
+            class="C-image__img {{ item.aspectRatio }}"
+        />
+    </div>
+{% endmacro %}

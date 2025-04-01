@@ -1,0 +1,28 @@
+{% extends "./page.njk" %}
+
+
+{% block content %}
+    {{ super() }}
+
+    <section class="C-section C-section--cyan C-section--dark C-section--outer">
+        <div class="C-section__content">
+            <div class="C-row C-row--end">
+                {% if openingHours.publishChanged and openingHours.showChangedHours %}
+                    <div class="C-col">
+                        <div class="C-markdown">
+                            {% include "opening-hours.njk" %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="C-col">
+                    <div class="C-markdown">
+                        {% if openingHours.publishChanged and openingHours.showChangedHours %}
+                            <h3>{{ openingHours.openingHoursTitle|safe }}</h3>
+                        {% endif %}
+                        {{ openingHours.body|markdown|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
