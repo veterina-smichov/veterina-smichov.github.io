@@ -19,7 +19,7 @@ contents:
 
                     **Kočky, jsou naší specialitou**, ale rádi ošetřujeme i pejsky a další malá zvířata.
 
-                    Ordinaci na pražském Smíchově jsme pro vás otevřely v roce 2018 a na Google Reviews máme 4,6 hvězdiček z více než 140 hodnocení.
+                    Ordinaci na pražském Smíchově jsme pro vás otevřely v roce 2018 a na Google Reviews máme 4,6 hvězdiček z více než 140 hodnocení. Vážíme si toho.
 
                     Nejsme velká veterina, takže se vám u nás nestane, že se vašemu zvířecímu kamarádovi bude věnovat někdo nezkušený. [Máme bohatou praxi a jsme sladěný tým](/o-nas/). A když to vaše zvířátko potřebuje, umíme vás poslat za nejlepšími specialisty na danou problematiku.
 
