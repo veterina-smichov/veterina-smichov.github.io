@@ -33,13 +33,13 @@
                 </div>
             </div>
         </header>
-        {% block generalAnnouncements %}
-            {% if generalAnnouncements.showAnnouncements %}
-                {{ renderSections(generalAnnouncements.contents) }}
-            {% endif %}
-        {% endblock %}
-
         <main>
+            {% block generalAnnouncements %}
+                {% if generalAnnouncements.showAnnouncements %}
+                    {{ renderSections(generalAnnouncements.contents) }}
+                {% endif %}
+            {% endblock %}
+
             {% block content %}
                 <h1 class="display-1">
                     {% block title %}
