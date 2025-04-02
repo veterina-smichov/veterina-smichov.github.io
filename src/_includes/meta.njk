@@ -13,6 +13,6 @@
 <meta property="og:url" content="{{ absolutePageUrl }}">
 <meta property="og:locale" content="{{ meta.locale }}">
 <meta name="twitter:card" content="{% if image -%}summary_large_image{% else %}summary{% endif %}">
-{%- if image -%}
-    <meta property="og:image" content="{{ image|url|absoluteUrl(meta.url) }}">
+{% if meta.ogImage -%}
+    <meta property="og:image" content="{{ meta.ogImage|url|absoluteUrl(meta.url) }}">
 {%- endif -%}

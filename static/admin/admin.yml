@@ -204,7 +204,7 @@ CONFIG_PARTIALS: # repeated parts to be reused in this file, not part of Sveltia
                 options:
                   - { label: světlá, value: C-section--light }
                   - { label: tmavá, value: C-section--dark }
-                default: C-section--light
+                default: C-section--lightgi
                 hint: nemá vliv s bílým a oranžovým pozadím
               - name: outerBackground
                 label: Vnější pozadí sekce jinou barvou
@@ -352,6 +352,12 @@ collections:
             maxlength: 400
             required: false
             widget: string
+
+          - name: ogImage
+            label: Obrázek pro sociální sítě
+            widget: image
+            required: false
+            hint: Měl by mít 1200 × 630 pixelů
 
       - name: sitemapIgnore
         label: Skrýt tuto stránku před vyhledávači
@@ -591,6 +597,12 @@ collections:
             after_input: povolit
             required: false
             hint: Pokud není povoleno, vyhledávače nebudou o webu „vědět“.<br>Hodí se při vývoji.
+
+          - name: ogImage
+            label: Obrázek pro sociální sítě
+            widget: image
+            required: false
+            hint: Měl by mít 1200 × 630 pixelů
 
           - name: lang
             label: Jazyk webu
