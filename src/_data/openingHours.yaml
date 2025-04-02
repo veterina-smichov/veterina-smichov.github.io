@@ -6,7 +6,7 @@ body: |-
   | středa | 9.00–12.00 | 13.00–16.00 |
   | čtvrtek | operace | 13.00–19.00 |
   | pátek | 9.00–12.00 | 13.00–16.00 |
-publishChanged: true
+publishChanged: false
 bodyChanged: |-
   Děkujeme za pochopení.
 
