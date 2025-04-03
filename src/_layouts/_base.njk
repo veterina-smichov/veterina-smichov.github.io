@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        {% if meta.title or title %}
-            {{ title or meta.title }} {{ meta.divider }}
+        {% if meta.title %}
+            {{ meta.title }}
+            {% elif title %}
+            {{ title }} {{ meta.divider }} {{ meta.siteName }}
+        {% else %}
+            {{ meta.siteName }}
         {% endif %}
-        {{ meta.siteName|safe }}
     </title>
     {% include "meta.njk" %}
     {% include "favicon.njk" %}
     <link rel="stylesheet" href="/assets/styles/styles.scss">
 </head>
 <body>
+<pre class="bg-white">
+    {{ meta.title }}
+    {{ title }}
+    {% if meta.title %}
+        {{ meta.title }}
+        {% elif title %}
+        {{ title }} {{ meta.divider }} {{ meta.siteName }}
+    {% else %}
+        {{ meta.siteName }}
+    {% endif %}
+</pre>
 {% block body %}
     {{ content|safe }}
 {% endblock %}
-{#<script type="module" src="{{ '/assets/scripts/scripts.js'|url }}"></script>#}
+{# <script type="module" src="{{ '/assets/scripts/scripts.js'|url }}"></script> #}
 </body>
 </html>

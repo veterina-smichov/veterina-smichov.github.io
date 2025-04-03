@@ -120,5 +120,7 @@ permalink: /cenik/
 eleventyNavigation:
   key: Ceník
   order: 60
+meta:
+  description: 'Orientační ceník služeb Veteriny Smíchov.'
 sitemapIgnore: false
 ---
