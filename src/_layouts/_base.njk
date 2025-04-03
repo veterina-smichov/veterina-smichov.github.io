@@ -17,17 +17,6 @@
     <link rel="stylesheet" href="/assets/styles/styles.scss">
 </head>
 <body>
-<pre class="bg-white">
-    {{ meta.title }}
-    {{ title }}
-    {% if meta.title %}
-        {{ meta.title }}
-        {% elif title %}
-        {{ title }} {{ meta.divider }} {{ meta.siteName }}
-    {% else %}
-        {{ meta.siteName }}
-    {% endif %}
-</pre>
 {% block body %}
     {{ content|safe }}
 {% endblock %}
