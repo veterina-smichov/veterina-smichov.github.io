@@ -28,13 +28,13 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^6.0.1",
-    "@11ty/eleventy-navigation": "^1.0.3",
+    "@11ty/eleventy-navigation": "^1.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@11ty/eleventy-plugin-vite": "^6.0.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@sveltia/cms": "^0.67.0",
+    "@sveltia/cms": "^0.68.0",
     "autoprefixer": "^10.4.21",
-    "bootstrap": "5.3.3",
+    "bootstrap": "5.3.4",
     "chalk": "^5.4.1",
     "cssnano": "^7.0.6",
     "del-cli": "^6.0.0",
@@ -43,9 +43,9 @@
     "jsdom": "^26.0.0",
     "luxon": "^3.6.1",
     "markdown-it": "^14.1.0",
-    "sass": "^1.86.1",
+    "sass": "^1.86.3",
     "typopo": "^2.5.8",
     "utopia-core-scss": "^1.2.1",
-    "vite": "^6.2.4"
+    "vite": "^6.2.5"
   }
 }
