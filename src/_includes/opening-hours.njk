@@ -1,0 +1,12 @@
+{% if openingHours.publishChanged and openingHours.showChangedHours %}
+    <h3>
+        {{ openingHours.temporaryHeading }}
+        {% if openingHours.changeDateFrom and openingHours.changeDateTo %}
+        od
+        {{ openingHours.changeDateFrom|dateToFormat(DateTime.DATETIME_SHORT)|replace(' ', ' ') }} do
+        {{ openingHours.changeDateTo|dateToFormat(DateTime.DATETIME_SHORT)|replace(' ', ' ') }}
+        {%- endif %}{{ openingHours.warningToday }}
+    </h3>
+    {#{% if openingHours.isChangedToday %}{% endif %}#}
+    {{ openingHours.bodyChanged|markdown|safe }}
+{% endif %}

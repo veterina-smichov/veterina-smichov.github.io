@@ -1,0 +1,13 @@
+{# Buttons renderer #}
+{% macro renderButtons(item) %}
+    <div class="C-buttons {{ item.justifyContent }}">
+        {% for button in item.buttons %}
+            <a
+                href="{{ button.url }}"
+                class="btn {{ button.buttonType }} {{ button.size }}"
+            >
+                {{ button.text }}
+            </a>
+        {% endfor %}
+    </div>
+{% endmacro %}

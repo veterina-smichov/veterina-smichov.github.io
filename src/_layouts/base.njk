@@ -1,0 +1,56 @@
+{% extends "./_base.njk" %}
+
+{% from "macros/_contents.njk" import renderSections %}
+
+{% block body %}
+    <div class="bg-white">
+        <header class="C-section C-section--header">
+            <div class="C-section__content">
+                <div class="C-header">
+                    <a class="C-header__logo" href="/">
+                        <img
+                            src="{{ '/assets/images/logo-horizontalni-nizke.min.svg'|url }}"
+                            alt="Veterina Smíchov"
+                            width="7000" height="1800"
+                            class="C-header__img"
+                        >
+                    </a>
+                    <nav class="C-header__nav">
+                        {% for item in collections.all|eleventyNavigation %}
+                            {% if item.url %}
+                                {% set isCurrent = (item.url == page.url) %}
+                                {% set isParent = item.url != '/' and item.url in page.url %}
+                                <a
+                                    class="C-header__link {% if isCurrent or isParent %} C-header__link--active {% endif %}"
+                                    href="{{ item.url|url }}"
+                                    {% if isCurrent %} aria-current="page" {% endif %}
+                                >
+                                    {{ item.title }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            {% block generalAnnouncements %}
+                {% if generalAnnouncements.showAnnouncements %}
+                    {{ renderSections(generalAnnouncements.contents) }}
+                {% endif %}
+            {% endblock %}
+
+            {% block content %}
+                <h1 class="display-1">
+                    {% block title %}
+                        {{ title|safe }}
+                    {% endblock %}
+                </h1>
+                {{ content|safe }}
+            {% endblock %}
+        </main>
+    </div>
+    <footer class="fw-bold">
+        {{ renderSections(footer.contents) }}
+    </footer>
+{% endblock %}

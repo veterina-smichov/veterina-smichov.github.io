@@ -1,0 +1,4 @@
+- from: /aktuality/
+  to: //
+- from: /cms/
+  to: /admin/

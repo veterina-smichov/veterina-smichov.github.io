@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ meta.lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% if meta.title %}
+            {{ meta.title }}
+            {% elif title %}
+            {{ title }} {{ meta.divider }} {{ meta.siteName }}
+        {% else %}
+            {{ meta.siteName }}
+        {% endif %}
+    </title>
+    {% include "meta.njk" %}
+    {% include "favicon.njk" %}
+    <link rel="stylesheet" href="/assets/styles/styles.scss">
+</head>
+<body>
+{% block body %}
+    {{ content|safe }}
+{% endblock %}
+{# <script type="module" src="{{ '/assets/scripts/scripts.js'|url }}"></script> #}
+</body>
+</html>

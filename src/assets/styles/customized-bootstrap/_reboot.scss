@@ -1,0 +1,132 @@
+ul {
+    padding-left: var(--space-flex-250);
+}
+
+a {
+    font-weight: $font-weight-bold;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: var(--space-flex-400);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    hyphens: auto;
+
+    .C-markdown:first-child &,
+    :not(.C-markdown) + .C-markdown & {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    @supports (hyphenate-limit-chars: 10 4 4) {
+        hyphenate-limit-chars: 10 4 4;
+    }
+
+    @include media-breakpoint-up(md) {
+        hyphens: manual;
+        hyphenate-limit-chars: auto;
+        overflow-wrap: normal;
+    }
+}
+
+.C-markdown > * {
+    max-width: 75ch;
+}
+
+.C-markdown > :last-child {
+    margin-bottom: 0;
+}
+
+table {
+    &,
+    .C-markdown & {
+        @extend .table;
+        @extend .table-borderless;
+        @extend .table-striped;
+        width: auto;
+        max-width: 60ch;
+        border-radius: $border-radius;
+        overflow: hidden;
+    }
+}
+
+p,
+li,
+blockquote {
+    text-wrap: pretty;
+
+    @supports (hyphenate-limit-chars: 12 4 4) {
+        hyphenate-limit-chars: 12 4 4;
+    }
+
+    @include media-breakpoint-up(md) {
+        hyphens: manual;
+        hyphenate-limit-chars: auto;
+        overflow-wrap: normal;
+    }
+}
+
+.C-col {
+    container-type: inline-size;
+    container-name: col;
+}
+
+@container col (max-width: 32ch) {
+    table:has(tr > td:nth-child(2):last-child),
+    table:has(tr > td:nth-child(3):last-child) {
+        display: grid;
+
+        thead,
+        tbody {
+            display: block;
+        }
+
+        thead,
+        tbody,
+        tr {
+            display: contents;
+        }
+    }
+
+    table:has(tr > td:nth-child(2):last-child) { // table with 2 columns
+        grid-template-columns: 1fr;
+
+        thead {
+            display: none;
+        }
+
+        td {
+            text-align: left;
+
+            &:first-child {
+                font-weight: $font-weight-bold;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    table:has(tr > td:nth-child(3):last-child) { // table with 3 columns
+        grid-template-columns: min-content 1fr;
+
+        td:first-child {
+            grid-column: 1 / span 2;
+        }
+
+        th:first-child {
+            display: none;
+        }
+
+    }
+}

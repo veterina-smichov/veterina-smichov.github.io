@@ -1,0 +1,12 @@
+@use '../helpers/custom-utopia' as space;
+
+:root {
+    @include space.generateNewSpaceScale((
+        "zeroWidth": $smallest-breakpoint,
+        "minWidth": $smallest-breakpoint,
+        "maxWidth": 3*$smallest-breakpoint,
+        "baseSize": 20,
+        "largestSizeRatio": 1.5,
+        "prefix": "space-flex-"
+    ));
+}

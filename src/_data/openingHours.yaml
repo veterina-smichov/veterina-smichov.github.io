@@ -1,0 +1,26 @@
+body: |-
+  | den | dopoledne | odpoledne |
+  | --- | --- | --- |
+  | pondělí | zavřeno | 13.00–19.00 |
+  | úterý | operace | 13.00–19.00 |
+  | středa | 9.00–12.00 | 13.00–16.00 |
+  | čtvrtek | operace | 13.00–19.00 |
+  | pátek | 9.00–12.00 | 13.00–16.00 |
+publishChanged: false
+bodyChanged: |-
+  Děkujeme za pochopení.
+
+  | den | dopoledne | odpoledne |
+  | --- | --- | --- |
+  | pondělí | zavřeno | zavřeno |
+  | úterý | zavřeno | zavřeno |
+  | středa | zavřeno | zavřeno |
+  | čtvrtek | operace | 13.00–19.00 |
+  | pátek | 9.00–12.00 | 13.00–16.00 |
+changeDateFrom: 2025-04-02
+changeDateTo: 2025-04-03
+publishDateFrom: ''
+publishDateTo: ''
+openingHoursTitle: Standardní ordinační hodiny
+temporaryHeading: Dočasná změna ordinační doby
+warningToday: ', tedy i dnes!'

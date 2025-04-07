@@ -1,0 +1,35 @@
+{# Pricelist renderer #}
+{% macro renderPricelist(item) %}
+    <article class="C-markdown">
+        {% for section in item.sections %}
+            {% if section.textBefore %}
+                {{ section.textBefore|markdown|safe }}
+            {% endif %}
+
+            {% if section.table %}
+                <table class="C-pricelist">
+                    <thead>
+                    <tr>
+                        <th>úkon</th>
+                        <th>cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tableItem in section.table %}
+                        {% for key, value in tableItem.item %}
+                            <tr>
+                                <td>{{ key }}</td>
+                                <td>{{ value }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if section.textAfter %}
+                {{ section.textAfter|markdown|safe }}
+            {% endif %}
+        {% endfor %}
+    </article>
+{% endmacro %}

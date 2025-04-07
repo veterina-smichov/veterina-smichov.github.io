@@ -1,0 +1,1219 @@
+CONFIG_PARTIALS: # repeated parts to be reused in this file, not part of Sveltia configuration
+
+  widget_settings:
+
+    datetime:
+      datetime__date: &datetime__date
+        - widget: datetime
+          time_format: false
+          date_format: YYYY-MM-DD
+          format: YYYY-MM-DD
+
+    markdown:
+      markdown__full: &markdown__full
+        - widget: markdown
+          buttons: [ bold, italic, link, heading-one, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+          editor_components: [ image ]
+      markdown__content: &markdown__content
+        - widget: markdown
+          buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+          editor_components: [ image ]
+      markdown__raw: &markdown__raw
+        - widget: markdown
+          buttons: [ bold, italic, link, heading-two, heading-three, heading-four, quote, bulleted-list, numbered-list ]
+          editor_components: [ image ]
+          modes: [ 'raw', 'rich_text' ]
+      markdown__simple: &markdown__simple
+        - widget: markdown
+          buttons: [ bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list ]
+          editor_components: [ image ]
+      markdown__minimal: &markdown__minimal
+        - widget: markdown
+          editor_components: [ ]
+          buttons: [ bold, italic ]
+
+  widgets: # complete widgets
+
+    section__text: &section__text
+      - name: markdown
+        label: Text
+        summary: Text
+        required: false
+        fields:
+          - name: text
+            summary: Text
+            <<: *markdown__full
+            required: false
+
+    section__image: &section__image
+      - name: image
+        label: Obrázek
+        summary: Obrázek
+        required: false
+        fields:
+          - name: src
+            label: Obrázek
+            widget: image
+          - name: alt
+            label: Alternativní text
+            required: false
+            widget: string
+            hint: Vyplňte pokud obrázek obsahuje text nebo je jinak „obsahový“ a ne ilustrační.
+          - name: fill
+            label: Chování
+            required: false
+            widget: boolean
+            before_input: zobrazit ve sloupci
+            after_input: vyplnit až do okraje sekce nebo sloupce
+            default: false
+            hint: Funguje pouze pro obrázky, které jsou ve sloupci jako jediný obsah nebo jsou ve sloupcích se vzhledem karty.
+          - name: aspectRatio
+            label: Poměr stran
+            required: false
+            widget: select
+            options:
+              - { label: podle obrázku, value: C-dummy }
+              - { label: 'na šířku 21:9', value: C-ratio-21-9 }
+              - { label: 'na šířku 16:9', value: C-ratio-16-9 }
+              - { label: 'na šířku 3:2', value: C-ratio-3-2 }
+              - { label: 'na šířku 4:3', value: C-ratio-4-3 }
+              - { label: 'na šířku 5:4', value: C-ratio-5-4 }
+              - { label: 'čtverec 1:1', value: C-ratio-1-1 }
+              - { label: 'na výšku 4:5', value: C-ratio-4-5 }
+              - { label: 'na výšku 2:3', value: C-ratio-2-3 }
+              - { label: 'na výšku 3:4', value: C-ratio-3-4 }
+              - { label: 'na výšku 9:16', value: C-ratio-9-16 }
+              - { label: 'na výšku 9:21', value: C-ratio-9-21 }
+            default: C-dummy
+            hint: Při vybraném vyplnění prostoru se může projevit jen někdy.
+
+    section__buttons: &section__buttons
+      - name: buttons
+        label: Tlačítka
+        summary: Tlačítka
+        fields:
+          - name: justifyContent
+            label: Zarovnání tlačítek
+            widget: select
+            options:
+              - { label: vlevo, value: C-buttons--start }
+              - { label: vpravo, value: C-buttons--end }
+              - { label: na střed, value: C-buttons--center }
+              - { label: roztáhnout, value: C-buttons--stretch }
+              - { label: rozložit mezery, value: C-buttons--space-between }
+            default: C-buttons--start
+          - name: buttons
+            widget: list
+            default:
+              - buttonType: btn-primary
+                size: C-dummy
+            label: Tlačítka
+            label_singular: Tlačítko
+            fields:
+              - name: text
+                label: Text
+                widget: string
+                maxlength: 150
+              - name: url
+                label: Odkaz
+                widget: string
+                hint: Odkazy na tomto webu začínají `/`.<br>Odkazy jinam http…
+              - name: buttonType
+                label: Typ
+                widget: select
+                options:
+                  - { label: primární, value: btn-primary }
+                  - { label: sekundární, value: btn-secondary }
+                  - { label: úspěch, value: btn-success }
+                  - { label: nebezpečí, value: btn-danger }
+                  - { label: varování, value: btn-warning }
+                  - { label: info, value: btn-info }
+                  - { label: světlé, value: btn-light }
+                  - { label: tmavé, value: btn-dark }
+                  - { label: vypadající jako odkaz, value: btn-link }
+                default: btn-primary
+              - name: size
+                label: Velikost
+                widget: select
+                options:
+                  - { label: malé, value: btn-sm }
+                  - { label: normální, value: C-dummy }
+                  - { label: velké, value: btn-lg }
+                default: C-dummy
+
+    section__pricelist: &section__pricelist
+      - name: pricelist
+        label: Ceník
+        summary: Ceník
+        fields:
+          - name: section
+            widget: list
+            label: Sekce ceníku
+            label_singular: Sekce ceníku
+            fields:
+              - name: textBefore
+                label: Úvodní text sekce
+                required: false
+                default: "## Nadpis"
+                hint: Většinou stačí nadpis
+                <<: *markdown__content
+              - name: table
+                widget: list
+                required: false
+                default: [ { item: { " ": " Kč" } } ]
+                label: Položky ceníku
+                label_singular: Položka ceníku
+                fields:
+                  - name: item
+                    widget: keyvalue
+                    min: 1
+                    max: 1
+                    label: položka ceníku
+                    key_label: úkon
+                    value_label: cena
+                    default: { " ": " Kč" }
+              - name: textAfter
+                label: Text pod sekcí ceníku
+                required: false
+                hint: většinou není potřeba
+                <<: *markdown__content
+
+    contents: &contents
+      - name: contents
+        label: Obsah
+        widget: object
+        fields:
+          - name: sections
+            label: Sekce
+            summary: Sekce
+            required: false
+            widget: list
+            fields:
+              - name: color
+                label: Pozadí sekce
+                widget: select
+                options:
+                  - { label: bílé, value: C-section--white }
+                  - { label: azurové, value: C-section--cyan }
+                  - { label: cihlové, value: C-section--brick }
+                  - { label: oznámení (oranžová), value: C-section--announcements }
+                default: C-section--white
+              - name: lightness
+                label: Varianta barvy pozadí sekce
+                widget: select
+                options:
+                  - { label: světlá, value: C-section--light }
+                  - { label: tmavá, value: C-section--dark }
+                default: C-section--lightgi
+                hint: nemá vliv s bílým a oranžovým pozadím
+              - name: outerBackground
+                label: Vnější pozadí sekce jinou barvou
+                before_input: Ne
+                after_input: Ano
+                widget: boolean
+                hint: nemá vliv s bílým a oranžovým pozadím
+              - name: height
+                label: Výška sekce
+                widget: select
+                options:
+                  - { label: podle obsahu, value: C-dummy }
+                  - { label: nejméně na výšku obrazovky, value: C-section--full-height }
+                default: C-dummy
+              - name: columnGroups
+                label: Skupina sloupců
+                summary: Skupina sloupců
+                default:
+                  - style: C-dummy
+                    verticalAlignment: C-row--stretch
+                    columns:
+                      - contents: []
+                widget: list
+                fields:
+                  - name: style
+                    label: Vzhled skupiny sloupců
+                    widget: select
+                    options:
+                      - { label: neviditelné, value: C-dummy }
+                      - { label: karty bílé, value: C-row--cards C-row--cards-white }
+                      - { label: karty světlé, value: C-row--cards C-row--cards-light }
+                      - { label: karty tmavé, value: C-row--cards C-row--cards-dark }
+                    default: C-dummy
+
+                  - name: verticalAlignment
+                    label: Vertikální zarovnání sloupců ve skupině
+                    widget: select
+                    options:
+                      - { label: roztáhnout, value: C-row--stretch }
+                      - { label: nahoru, value: C-row--start }
+                      - { label: na střed, value: C-row--center }
+                      - { label: dolů, value: C-row--end }
+                    default: C-row--stretch
+
+                  - name: columns
+                    label: Sloupce
+                    label_singular: Sloupec
+                    widget: list
+                    default:
+                      - contents: [ ]
+                    fields:
+                      - name: contents
+                        label: Obsah sloupce
+                        summary: Obsah sloupce
+                        widget: list
+                        types:
+                          - <<: *section__text
+                          - <<: *section__image
+                          - <<: *section__buttons
+                          - <<: *section__pricelist
+
+collections:
+
+  - name: pages
+    label: Stránky
+    label_singular: Stránka
+    description: Stránky na webu
+    icon: web
+    folder: src/pages
+    slug: "{{permalink}}"
+    create: true
+    delete: true
+    summary: "**{{title}}** `{{permalink}}` {{eleventyNavigation.order|default('nezobrazuje se v navigaci')}}"
+    sort: { key: eleventyNavigation.order, order: ascending }
+    sortable_fields:
+      fields: [ eleventyNavigation.order ]
+      default:
+        field: eleventyNavigation.order
+        direction: ascending
+
+    fields:
+      - name: title
+        label: Název stránky
+        hint: Zobrazuje se v administraci a v Title, pokud není vyplněn jiný.
+        widget: string
+
+      - <<: *contents
+
+      - name: layout
+        label: Typ stránky
+        required: false
+        widget: select
+        options:
+          - { label: normální stránka, value: page.njk }
+          - { label: homepage, value: homepage.njk }
+          - { label: stránka se články, value: articles.njk }
+          - { label: stránka s ordinačními hodinami, value: ordinacni-hodiny.njk }
+        default: page.njk
+
+      - name: permalink
+        label: Slug (unikátní část v adrese stránky za doménou).
+        hint: "Musí začínat i končit `/` (Homepage je `/`)<br>Musí být **unikátní** napříč webem."
+        description: Stránky na webu
+        default: /
+        widget: string
+        before_input: "https://​veterina-smichov.cz"
+        pattern: [ '/^\/(?:[a-zA-Z0-9-\/]+\/)?$/', "Není platná adresa" ]
+
+      - name: eleventyNavigation
+        label: Navigace
+        required: false
+        hint: Zobrazit v navigaci?
+        widget: object
+        fields:
+
+          - name: key
+            label: Název v navigaci
+            widget: string
+
+          - name: order
+            label: Pořadí
+            widget: number
+            default: 10
+            min: 1
+            hint: Celé kladné číslo, čím vyšší číslo, tím dále bude v pořadí položek. Čísla nemusí navazovat (10, 20, 30, …).
+
+      - name: meta
+        label: Meta
+        required: false
+        hint: Pokročilé nastavení
+        summary: "title: {{title}} | description: {{description}}"
+        widget: object
+        fields:
+
+          - name: title
+            label: Title
+            hint: Název stránky, který se zobrazuje v záložce prohlížeče, při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Proto je to, co je na začátku je důležitější než to, co je na konci. Pokud nevyplníte, použije se „Název stránky“ a „Název webu“ z nastavení webu.
+            maxlength: 300
+            required: false
+            widget: string
+
+          - name: description
+            label: Description
+            hint: Popis, který se zobrazuje při sdílení na sociální sítě a někdy i ve výsledcích vyhledávání. Zhruba do 140 znaků.
+            maxlength: 400
+            required: false
+            widget: string
+
+          - name: ogImage
+            label: Obrázek pro sociální sítě
+            widget: image
+            required: false
+            hint: Měl by mít 1200 × 630 pixelů. Pokud nevyplníte, použije se výchozí z nastavení.
+
+      - name: sitemapIgnore
+        label: Skrýt tuto stránku před vyhledávači
+        required: false
+        widget: boolean
+
+
+
+  - name: articles
+    label: Články
+    label_singular: Článek
+    description: Články v sekci články
+    icon: newsmode
+    folder: src/articles
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields:
+      fields: [ date ]
+      default:
+        field: date
+        direction: descending
+    fields:
+
+      - name: date
+        label: Datum publikace
+        <<: *datetime__date
+        default: "{{now}}"
+
+      - name: publish
+        label: Zobrazit článek
+        widget: boolean
+        required: false
+        default: true
+        before_input: nezobrazit
+        after_input: zobrazit
+
+      - name: title
+        label: Titulek
+        widget: string
+
+      - name: description
+        label: Perex
+        <<: *markdown__minimal
+
+      - name: body
+        label: Obsah
+        <<: *markdown__content
+
+      - name: image
+        label: Obrázek
+        widget: image
+
+  - name: snippets
+    label: Kousky
+    label_singular: Kousek
+    description: Části, které se zobrazují na různých místech webu
+    icon: brick
+    files:
+
+      - name: openingHours
+        label: Ordinační hodiny
+        file: src/_data/openingHours.yaml
+        format: yaml
+        extension: yaml
+        fields:
+
+          - name: body
+            label: Standardní ordinační hodiny
+            required: false
+            <<: *markdown__raw
+            hint: Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
+
+          - name: publishChanged
+            label: Dočasná změna ordinačních hodin
+            widget: boolean
+            required: false
+            before_input: skrýt
+            after_input: zobrazit
+            hint: Skryje vše dále
+
+          - name: bodyChanged
+            label: Dočasné ordinační hodiny
+            required: false
+            <<: *markdown__raw
+            hint: Popis jaké jsou změny. Datumy od a do nepište, budou automaticky doplněny.<br>Přepněte si vpravo nahoře přes ikonu „M“ na rich text.
+
+          - name: changeDateFrom
+            label: První den dočasné změny
+            required: false
+            <<: *datetime__date
+            hint: Den, od kterého neplatí standardní ordinační doba
+
+          - name: changeDateTo
+            label: Poslední den dočasné změny
+            required: false
+            <<: *datetime__date
+            hint: Den, do kterého neplatí standardní ordinační doba
+
+          - name: publishDateFrom
+            label: Zobrazit informace o změně od (volitelné)
+            required: false
+            <<: *datetime__date
+            default: "{{now}}"
+            hint: Pokud není vyplněno, zobrazí se informace od prvního dne změny.<br>Musí být dřív nebo nejpozději stejný den jako začátek změny.
+
+          - name: publishDateTo
+            label: Zobrazit informace o změně do (volitelné)
+            required: false
+            <<: *datetime__date
+            hint: Pokud není vyplněno, zobrazí se informace do posledního dne změny.<br>Musí být později nebo nejdříve stejný den jako konec změny.
+
+          - name: openingHoursTitle
+            label: Nadpis standardních ordinačních hodin (zobrazí se při změně)
+            required: false
+            widget: string
+
+          - name: openingHoursTitle
+            label: Nadpis standardních ordinačních hodin při změně
+            required: false
+            widget: string
+            hint: Pravděpodobně nepotřebujete měnit.
+
+          - name: temporaryHeading
+            label: Nadpis o změně
+            hint: Za tímto textem pokračuje „od [první den změny] do“ [poslední den změny], pokud jsou nastaveny.<br>Pravděpodobně nepotřebujete měnit.
+            required: false
+            widget: string
+
+          - name: warningToday
+            label: Text upozornění, že právě dnes je změna
+            required: false
+            widget: string
+            hint: Pravděpodobně nepotřebujete měnit.
+
+      - name: generalAnnouncements
+        label: Obecná oznámení (zobrazí se na všech stránkách nahoře)
+        file: src/_data/generalAnnouncements.yaml
+        extension: yaml
+        format: yaml
+        fields:
+          - <<: *contents
+
+          - name: body
+            label: Obsah
+            required: false
+            <<: *markdown__simple
+
+          - name: publish
+            label: Oznámení
+            widget: boolean
+            required: false
+            before_input: skrýt
+            after_input: zobrazit
+            hint: Pokud je skryto, nemají datumy dále vliv
+
+          - name: publishDateFrom
+            label: Zobrazit od
+            <<: *datetime__date
+            default: "{{now}}"
+            required: false
+            hint: Zobrazí Obsah zhruba hodinu po půlnoci zadaného dne.<br>Pokud není nastaveno, zobrazuje se od uložení.
+
+          - name: publishDateTo
+            label: Zobrazit do
+            <<: *datetime__date
+            required: false
+            hint: Skryje obsah zhruba hodinu po půlnoci zadaného dne.<br>Pokud není nastaveno, nepřestane se zobrazovat.
+
+      - name: footer
+        label: Patička celého webu
+        file: src/_data/footer.yaml
+        format: yaml
+        extension: yaml
+        fields:
+          - <<: *contents
+
+      - name: page404
+        label: Stránka 404
+        file: src/_special-urls/404.html.md
+        format: md
+        extension: md
+        fields:
+          - name: title
+            label: Název stránky
+            hint: Zobrazuje se v administraci.
+            widget: string
+
+          - <<: *contents
+
+          - name: layout
+            widget: hidden
+
+          - name: permalink
+            widget: hidden
+
+
+  - name: divider
+    divider: true
+    files: [ ] # Workardound for VS Code validation error if treated as “Netlify YAML config” file.
+
+
+  - name: settings
+    label: Nastavení
+    icon: settings
+    files:
+
+      - name: meta
+        label: Obecné
+        file: src/_data/meta.yaml
+        format: yaml
+        fields:
+
+          - name: title
+            widget: hidden
+
+          - name: url
+            label: URL webu
+            widget: string
+            type: url
+            hint: adresa na které web běží
+
+          - name: siteName
+            label: Název webu
+            widget: string
+
+          - name: divider
+            label: Oddělovač
+            widget: string
+            hint: Pro titulek
+
+          - name: description
+            label: Výchozí popis webu
+            widget: string
+            hint: meta description
+
+          - name: robots
+            label: Indexace vyhledávači
+            widget: boolean
+            before_input: zakázat
+            after_input: povolit
+            required: false
+            hint: Pokud není povoleno, vyhledávače nebudou o webu „vědět“.<br>Hodí se při vývoji.
+
+          - name: ogImage
+            label: Obrázek pro sociální sítě
+            widget: image
+            required: false
+            hint: Měl by mít 1200 × 630 pixelů
+
+          - name: lang
+            label: Jazyk webu
+            widget: select
+            default: cs
+            options:
+              - { label: "abcházština (ab) Аԥсуа", value: "ab" }
+              - { label: "afarština (aa) Afaraf", value: "aa" }
+              - { label: "afrikánština (af) Afrikaans", value: "af" }
+              - { label: "ajmarština (ay) aymar aruc", value: "ay" }
+              - { label: "akanština (ak) Akan", value: "ak" }
+              - { label: "albánština (sq) Shqip", value: "sq" }
+              - { label: "amharština (am) አማርኛ", value: "am" }
+              - { label: "angličtina (en) English", value: "en" }
+              - { label: "arabština (ar) ‫العربية‬", value: "ar" }
+              - { label: "aragonština (an) Aragonés", value: "an" }
+              - { label: "arménština (hy) Հայերեն", value: "hy" }
+              - { label: "avarština (av) авар мацӀ; магӀарул мацӀ", value: "av" }
+              - { label: "avestánština (ae) avesta", value: "ae" }
+              - { label: "bambarština (bm) bamanankan", value: "bm" }
+              - { label: "barmština (my) မ္ရန္‌မာစကား (Myanma zaga)", value: "my" }
+              - { label: "baskičtina (eu) euskara", value: "eu" }
+              - { label: "baškirština (ba) башҡорт теле", value: "ba" }
+              - { label: "bengálština (bn) বাংলা", value: "bn" }
+              - { label: "bihárština (bh) भोजपुरी", value: "bh" }
+              - { label: "bislamština (bi) Bislama", value: "bi" }
+              - { label: "bokmål (nb) Norsk (bokmål)", value: "nb" }
+              - { label: "bosenština (bs) bosanski jezik", value: "bs" }
+              - { label: "bretonština (br) brezhoneg", value: "br" }
+              - { label: "bulharština (bg) български език", value: "bg" }
+              - { label: "běloruština (be) Беларуская", value: "be" }
+              - { label: "chamorro (ch) Chamoru", value: "ch" }
+              - { label: "chorvatština (hr) Hrvatski", value: "hr" }
+              - { label: "divehi (dv) ‫ދިވެހި‬", value: "dv" }
+              - { label: "dzongkha (dz) རྫོང་ཁ", value: "dz" }
+              - { label: "dánština (da) dansk", value: "da" }
+              - { label: "esperanto (eo) Esperanto", value: "eo" }
+              - { label: "estonština (et) Eesti keel", value: "et" }
+              - { label: "eveština (ee) Ɛʋɛgbɛ", value: "ee" }
+              - { label: "faerština (fo) Føroyskt", value: "fo" }
+              - { label: "fidžijština (fj) vosa Vakaviti", value: "fj" }
+              - { label: "finština (fi) Suomen kieli", value: "fi" }
+              - { label: "francouzština (fr) français; langue française", value: "fr" }
+              - { label: "fulbština (ff) Fulfulde", value: "ff" }
+              - { label: "galicijština (gl) Galego", value: "gl" }
+              - { label: "gandština (lg) Luganda", value: "lg" }
+              - { label: "gruzínština (ka) ქართული", value: "ka" }
+              - { label: "grónština (kl) kalaallisut; kalaallit oqaasii", value: "kl" }
+              - { label: "guaraní (gn) Avañe'ẽ", value: "gn" }
+              - { label: "gudžarátština (gu) ગુજરાતી", value: "gu" }
+              - { label: "haitština (ht) Kreyòl ayisyen", value: "ht" }
+              - { label: "hauština (ha) ‫هَوُسَ‬", value: "ha" }
+              - { label: "hebrejština (he) ‫עברית‬", value: "he" }
+              - { label: "hererština (hz) Otjiherero", value: "hz" }
+              - { label: "hindština (hi) हिन्दी", value: "hi" }
+              - { label: "hiri motu (ho) Hiri Motu", value: "ho" }
+              - { label: "ido (io) Ido", value: "io" }
+              - { label: "igbo (ig) Igbo", value: "ig" }
+              - { label: "indonéština (id) Bahasa Indonesia", value: "id" }
+              - { label: "interlingua (ia) Interlingua", value: "ia" }
+              - { label: "inuitština (iu) ᐃᓄᒃᑎᑐᑦ", value: "iu" }
+              - { label: "inupiaq (ik) Iñupiaq; Iñupiatun", value: "ik" }
+              - { label: "irština (ga) Gaeilge", value: "ga" }
+              - { label: "islandština (is) Íslenska", value: "is" }
+              - { label: "italština (it) Italiano", value: "it" }
+              - { label: "japonština (ja) 日本語 (にほんご)", value: "ja" }
+              - { label: "javánština (jv) basa Jawa", value: "jv" }
+              - { label: "jidiš (yi) ‫ייִדיש‬", value: "yi" }
+              - { label: "jižní ndebelština (nr) Ndébélé", value: "nr" }
+              - { label: "jorubština (yo) Yorùbá", value: "yo" }
+              - { label: "kannadština (kn) ಕನ್ನಡ", value: "kn" }
+              - { label: "kanurijština (kr) Kanuri", value: "kr" }
+              - { label: "katalánština (ca) Català", value: "ca" }
+              - { label: "kazaština (kk) Қазақ тілі", value: "kk" }
+              - { label: "kašmírština (ks) कश्मीरी; ‫كشميري‬", value: "ks" }
+              - { label: "kečuánština (qu) Runa Simi; Kichwa", value: "qu" }
+              - { label: "khmerština (km) ភាសាខ្មែរ", value: "km" }
+              - { label: "kikujština (ki) Gĩkũyũ", value: "ki" }
+              - { label: "kirundština (rn) kiRundi", value: "rn" }
+              - { label: "komijština (kv) коми кыв", value: "kv" }
+              - { label: "konžština (kg) KiKongo", value: "kg" }
+              - { label: "korejština (ko) 한국어 (韓國語); 조선말 (朝鮮語)", value: "ko" }
+              - { label: "kornština (kw) Kernewek", value: "kw" }
+              - { label: "korsičtina (co) corsu; lingua corsa", value: "co" }
+              - { label: "kríjština (cr) ᓀᐦᐃᔭᐍᐏᐣ", value: "cr" }
+              - { label: "kuanyama (kj) Kuanyama", value: "kj" }
+              - { label: "kurdština (ku) Kurdî; ‫كوردی‬", value: "ku" }
+              - { label: "kyrgyzština (ky) кыргыз тили", value: "ky" }
+              - { label: "laoština (lo) ພາສາລາວ", value: "lo" }
+              - { label: "latina (la) latine; lingua latina", value: "la" }
+              - { label: "limburština (li) Limburgs", value: "li" }
+              - { label: "litevština (lt) lietuvių kalba", value: "lt" }
+              - { label: "lotyština (lv) latviešu valoda", value: "lv" }
+              - { label: "lubština (lu) luba", value: "lu" }
+              - { label: "lucemburština (lb) Lëtzebuergesch", value: "lb" }
+              - { label: "luvendština (ve) tshiVenḓa", value: "ve" }
+              - { label: "makedonština (mk) македонски јазик", value: "mk" }
+              - { label: "malajámština (ml) മലയാളം", value: "ml" }
+              - { label: "malajština (ms) bahasa Melayu; ‫بهاس ملايو‬", value: "ms" }
+              - { label: "malgaština (mg) Malagasy fiteny", value: "mg" }
+              - { label: "maltština (mt) Malti", value: "mt" }
+              - { label: "manština (gv) Ghaelg", value: "gv" }
+              - { label: "maorština (mi) te reo Māori", value: "mi" }
+              - { label: "maráthština (mr) मराठी", value: "mr" }
+              - { label: "maršálština (mh) Kajin M̧ajeļ", value: "mh" }
+              - { label: "maďarština (hu) Magyar", value: "hu" }
+              - { label: "moldavština (mo) лимба молдовеняскэ", value: "mo" }
+              - { label: "mongolština (mn) Монгол", value: "mn" }
+              - { label: "nauruština (na) Ekakairũ Naoero", value: "na" }
+              - { label: "navažština (nv) Diné bizaad; Dinékʼehǰí", value: "nv" }
+              - { label: "ndonga (ng) Owambo", value: "ng" }
+              - { label: "nepálština (ne) नेपाली", value: "ne" }
+              - { label: "ngalština (ln) Lingála", value: "ln" }
+              - { label: "nizozemština (nl) Nederlands", value: "nl" }
+              - { label: "norština (no) Norsk", value: "no" }
+              - { label: "nynorsk (nn) Nynorsk", value: "nn" }
+              - { label: "němčina (de) Deutsch", value: "de" }
+              - { label: "Occidental|interlingue (ie) Interlingue", value: "ie" }
+              - { label: "odžibvejština (oj) ᐊᓂᔑᓈᐯᒧᐎᓐ", value: "oj" }
+              - { label: "okcitánština (oc) Occitan", value: "oc" }
+              - { label: "oromština (om) Afaan Oromoo", value: "om" }
+              - { label: "osetština (os) Ирон æвзаг", value: "os" }
+              - { label: "paňdžábština (pa) ਪੰਜਾਬੀ; ‫پنجابی‬", value: "pa" }
+              - { label: "paštština (ps) ‫پښتو‬", value: "ps" }
+              - { label: "perština (fa) ‫فارسی‬", value: "fa" }
+              - { label: "polština (pl) Polski", value: "pl" }
+              - { label: "portugalština (pt) Português", value: "pt" }
+              - { label: "páli (pi) पाऴि", value: "pi" }
+              - { label: "rumunština (ro) română", value: "ro" }
+              - { label: "ruština (ru) русский язык", value: "ru" }
+              - { label: "rwandština (rw) Kinyarwanda", value: "rw" }
+              - { label: "rétorománština (rm) rumantsch grischun", value: "rm" }
+              - { label: "samojština (sm) gagana fa'a Samoa", value: "sm" }
+              - { label: "sangština (sg) yângâ tî sängö", value: "sg" }
+              - { label: "sanskrt (sa) संस्कृतम्", value: "sa" }
+              - { label: "sardština (sc) sardu", value: "sc" }
+              - { label: "severní ndebelština (nd) isiNdebele", value: "nd" }
+              - { label: "severní sámština (se) Davvisámegiella", value: "se" }
+              - { label: "sindhština (sd) सिन्धी; ‫سنڌي، سندھی‬", value: "sd" }
+              - { label: "sinhálština (si) සිංහල", value: "si" }
+              - { label: "skotská gaelština (gd) Gàidhlig", value: "gd" }
+              - { label: "slovenština (sk) slovenčina", value: "sk" }
+              - { label: "slovinština (sl) slovenščina", value: "sl" }
+              - { label: "somálština (so) Soomaaliga; af Soomaali", value: "so" }
+              - { label: "sotština (st) seSotho", value: "st" }
+              - { label: "srbochorvatština (sh) Српскохрватски", value: "sh" }
+              - { label: "srbština (sr) српски језик", value: "sr" }
+              - { label: "staroslověnština (cu) словѣньскъ ѩꙁꙑкъ", value: "cu" }
+              - { label: "sundština (su) Basa Sunda", value: "su" }
+              - { label: "svahilština (sw) Kiswahili", value: "sw" }
+              - { label: "svazijština (ss) SiSwati", value: "ss" }
+              - { label: "tagalština (tl) Tagalog", value: "tl" }
+              - { label: "tahitština (ty) Reo Mā`ohi", value: "ty" }
+              - { label: "tamilština (ta) தமிழ்", value: "ta" }
+              - { label: "tatarština (tt) татарча; tatarça; ‫تاتارچا‬", value: "tt" }
+              - { label: "telugština (te) తెలుగు", value: "te" }
+              - { label: "thajština (th) ไทย", value: "th" }
+              - { label: "tibetština (bo) བོད་ཡིག", value: "bo" }
+              - { label: "tigriňňa (ti) ትግርኛ", value: "ti" }
+              - { label: "tonžština (to) faka Tonga", value: "to" }
+              - { label: "tsonga (ts) xiTsonga", value: "ts" }
+              - { label: "turečtina (tr) Türkçe", value: "tr" }
+              - { label: "turkmenština (tk) Türkmen; Түркмен", value: "tk" }
+              - { label: "tádžičtina (tg) тоҷикӣ; toğikī; ‫تاجیکی‬", value: "tg" }
+              - { label: "ujgurština (ug) Uyƣurqə; ‫ئۇيغۇرچ ‬", value: "ug" }
+              - { label: "ukrajinština (uk) українська мова", value: "uk" }
+              - { label: "urdština (ur) ‫اردو‬", value: "ur" }
+              - { label: "urijština (or) ଓଡ଼ିଆ", value: "or" }
+              - { label: "uzbečtina (uz) O'zbek; Ўзбек; ‫أۇزبېك‬", value: "uz" }
+              - { label: "valonština (wa) Walon", value: "wa" }
+              - { label: "velština (cy) Cymraeg", value: "cy" }
+              - { label: "vietnamština (vi) Tiếng Việt", value: "vi" }
+              - { label: "volapük (vo) Volapük", value: "vo" }
+              - { label: "wolofština (wo) Wollof", value: "wo" }
+              - { label: "xhoština (xh) isiXhosa", value: "xh" }
+              - { label: "Yi (jazyk)|yi (ii) ꆇꉙ", value: "ii" }
+              - { label: "zulština (zu) isiZulu", value: "zu" }
+              - { label: "západofríština (fy) Frysk", value: "fy" }
+              - { label: "ásámština (as) অসমীয়া", value: "as" }
+              - { label: "čečenština (ce) нохчийн мотт", value: "ce" }
+              - { label: "čeština (cs) čeština", value: "cs" }
+              - { label: "čičevština (ny) chiCheŵa; chinyanja", value: "ny" }
+              - { label: "čuangština (za) Saɯ cueŋƅ; Saw cuengh", value: "za" }
+              - { label: "čuvaština (cv) чӑваш чӗлхи", value: "cv" }
+              - { label: "čwanština (tn) seTswana", value: "tn" }
+              - { label: "čínština (zh) 中文、汉语、漢語", value: "zh" }
+              - { label: "řečtina (el) Ελληνικά", value: "el" }
+              - { label: "šonština (sn) chiShona", value: "sn" }
+              - { label: "španělština (es) español; castellano", value: "es" }
+              - { label: "švédština (sv) Svenska", value: "sv" }
+              - { label: "ťwiština (tw) Twi", value: "tw" }
+
+          - name: locale
+            label: Locale webu
+            widget: select
+            options:
+              - { label: "(aa-ER) Afar – Eritrea", value: "aa-ER" }
+              - { label: "(af-NA) Afrikaans – Namibia", value: "af-NA" }
+              - { label: "(af-ZA) Afrikaans – South Africa", value: "af-ZA" }
+              - { label: "(am-ET) Amharic – Ethiopia", value: "am-ET" }
+              - { label: "(ar-EG) Arabic – Egypt", value: "ar-EG" }
+              - { label: "(ar-DZ) Arabic – Algeria", value: "ar-DZ" }
+              - { label: "(ar-BH) Arabic – Bahrain", value: "ar-BH" }
+              - { label: "(ar-DJ) Arabic – Djibouti", value: "ar-DJ" }
+              - { label: "(ar-ER) Arabic – Eritrea", value: "ar-ER" }
+              - { label: "(ar-IQ) Arabic – Iraq", value: "ar-IQ" }
+              - { label: "(ar-IL) Arabic – Israel", value: "ar-IL" }
+              - { label: "(ar-YE) Arabic – Yemen", value: "ar-YE" }
+              - { label: "(ar-JO) Arabic – Jordan", value: "ar-JO" }
+              - { label: "(ar-QA) Arabic – Qatar", value: "ar-QA" }
+              - { label: "(ar-KM) Arabic – Comoros", value: "ar-KM" }
+              - { label: "(ar-KW) Arabic – Kuwait", value: "ar-KW" }
+              - { label: "(ar-LB) Arabic – Lebanon", value: "ar-LB" }
+              - { label: "(ar-LY) Arabic – Libya", value: "ar-LY" }
+              - { label: "(ar-MA) Arabic – Morocco", value: "ar-MA" }
+              - { label: "(ar-MR) Arabic – Mauritania", value: "ar-MR" }
+              - { label: "(ar-OM) Arabic – Oman", value: "ar-OM" }
+              - { label: "(ar-PS) Arabic – Palestine", value: "ar-PS" }
+              - { label: "(ar-SA) Arabic – Saudi Arabia", value: "ar-SA" }
+              - { label: "(ar-SO) Arabic – Somalia", value: "ar-SO" }
+              - { label: "(ar-SD) Arabic – Sudan", value: "ar-SD" }
+              - { label: "(ar-SY) Arabic – Syria", value: "ar-SY" }
+              - { label: "(ar-TD) Arabic – Chad", value: "ar-TD" }
+              - { label: "(ar-TN) Arabic – Tunisia", value: "ar-TN" }
+              - { label: "(ar-AE) Arabic – United Arab Emirates", value: "ar-AE" }
+              - { label: "(ay-BO) Aymara – Bolivia", value: "ay-BO" }
+              - { label: "(az-AZ) Azerbaijani – Azerbaijan", value: "az-AZ" }
+              - { label: "(be-BY) Belarusian – Belarus", value: "be-BY" }
+              - { label: "(bn-BD) Bengali – Bangladesh", value: "bn-BD" }
+              - { label: "(bi-VU) Bislama – Vanuatu", value: "bi-VU" }
+              - { label: "(bs-BA) Bosnian – Bosnia and Herzegovina", value: "bs-BA" }
+              - { label: "(bs-ME) Bosnian – Montenegro", value: "bs-ME" }
+              - { label: "(bg-BG) Bulgarian – Bulgaria", value: "bg-BG" }
+              - { label: "(byn-ER) Bilen – Eritrea", value: "byn-ER" }
+              - { label: "(ca-AD) Catalan – Andorra", value: "ca-AD" }
+              - { label: "(cs-CZ) Czech – Czechia", value: "cs-CZ" }
+              - { label: "(ch-GU) Chamorro – Guam", value: "ch-GU" }
+              - { label: "(ch-MP) Chamorro – Northern Mariana Islands", value: "ch-MP" }
+              - { label: "(da-DK) Danish – Denmark", value: "da-DK" }
+              - { label: "(de-BE) German – Belgium", value: "de-BE" }
+              - { label: "(de-DE) German – Germany", value: "de-DE" }
+              - { label: "(de-LI) German – Liechtenstein", value: "de-LI" }
+              - { label: "(de-LU) German – Luxembourg", value: "de-LU" }
+              - { label: "(de-AT) German – Austria", value: "de-AT" }
+              - { label: "(de-CH) German – Switzerland", value: "de-CH" }
+              - { label: "(de-VA) German – Vatican City", value: "de-VA" }
+              - { label: "(dv-MV) Divehi – Maldives", value: "dv-MV" }
+              - { label: "(dz-BT) Dzongkha – Bhutan", value: "dz-BT" }
+              - { label: "(el-GR) Greek (modern) – Greece", value: "el-GR" }
+              - { label: "(el-CY) Greek (modern) – Cyprus", value: "el-CY" }
+              - { label: "(en-AS) English – American Samoa", value: "en-AS" }
+              - { label: "(en-AI) English – Anguilla", value: "en-AI" }
+              - { label: "(en-AQ) English – Antarctica", value: "en-AQ" }
+              - { label: "(en-AG) English – Antigua and Barbuda", value: "en-AG" }
+              - { label: "(en-AU) English – Australia", value: "en-AU" }
+              - { label: "(en-BS) English – Bahamas", value: "en-BS" }
+              - { label: "(en-BB) English – Barbados", value: "en-BB" }
+              - { label: "(en-BZ) English – Belize", value: "en-BZ" }
+              - { label: "(en-BM) English – Bermuda", value: "en-BM" }
+              - { label: "(en-BW) English – Botswana", value: "en-BW" }
+              - { label: "(en-IO) English – British Indian Ocean Territory", value: "en-IO" }
+              - { label: "(en-CK) English – Cook Islands", value: "en-CK" }
+              - { label: "(en-CW) English – Curacao", value: "en-CW" }
+              - { label: "(en-DM) English – Dominica", value: "en-DM" }
+              - { label: "(en-ER) English – Eritrea", value: "en-ER" }
+              - { label: "(en-SZ) English – Eswatini", value: "en-SZ" }
+              - { label: "(en-FK) English – Falkland Islands", value: "en-FK" }
+              - { label: "(en-FJ) English – Fiji", value: "en-FJ" }
+              - { label: "(en-FM) English – Federated States of Micronesia", value: "en-FM" }
+              - { label: "(en-GM) English – Gambia", value: "en-GM" }
+              - { label: "(en-GH) English – Ghana", value: "en-GH" }
+              - { label: "(en-GI) English – Gibraltar", value: "en-GI" }
+              - { label: "(en-GD) English – Grenada", value: "en-GD" }
+              - { label: "(en-GU) English – Guam", value: "en-GU" }
+              - { label: "(en-GG) English – Guernsey", value: "en-GG" }
+              - { label: "(en-GY) English – Guyana", value: "en-GY" }
+              - { label: "(en-HM) English – Heard Island and McDonald Islands", value: "en-HM" }
+              - { label: "(en-HK) English – Hong Kong", value: "en-HK" }
+              - { label: "(en-IN) English – India", value: "en-IN" }
+              - { label: "(en-IM) English – Isle of Man", value: "en-IM" }
+              - { label: "(en-IE) English – Ireland", value: "en-IE" }
+              - { label: "(en-JM) English – Jamaica", value: "en-JM" }
+              - { label: "(en-JE) English – Jersey", value: "en-JE" }
+              - { label: "(en-VG) English – British Virgin Islands", value: "en-VG" }
+              - { label: "(en-VI) English – Virgin Islands", value: "en-VI" }
+              - { label: "(en-KY) English – Cayman Islands", value: "en-KY" }
+              - { label: "(en-CM) English – Cameroon", value: "en-CM" }
+              - { label: "(en-CA) English – Canada", value: "en-CA" }
+              - { label: "(en-KE) English – Kenya", value: "en-KE" }
+              - { label: "(en-KI) English – Kiribati", value: "en-KI" }
+              - { label: "(en-UM) English – United States Minor Outlying Islands", value: "en-UM" }
+              - { label: "(en-CC) English – Cocos (Keeling) Islands", value: "en-CC" }
+              - { label: "(en-LS) English – Lesotho", value: "en-LS" }
+              - { label: "(en-LR) English – Liberia", value: "en-LR" }
+              - { label: "(en-MW) English – Malawi", value: "en-MW" }
+              - { label: "(en-MT) English – Malta", value: "en-MT" }
+              - { label: "(en-MH) English – Marshall Islands", value: "en-MH" }
+              - { label: "(en-MU) English – Mauritius", value: "en-MU" }
+              - { label: "(en-MS) English – Montserrat", value: "en-MS" }
+              - { label: "(en-NA) English – Namibia", value: "en-NA" }
+              - { label: "(en-NR) English – Nauru", value: "en-NR" }
+              - { label: "(en-NZ) English – New Zealand", value: "en-NZ" }
+              - { label: "(en-NG) English – Nigeria", value: "en-NG" }
+              - { label: "(en-NU) English – Niue", value: "en-NU" }
+              - { label: "(en-MP) English – Northern Mariana Islands", value: "en-MP" }
+              - { label: "(en-NF) English – Norfolk Island", value: "en-NF" }
+              - { label: "(en-PK) English – Pakistan", value: "en-PK" }
+              - { label: "(en-PW) English – Palau", value: "en-PW" }
+              - { label: "(en-PG) English – Papua New Guinea", value: "en-PG" }
+              - { label: "(en-PH) English – Philippines", value: "en-PH" }
+              - { label: "(en-PN) English – Pitcairn Islands", value: "en-PN" }
+              - { label: "(en-PR) English – Puerto Rico", value: "en-PR" }
+              - { label: "(en-RW) English – Rwanda", value: "en-RW" }
+              - { label: "(en-MF) English – Saint Martin", value: "en-MF" }
+              - { label: "(en-SB) English – Solomon Islands", value: "en-SB" }
+              - { label: "(en-ZM) English – Zambia", value: "en-ZM" }
+              - { label: "(en-WS) English – Samoa", value: "en-WS" }
+              - { label: "(en-SC) English – Seychelles", value: "en-SC" }
+              - { label: "(en-SL) English – Sierra Leone", value: "en-SL" }
+              - { label: "(en-ZW) English – Zimbabwe", value: "en-ZW" }
+              - { label: "(en-SG) English – Singapore", value: "en-SG" }
+              - { label: "(en-SX) English – Sint Maarten", value: "en-SX" }
+              - { label: "(en-SH) English – Saint Helena, Ascension and Tristan da Cunha", value: "en-SH" }
+              - { label: "(en-KN) English – Saint Kitts and Nevis", value: "en-KN" }
+              - { label: "(en-LC) English – Saint Lucia", value: "en-LC" }
+              - { label: "(en-VC) English – Saint Vincent and the Grenadines", value: "en-VC" }
+              - { label: "(en-ZA) English – South Africa", value: "en-ZA" }
+              - { label: "(en-SD) English – Sudan", value: "en-SD" }
+              - { label: "(en-GS) English – South Georgia and South Sandwich Islands", value: "en-GS" }
+              - { label: "(en-SS) English – South Sudan", value: "en-SS" }
+              - { label: "(en-TZ) English – Tanzania", value: "en-TZ" }
+              - { label: "(en-TK) English – Tokelau", value: "en-TK" }
+              - { label: "(en-TO) English – Tonga", value: "en-TO" }
+              - { label: "(en-TT) English – Trinidad and Tobago", value: "en-TT" }
+              - { label: "(en-TC) English – Turks and Caicos Islands", value: "en-TC" }
+              - { label: "(en-TV) English – Tuvalu", value: "en-TV" }
+              - { label: "(en-UG) English – Uganda", value: "en-UG" }
+              - { label: "(en-VU) English – Vanuatu", value: "en-VU" }
+              - { label: "(en-US) English – United States of America", value: "en-US" }
+              - { label: "(en-GB) English – United Kingdom", value: "en-GB" }
+              - { label: "(en-CX) English – Christmas Island", value: "en-CX" }
+              - { label: "(et-EE) Estonian – Estonia", value: "et-EE" }
+              - { label: "(fan-GQ) Fang – Equatorial Guinea", value: "fan-GQ" }
+              - { label: "(fo-FO) Faroese – Faroe Islands", value: "fo-FO" }
+              - { label: "(fa-IR) Persian (Farsi) – Iran", value: "fa-IR" }
+              - { label: "(fj-FJ) Fijian – Fiji", value: "fj-FJ" }
+              - { label: "(fi-FI) Finnish – Finland", value: "fi-FI" }
+              - { label: "(fr-GQ) French – Equatorial Guinea", value: "fr-GQ" }
+              - { label: "(fr-BE) French – Belgium", value: "fr-BE" }
+              - { label: "(fr-BJ) French – Benin", value: "fr-BJ" }
+              - { label: "(fr-BF) French – Burkina Faso", value: "fr-BF" }
+              - { label: "(fr-BI) French – Burundi", value: "fr-BI" }
+              - { label: "(fr-CD) French – Democratic Republic of the Congo", value: "fr-CD" }
+              - { label: "(fr-DJ) French – Djibouti", value: "fr-DJ" }
+              - { label: "(fr-CI) French – Ivory Coast", value: "fr-CI" }
+              - { label: "(fr-FR) French – France", value: "fr-FR" }
+              - { label: "(fr-GF) French – French Guiana", value: "fr-GF" }
+              - { label: "(fr-PF) French – French Polynesia", value: "fr-PF" }
+              - { label: "(fr-TF) French – French Southern and Antarctic Lands", value: "fr-TF" }
+              - { label: "(fr-MC) French – Principality of Monaco", value: "fr-MC" }
+              - { label: "(fr-GA) French – Gabon", value: "fr-GA" }
+              - { label: "(fr-GP) French – Guadeloupe", value: "fr-GP" }
+              - { label: "(fr-GG) French – Guernsey", value: "fr-GG" }
+              - { label: "(fr-GN) French – Guinea", value: "fr-GN" }
+              - { label: "(fr-HT) French – Haiti", value: "fr-HT" }
+              - { label: "(fr-JE) French – Jersey", value: "fr-JE" }
+              - { label: "(fr-CM) French – Cameroon", value: "fr-CM" }
+              - { label: "(fr-CA) French – Canada", value: "fr-CA" }
+              - { label: "(fr-KM) French – Comoros", value: "fr-KM" }
+              - { label: "(fr-LB) French – Lebanon", value: "fr-LB" }
+              - { label: "(fr-LU) French – Luxembourg", value: "fr-LU" }
+              - { label: "(fr-MG) French – Madagascar", value: "fr-MG" }
+              - { label: "(fr-ML) French – Mali", value: "fr-ML" }
+              - { label: "(fr-MQ) French – Martinique", value: "fr-MQ" }
+              - { label: "(fr-YT) French – Mayotte", value: "fr-YT" }
+              - { label: "(fr-NC) French – New Caledonia", value: "fr-NC" }
+              - { label: "(fr-NE) French – Niger", value: "fr-NE" }
+              - { label: "(fr-CG) French – Republic of the Congo", value: "fr-CG" }
+              - { label: "(fr-RE) French – Reunion", value: "fr-RE" }
+              - { label: "(fr-RW) French – Rwanda", value: "fr-RW" }
+              - { label: "(fr-MF) French – Saint Martin", value: "fr-MF" }
+              - { label: "(fr-BL) French – Saint Barthelemy", value: "fr-BL" }
+              - { label: "(fr-CH) French – Switzerland", value: "fr-CH" }
+              - { label: "(fr-SN) French – Senegal", value: "fr-SN" }
+              - { label: "(fr-SC) French – Seychelles", value: "fr-SC" }
+              - { label: "(fr-PM) French – Saint Pierre and Miquelon", value: "fr-PM" }
+              - { label: "(fr-TG) French – Togo", value: "fr-TG" }
+              - { label: "(fr-TD) French – Chad", value: "fr-TD" }
+              - { label: "(fr-VU) French – Vanuatu", value: "fr-VU" }
+              - { label: "(fr-VA) French – Vatican City", value: "fr-VA" }
+              - { label: "(fr-WF) French – Wallis and Futuna", value: "fr-WF" }
+              - { label: "(fr-CF) French – Central African Republic", value: "fr-CF" }
+              - { label: "(ff-BF) Fula – Burkina Faso", value: "ff-BF" }
+              - { label: "(ff-GN) Fula – Guinea", value: "ff-GN" }
+              - { label: "(ga-IE) Irish – Ireland", value: "ga-IE" }
+              - { label: "(gv-IM) Manx – Isle of Man", value: "gv-IM" }
+              - { label: "(gn-AR) Guaraní – Argentina", value: "gn-AR" }
+              - { label: "(gn-PY) Guaraní – Paraguay", value: "gn-PY" }
+              - { label: "(ht-HT) Haitian – Haiti", value: "ht-HT" }
+              - { label: "(he-IL) Hebrew (modern) – Israel", value: "he-IL" }
+              - { label: "(hif-FJ) Fiji Hindi – Fiji", value: "hif-FJ" }
+              - { label: "(hi-IN) Hindi – India", value: "hi-IN" }
+              - { label: "(hr-BA) Croatian – Bosnia and Herzegovina", value: "hr-BA" }
+              - { label: "(hr-HR) Croatian – Croatia", value: "hr-HR" }
+              - { label: "(hr-ME) Croatian – Montenegro", value: "hr-ME" }
+              - { label: "(hu-HU) Hungarian – Hungary", value: "hu-HU" }
+              - { label: "(hy-AM) Armenian – Armenia", value: "hy-AM" }
+              - { label: "(hy-CY) Armenian – Cyprus", value: "hy-CY" }
+              - { label: "(id-ID) Indonesian – Indonesia", value: "id-ID" }
+              - { label: "(is-IS) Icelandic – Iceland", value: "is-IS" }
+              - { label: "(it-IT) Italian – Italy", value: "it-IT" }
+              - { label: "(it-SM) Italian – San Marino", value: "it-SM" }
+              - { label: "(it-CH) Italian – Switzerland", value: "it-CH" }
+              - { label: "(it-VA) Italian – Vatican City", value: "it-VA" }
+              - { label: "(ja-JP) Japanese – Japan", value: "ja-JP" }
+              - { label: "(kl-GL) Greenlandic – Greenland", value: "kl-GL" }
+              - { label: "(ka-GE) Georgian – Georgia", value: "ka-GE" }
+              - { label: "(kk-KZ) Kazakh – Kazakhstan", value: "kk-KZ" }
+              - { label: "(km-KH) Khmer – Cambodia", value: "km-KH" }
+              - { label: "(rw-RW) Kinyarwanda – Rwanda", value: "rw-RW" }
+              - { label: "(ky-KG) Kyrgyz – Kyrgyzstan", value: "ky-KG" }
+              - { label: "(kg-CD) Kongo – Democratic Republic of the Congo", value: "kg-CD" }
+              - { label: "(ko-KP) Korean – North Korea", value: "ko-KP" }
+              - { label: "(ko-KR) Korean – South Korea", value: "ko-KR" }
+              - { label: "(kun-ER) Kunama – Eritrea", value: "kun-ER" }
+              - { label: "(ku-IQ) Kurdish – Iraq", value: "ku-IQ" }
+              - { label: "(lo-LA) Lao – Laos", value: "lo-LA" }
+              - { label: "(la-VA) Latin – Vatican City", value: "la-VA" }
+              - { label: "(lv-LV) Latvian – Latvia", value: "lv-LV" }
+              - { label: "(ln-CD) Lingala – Democratic Republic of the Congo", value: "ln-CD" }
+              - { label: "(ln-CG) Lingala – Republic of the Congo", value: "ln-CG" }
+              - { label: "(lt-LT) Lithuanian – Lithuania", value: "lt-LT" }
+              - { label: "(lb-LU) Luxembourgish – Luxembourg", value: "lb-LU" }
+              - { label: "(lu-CD) Luba-Katanga – Democratic Republic of the Congo", value: "lu-CD" }
+              - { label: "(mh-MH) Marshallese – Marshall Islands", value: "mh-MH" }
+              - { label: "(mk-MK) Macedonian – North Macedonia", value: "mk-MK" }
+              - { label: "(mg-MG) Malagasy – Madagascar", value: "mg-MG" }
+              - { label: "(mt-MT) Maltese – Malta", value: "mt-MT" }
+              - { label: "(mn-MN) Mongolian – Mongolia", value: "mn-MN" }
+              - { label: "(mi-NZ) Māori – New Zealand", value: "mi-NZ" }
+              - { label: "(ms-BN) Malay – Brunei", value: "ms-BN" }
+              - { label: "(ms-SG) Malay – Singapore", value: "ms-SG" }
+              - { label: "(my-MM) Burmese – Myanmar", value: "my-MM" }
+              - { label: "(na-NR) Nauruan – Nauru", value: "na-NR" }
+              - { label: "(nr-ZA) Southern Ndebele – South Africa", value: "nr-ZA" }
+              - { label: "(nd-ZW) Northern Ndebele – Zimbabwe", value: "nd-ZW" }
+              - { label: "(ne-NP) Nepali – Nepal", value: "ne-NP" }
+              - { label: "(nl-AW) Dutch – Aruba", value: "nl-AW" }
+              - { label: "(nl-BE) Dutch – Belgium", value: "nl-BE" }
+              - { label: "(nl-CW) Dutch – Curacao", value: "nl-CW" }
+              - { label: "(nl-BQ) Dutch – Caribbean Netherlands", value: "nl-BQ" }
+              - { label: "(nl-NL) Dutch – Netherlands", value: "nl-NL" }
+              - { label: "(nl-MF) Dutch – Saint Martin", value: "nl-MF" }
+              - { label: "(nl-SX) Dutch – Sint Maarten", value: "nl-SX" }
+              - { label: "(nl-SR) Dutch – Suriname", value: "nl-SR" }
+              - { label: "(nn-BV) Norwegian Nynorsk – Bouvet Island", value: "nn-BV" }
+              - { label: "(nn-NO) Norwegian Nynorsk – Norway", value: "nn-NO" }
+              - { label: "(nb-BV) Norwegian Bokmål – Bouvet Island", value: "nb-BV" }
+              - { label: "(nb-NO) Norwegian Bokmål – Norway", value: "nb-NO" }
+              - { label: "(no-BV) Norwegian – Bouvet Island", value: "no-BV" }
+              - { label: "(no-NO) Norwegian – Norway", value: "no-NO" }
+              - { label: "(no-SJ) Norwegian – Svalbard", value: "no-SJ" }
+              - { label: "(nrb-ER) Nara – Eritrea", value: "nrb-ER" }
+              - { label: "(ny-MW) Chichewa – Malawi", value: "ny-MW" }
+              - { label: "(pa-AW) (Eastern) Punjabi – Aruba", value: "pa-AW" }
+              - { label: "(pa-CW) (Eastern) Punjabi – Curacao", value: "pa-CW" }
+              - { label: "(pl-PL) Polish – Poland", value: "pl-PL" }
+              - { label: "(pt-AO) Portuguese – Angola", value: "pt-AO" }
+              - { label: "(pt-GQ) Portuguese – Equatorial Guinea", value: "pt-GQ" }
+              - { label: "(pt-BR) Portuguese – Brazil", value: "pt-BR" }
+              - { label: "(pt-GW) Portuguese – Guinea-Bissau", value: "pt-GW" }
+              - { label: "(pt-CV) Portuguese – Cape Verde", value: "pt-CV" }
+              - { label: "(pt-MO) Portuguese – Macao", value: "pt-MO" }
+              - { label: "(pt-MZ) Portuguese – Mozambique", value: "pt-MZ" }
+              - { label: "(pt-TL) Portuguese – East Timor", value: "pt-TL" }
+              - { label: "(pt-PT) Portuguese – Portugal", value: "pt-PT" }
+              - { label: "(pt-ST) Portuguese – Sao Tome and Principe", value: "pt-ST" }
+              - { label: "(ps-AF) Pashto – Afghanistan", value: "ps-AF" }
+              - { label: "(qu-BO) Quechua – Bolivia", value: "qu-BO" }
+              - { label: "(rar-CK) Cook Islands Māori – Cook Islands", value: "rar-CK" }
+              - { label: "(rm-CH) Romansh – Switzerland", value: "rm-CH" }
+              - { label: "(ro-MD) Romanian – Moldova", value: "ro-MD" }
+              - { label: "(ro-RO) Romanian – Romania", value: "ro-RO" }
+              - { label: "(rtm-FJ) Rotuman – Fiji", value: "rtm-FJ" }
+              - { label: "(rn-BI) Kirundi – Burundi", value: "rn-BI" }
+              - { label: "(ru-AQ) Russian – Antarctica", value: "ru-AQ" }
+              - { label: "(ru-BY) Russian – Belarus", value: "ru-BY" }
+              - { label: "(ru-KZ) Russian – Kazakhstan", value: "ru-KZ" }
+              - { label: "(ru-KG) Russian – Kyrgyzstan", value: "ru-KG" }
+              - { label: "(ru-RU) Russian – Russia", value: "ru-RU" }
+              - { label: "(ru-TJ) Russian – Tajikistan", value: "ru-TJ" }
+              - { label: "(ru-TM) Russian – Turkmenistan", value: "ru-TM" }
+              - { label: "(ru-UZ) Russian – Uzbekistan", value: "ru-UZ" }
+              - { label: "(sg-CF) Sango – Central African Republic", value: "sg-CF" }
+              - { label: "(si-LK) Sinhalese – Sri Lanka", value: "si-LK" }
+              - { label: "(sk-SK) Slovak – Slovakia", value: "sk-SK" }
+              - { label: "(sk-CZ) Slovak – Czechia", value: "sk-CZ" }
+              - { label: "(sl-SI) Slovene – Slovenia", value: "sl-SI" }
+              - { label: "(sm-AS) Samoan – American Samoa", value: "sm-AS" }
+              - { label: "(sm-WS) Samoan – Samoa", value: "sm-WS" }
+              - { label: "(sn-ZW) Shona – Zimbabwe", value: "sn-ZW" }
+              - { label: "(so-SO) Somali – Somalia", value: "so-SO" }
+              - { label: "(st-LS) Southern Sotho – Lesotho", value: "st-LS" }
+              - { label: "(st-ZA) Southern Sotho – South Africa", value: "st-ZA" }
+              - { label: "(es-GQ) Spanish – Equatorial Guinea", value: "es-GQ" }
+              - { label: "(es-AR) Spanish – Argentina", value: "es-AR" }
+              - { label: "(es-BZ) Spanish – Belize", value: "es-BZ" }
+              - { label: "(es-BO) Spanish – Bolivia", value: "es-BO" }
+              - { label: "(es-CL) Spanish – Chile", value: "es-CL" }
+              - { label: "(es-CR) Spanish – Costa Rica", value: "es-CR" }
+              - { label: "(es-DO) Spanish – Dominican Republic", value: "es-DO" }
+              - { label: "(es-EC) Spanish – Ecuador", value: "es-EC" }
+              - { label: "(es-SV) Spanish – El Salvador", value: "es-SV" }
+              - { label: "(es-GU) Spanish – Guam", value: "es-GU" }
+              - { label: "(es-GT) Spanish – Guatemala", value: "es-GT" }
+              - { label: "(es-HN) Spanish – Honduras", value: "es-HN" }
+              - { label: "(es-CO) Spanish – Colombia", value: "es-CO" }
+              - { label: "(es-CU) Spanish – Cuba", value: "es-CU" }
+              - { label: "(es-MX) Spanish – Mexico", value: "es-MX" }
+              - { label: "(es-NI) Spanish – Nicaragua", value: "es-NI" }
+              - { label: "(es-PA) Spanish – Panama", value: "es-PA" }
+              - { label: "(es-PY) Spanish – Paraguay", value: "es-PY" }
+              - { label: "(es-PE) Spanish – Peru", value: "es-PE" }
+              - { label: "(es-PR) Spanish – Puerto Rico", value: "es-PR" }
+              - { label: "(es-ES) Spanish – Spain", value: "es-ES" }
+              - { label: "(es-UY) Spanish – Uruguay", value: "es-UY" }
+              - { label: "(es-VE) Spanish – Venezuela", value: "es-VE" }
+              - { label: "(es-EH) Spanish – Western Sahara", value: "es-EH" }
+              - { label: "(sq-AL) Albanian – Albania", value: "sq-AL" }
+              - { label: "(sq-XK) Albanian – Kosovo", value: "sq-XK" }
+              - { label: "(sq-ME) Albanian – Montenegro", value: "sq-ME" }
+              - { label: "(sr-BA) Serbian – Bosnia and Herzegovina", value: "sr-BA" }
+              - { label: "(sr-XK) Serbian – Kosovo", value: "sr-XK" }
+              - { label: "(sr-ME) Serbian – Montenegro", value: "sr-ME" }
+              - { label: "(sr-RS) Serbian – Serbia", value: "sr-RS" }
+              - { label: "(ss-SZ) Swati – Eswatini", value: "ss-SZ" }
+              - { label: "(ss-ZA) Swati – South Africa", value: "ss-ZA" }
+              - { label: "(ssy-ER) Saho – Eritrea", value: "ssy-ER" }
+              - { label: "(sw-CD) Swahili – Democratic Republic of the Congo", value: "sw-CD" }
+              - { label: "(sw-KE) Swahili – Kenya", value: "sw-KE" }
+              - { label: "(sw-TZ) Swahili – Tanzania", value: "sw-TZ" }
+              - { label: "(sw-UG) Swahili – Uganda", value: "sw-UG" }
+              - { label: "(sv-AX) Swedish – Åland Islands", value: "sv-AX" }
+              - { label: "(sv-FI) Swedish – Finland", value: "sv-FI" }
+              - { label: "(sv-SE) Swedish – Sweden", value: "sv-SE" }
+              - { label: "(ta-SG) Tamil – Singapore", value: "ta-SG" }
+              - { label: "(ta-LK) Tamil – Sri Lanka", value: "ta-LK" }
+              - { label: "(tg-TJ) Tajik – Tajikistan", value: "tg-TJ" }
+              - { label: "(th-TH) Thai – Thailand", value: "th-TH" }
+              - { label: "(tig-ER) Tigre – Eritrea", value: "tig-ER" }
+              - { label: "(ti-ER) Tigrinya – Eritrea", value: "ti-ER" }
+              - { label: "(to-TO) Tonga (Tonga Islands) – Tonga", value: "to-TO" }
+              - { label: "(tn-BW) Tswana – Botswana", value: "tn-BW" }
+              - { label: "(tn-ZA) Tswana – South Africa", value: "tn-ZA" }
+              - { label: "(ts-ZA) Tsonga – South Africa", value: "ts-ZA" }
+              - { label: "(tk-AF) Turkmen – Afghanistan", value: "tk-AF" }
+              - { label: "(tk-TM) Turkmen – Turkmenistan", value: "tk-TM" }
+              - { label: "(tr-TR) Turkish – Turkey", value: "tr-TR" }
+              - { label: "(tr-CY) Turkish – Cyprus", value: "tr-CY" }
+              - { label: "(uk-UA) Ukrainian – Ukraine", value: "uk-UA" }
+              - { label: "(ur-PK) Urdu – Pakistan", value: "ur-PK" }
+              - { label: "(uz-AF) Uzbek – Afghanistan", value: "uz-AF" }
+              - { label: "(uz-UZ) Uzbek – Uzbekistan", value: "uz-UZ" }
+              - { label: "(ve-ZA) Venda – South Africa", value: "ve-ZA" }
+              - { label: "(vi-VN) Vietnamese – Vietnam", value: "vi-VN" }
+              - { label: "(xh-ZA) Xhosa – South Africa", value: "xh-ZA" }
+              - { label: "(zh-CN) Chinese – China", value: "zh-CN" }
+              - { label: "(zh-HK) Chinese – Hong Kong", value: "zh-HK" }
+              - { label: "(zh-MO) Chinese – Macao", value: "zh-MO" }
+              - { label: "(zh-SG) Chinese – Singapore", value: "zh-SG" }
+              - { label: "(zh-TW) Chinese – Taiwan", value: "zh-TW" }
+              - { label: "(ms-MY) Malay – Malaysia", value: "ms-MY" }
+              - { label: "(zu-ZA) Zulu – South Africa", value: "zu-ZA" }
+
+          - name: author
+            label: Autoři
+            required: false
+            widget: string
+            hint: meta authors
+
+
+      - name: redirects
+        label: Přesměrování
+        file: src/_data/redirects.yaml
+        widget: list
+        fields:
+
+          - name: redirects
+            label: " "
+            label_singular: přesměrování
+            root: true
+            widget: list
+            summary: "{{fields.from}} → {{fields.to}}"
+            fields:
+
+              - name: from
+                label: původní adresa
+                hint: Z homepage nelze přesměrovat.
+                widget: string
+                before_input: "https://​veterina-smichov.cz"
+                prefix: /
+                suffix: /
+                pattern: [ '/^[0-9a-zA-Z-/]*$/', "Není platná adresa" ]
+
+              - name: to
+                label: nová adresa
+                hint: Pro přesměrování na homepage jen `/`.<br>Nelze přesměrovat mimo tento web.
+                widget: string
+                before_input: "https://​veterina-smichov.cz"
+                prefix: /
+                pattern: [ '/^[0-9a-zA-Z-/]*$/', "Není platná adresa" ]

@@ -1,0 +1,12 @@
+{% extends "./page.njk" %}
+
+
+{% block content %}
+    {{ super() }}
+
+    {% set articleList = collections.articles %}
+    {% if articleList %}
+        {% include "article-list.njk" %}
+    {% endif %}
+
+{% endblock %}

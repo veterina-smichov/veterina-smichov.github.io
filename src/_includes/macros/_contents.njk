@@ -1,0 +1,40 @@
+{% from "macros/_contents-markdown.njk" import renderMarkdown %}
+{% from "macros/_contents-buttons.njk" import renderButtons %}
+{% from "macros/_contents-pricelist.njk" import renderPricelist %}
+{% from "macros/_contents-image.njk" import renderImage %}
+
+{# Whole contents section renderer #}
+{% macro renderSections(contents) %}
+    {% for section in contents.sections %}
+        <section
+            class="
+                C-section
+                {{ section.color }}
+                {{ section.lightness }}
+                {{ 'C-section--outer' if section.outerBackground }}
+                {{ section.height }}
+            ">
+            <div class="C-section__content">
+                {% for columnGroup in section.columnGroups %}
+                    <div class="C-row {{ columnGroup.verticalAlignment }} {{ columnGroup.style }}">
+                        {% for column in columnGroup.columns %}
+                            <div class="C-col">
+                                {% for columnContents in column.contents %}
+                                    {% if columnContents.type === "markdown" %}
+                                        {{ renderMarkdown(columnContents) }}
+                                    {% elseif columnContents.type === "buttons" %}
+                                        {{ renderButtons(columnContents) }}
+                                    {% elseif columnContents.type === "pricelist" %}
+                                        {{ renderPricelist(columnContents) }}
+                                    {% elseif columnContents.type === "image" %}
+                                        {{ renderImage(columnContents) }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+{% endmacro %}

@@ -1,0 +1,71 @@
+@use "sass:color";
+
+.C-section--header {
+    background-image: linear-gradient(
+            color.scale($cyan-200, $alpha: -20%) 75%,
+            color.scale($cyan-200, $alpha: -5%) 100%
+    );
+    backdrop-filter: blur(16px);
+    position: relative;
+    padding-block: 0;
+
+    @media (min-height: 600px) {
+        position: sticky;
+        top: 0;
+        z-index: 99999;
+    }
+}
+
+.C-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: map-get($spacers, 5);
+    row-gap: var(--space-flex-150);
+    padding-block: var(--space-flex-200);
+    padding-inline: var(--space-flex-300);
+}
+
+.C-header__logo {
+    display: block;
+    aspect-ratio: 14000 / 1800;
+    max-width: clamp(24rem, 18.4078rem + 15.534vw, 32rem); /* @link https://utopia.fyi/clamp/calculator?a=576,1400,384—512 */
+    width: 100%;
+}
+
+.C-header__img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.C-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    column-gap: var(--space-flex-150-zero);
+
+    font-stretch: 95%;
+
+    @include font-size($h5-font-size);
+
+    @media (min-width: 360px) {
+        font-stretch: 100%;
+    }
+}
+
+.C-header__link {
+    color: $teal-500;
+    text-wrap: nowrap;
+    line-height: 1;
+    padding-block: var(--space-flex-150);
+    padding-inline: var(--space-flex-150);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &--active {
+        color: $teal-800;
+    }
+}
