@@ -24,7 +24,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:20-alpine
     steps:
       - uses: actions/checkout@v4
 
@@ -35,11 +34,9 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci  --prefer-offline --no-audit
+        run: npm ci
 
       - name: Build site
-        env:
-          NODE_ENV: production
         run: npm run build
 
       - name: Setup Pages
