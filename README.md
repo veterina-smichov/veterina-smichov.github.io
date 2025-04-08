@@ -7,7 +7,7 @@
 - CSS/Sass post-processing with PostCSS incl. [Autoprefixer](https://github.com/postcss/autoprefixer), [cssnano](https://cssnano.github.io/cssnano/) and [PurgeCSS](https://purgecss.com/)
 - [Bootstrap 5.3](https://getbootstrap.com/)
 - [Utopia.fyi](https://utopia.fyi/) [Sass library](https://github.com/trys/utopia-core-scss)
-- [Decap CMS](https://decapcms.org/) or [Sveltia CMS](https://github.com/sveltia/sveltia-cms)
+- [Sveltia CMS](https://github.com/sveltia/sveltia-cms)
 - [Typopo](https://typopo.org/) for nicer typography
 - XML sitemap
 - Redirects
@@ -36,7 +36,7 @@ npm run build
 
 ## Clean
 
-Delete content of output directory.
+Delete content of output directory. This runs before build or start commands.
 ```sh
 npm run clean
 ```
@@ -53,10 +53,9 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 ```bash
 ├─ _site/                            # 11ty output directory
 ├─ config/                           # configuration files
-│  ├─ transforms/                    # transforms
+│  ├─ transforms/                    # transforms folder
 │  │  └─ htmlTypopoTransform.js      # typopo transformation
 │  ├─ collections.js                 # collections config
-│  ├─ configLoader.js                # config loader helper
 │  ├─ filters.js                     # filters config
 │  ├─ ignores.js                     # ignores config
 │  ├─ passthroughs.js                # passthroughs config
@@ -69,19 +68,26 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 ├─ src/                              # 11ty input directory
 │  ├─ _data/                         # 11ty data directory (data available globally)
 │  │  ├─ build.js                    # data about build
-│  │  ├─ eleventyConputed.js         # global computed values (has access to other data in _data/*)
+│  │  ├─ eleventyComputed.js         # global computed values (has access to other data in _data/*)
 │  │  ├─ footer.js                   # data for footer content
 │  │  ├─ generalAnnouncements.json   # data for general announcements
+│  │  ├─ meta.json                   # data for meta tags and <head> in general
 │  │  ├─ openingHours.js             # data about opening hours
-│  │  └─ meta.json                   # data for meta tags
-│  ├─ _includes/                     # 11ty includes directory (partials to be used with include template tag)
+│  │  └─ redirects.yaml              # redirect data
+│  ├─ _includes/                     # 11ty includes di
+│  │  ├─ macros/                     # nunjucks macros
+│  │  ├─ article-list.njk
 │  │  ├─ favicon.njk
 │  │  ├─ meta.njk
-│  │  ├─ …
-│  │  └─ navigation.njk
+│  │  └─ opening-hours.njk
 │  ├─ _layouts/                      # 11ty layouts directory (basic templates to be used for whole pages)
 │  │  ├─ _base.njk                   # templates starting with _ are not used directly
+│  │  ├─ 404.njk
+│  │  ├─ base.njk
+│  │  ├─ homepage.njk
+│  │  ├─ ordinacni-hodiny.njk
 │  │  ├─ article.njk
+│  │  ├─ articles.njk
 │  │  └─ page.njk                    # base template for most pages
 │  ├─ _special-urls/                 # special pages/files
 │  │  ├─ _special-urls.11tydata.json # directory specific settings
@@ -91,7 +97,7 @@ The [browserslist](https://github.com/browserslist/browserslist) settings can be
 │  │  ├─ robots.txt.njk              # robots.txt template
 │  │  └─ sitemap.xml.njk             # sitemap.xml template
 │  ├─ articles/                      # articles directory
-│  │  ├─ 2020-04-12-sample-post.md   # article
+│  │  ├─ article-slug.md             # article
 │  │  └─ articles.11tydata.json      # directory specific settings
 │  ├─ assets/                        # processed assets
 │  │  ├─ images/                     # images directory
