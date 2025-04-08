@@ -22,13 +22,12 @@ contents:
                   alt: ''
                   fill: true
                   aspectRatio: C-dummy
-
 layout: articles.njk
 permalink: /clanky/
-eleventyNavigation:
-  key: Články
-  order: 40
+eleventyNavigation: null
 meta:
-  description: 'Přečtete si jak řešit některé typické problémy či jaké případy jsme v naší praxi potkaly.'
-sitemapIgnore: false
+  title: ''
+  description: Přečtete si jak řešit některé typické problémy či jaké případy jsme v naší praxi potkaly.
+sitemapIgnore: true
 ---
+
