@@ -32,7 +32,7 @@
     "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@11ty/eleventy-plugin-vite": "^6.0.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@sveltia/cms": "^0.70.0",
+    "@sveltia/cms": "^0.70.1",
     "autoprefixer": "^10.4.21",
     "bootstrap": "5.3.5",
     "chalk": "^5.4.1",
